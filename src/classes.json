@@ -1,0 +1,1145 @@
+{
+  "1000": {
+    "name": "English 9",
+    "ap": false,
+    "allowed_years": [9],
+    "credit": 1,
+    "course_length": 1,
+    "department": 0,
+    "required": true
+  },
+  "4003": {
+    "name": "Psychology of Fear",
+    "ap": false,
+    "allowed_years": [11, 12],
+    "credit": 1,
+    "course_length": 1,
+    "department": 0,
+    "shorthand": "Psych of Fear"
+  },
+  "4004": {
+    "name": "Crime & Punishment",
+    "ap": false,
+    "allowed_years": [11, 12],
+    "credit": 1,
+    "course_length": 1,
+    "department": 0
+  },
+  "2000": {
+    "name": "English 10",
+    "ap": false,
+    "allowed_years": [10],
+    "credit": 1,
+    "course_length": 1,
+    "department": 0,
+    "required": true
+  },
+  "5000": {
+    "name": "AP English Language & Composition",
+    "ap": true,
+    "allowed_years": [11, 12],
+    "credit": 1,
+    "course_length": 1,
+    "department": 0,
+    "shorthand": "AP Lang"
+  },
+  "5001": {
+    "name": "AP English Literature & Composition",
+    "ap": true,
+    "allowed_years": [11, 12],
+    "credit": 1,
+    "course_length": 1,
+    "department": 0,
+    "shorthand": "AP Lit"
+  },
+  "5002": {
+    "name": "SUPA: Introduction to Creative Nonfiction",
+    "ap": false,
+    "allowed_years": [11, 12],
+    "credit": 1,
+    "course_length": 1,
+    "department": 0
+  },
+  "1100": {
+    "name": "Foundations of the Modern World",
+    "ap": false,
+    "allowed_years": [9],
+    "department": 1,
+    "course_length": 1,
+    "credit": 1,
+    "shorthand": "Foundations",
+    "required": true
+  },
+  "2100": {
+    "name": "Modern World History",
+    "ap": false,
+    "allowed_years": [10],
+    "department": 1,
+    "course_length": 1,
+    "credit": 1
+  },
+  "3101": {
+    "name": "Japan Studies (F)(S)",
+    "ap": false,
+    "allowed_years": [10, 11, 12],
+    "department": 1,
+    "course_length": 0.5,
+    "credit": 0.5
+  },
+  "3103": {
+    "name": "Contemporary World Issues: Sustainable Development (F)(S)",
+    "ap": false,
+    "allowed_years": [10, 11, 12],
+    "department": 1,
+    "course_length": 0.5,
+    "credit": 0.5
+  },
+  "4100": {
+    "name": "US History",
+    "ap": false,
+    "allowed_years": [10, 11, 12],
+    "department": 1,
+    "course_length": 0.5,
+    "credit": 0.5
+  },
+  "4101": {
+    "name": "Race & Ethnic Studies (F)(S)",
+    "ap": false,
+    "allowed_years": [10, 11, 12],
+    "department": 1,
+    "course_length": 0.5,
+    "credit": 0.5
+  },
+  "5100": {
+    "name": "AP World History",
+    "ap": true,
+    "allowed_years": [10, 11, 12],
+    "department": 1,
+    "course_length": 1,
+    "credit": 1,
+    "shorthand": "AP World"
+  },
+  "5101": {
+    "name": "AP US History",
+    "ap": true,
+    "allowed_years": [11, 12],
+    "department": 1,
+    "course_length": 1,
+    "credit": 1,
+    "shorthand": "APUSH"
+  },
+  "5102": {
+    "name": "AP Economics",
+    "ap": true,
+    "allowed_years": [11, 12],
+    "department": 1,
+    "course_length": 1,
+    "credit": 1,
+    "shorthand": "AP Econ"
+  },
+  "5103": {
+    "name": "AP Microeconomics",
+    "ap": true,
+    "allowed_years": [11, 12],
+    "department": 1,
+    "course_length": 1,
+    "credit": 1,
+    "shorthand": "AP Micro"
+  },
+  "5104": {
+    "name": "SUPA: Psychology",
+    "ap": false,
+    "allowed_years": [11, 12],
+    "department": 1,
+    "course_length": 1,
+    "credit": 1,
+    "shorthand": "SUPA: Psych"
+  },
+  "5105": {
+    "name": "SUPA: Introduction to Entrepreneurship",
+    "ap": false,
+    "allowed_years": [11, 12],
+    "department": 1,
+    "course_length": 1,
+    "credit": 1
+  },
+  "6100": {
+    "name": "Japan Seminar",
+    "ap": false,
+    "allowed_years": [12],
+    "department": 1,
+    "course_length": 1,
+    "credit": 1
+  },
+  "1300": {
+    "name": "Biology",
+    "ap": false,
+    "allowed_years": [9, 10],
+    "department": 2,
+    "course_length": 1,
+    "credit": 1,
+    "shorthand": "Bio"
+  },
+  "2301": {
+    "name": "Chemistry",
+    "ap": false,
+    "allowed_years": [10, 11, 12],
+    "department": 2,
+    "course_length": 1,
+    "credit": 1,
+    "shorthand": "Chem",
+    "prerequisites": ["1300"]
+  },
+  "2302": {
+    "name": "Dynamics of Physics and Chemistry",
+    "ap": false,
+    "allowed_years": [10, 11, 12],
+    "department": 2,
+    "course_length": 1,
+    "credit": 1,
+    "prerequisites": ["1300"]
+  },
+  "3302": {
+    "name": "Physics",
+    "ap": false,
+    "allowed_years": [10, 11, 12],
+    "department": 2,
+    "course_length": 1,
+    "credit": 1,
+    "prerequisites": ["1300"]
+  },
+  "4300": {
+    "name": "Biomedical Science",
+    "ap": false,
+    "allowed_years": [11, 12],
+    "department": 2,
+    "course_length": 1,
+    "credit": 1,
+    "shorthand": "Biomed"
+  },
+  "4301": {
+    "name": "Organic Chemistry",
+    "ap": false,
+    "allowed_years": [11, 12],
+    "department": 2,
+    "course_length": 1,
+    "credit": 1,
+    "shorthand": "Org. Chem"
+  },
+  "4303": {
+    "name": "Food Science and Sustainability",
+    "ap": false,
+    "allowed_years": [11, 12],
+    "department": 2,
+    "course_length": 1,
+    "credit": 1
+  },
+  "5300": {
+    "name": "AP Environmental Science",
+    "ap": true,
+    "allowed_years": [11, 12],
+    "department": 2,
+    "course_length": 1,
+    "credit": 1,
+    "shorthand": "APES"
+  },
+  "5304": {
+    "name": "AP Physics 2",
+    "ap": true,
+    "allowed_years": [11, 12],
+    "department": 2,
+    "course_length": 1,
+    "credit": 1,
+    "shorthand": "AP Physics 2",
+    "prerequisites": ["3302"]
+  },
+  "5301": {
+    "name": "AP Biology",
+    "ap": true,
+    "allowed_years": [11, 12],
+    "department": 2,
+    "course_length": 1,
+    "credit": 1,
+    "shorthand": "AP Bio"
+  },
+  "5302": {
+    "name": "AP Chemistry",
+    "ap": true,
+    "allowed_years": [11, 12],
+    "department": 2,
+    "course_length": 1,
+    "credit": 1,
+    "shorthand": "AP Chem"
+  },
+  "6300": {
+    "name": "Synthetic Biology",
+    "ap": false,
+    "allowed_years": [11, 12],
+    "department": 2,
+    "course_length": 1,
+    "credit": 1,
+    "shorthand": "Syn Bio"
+  },
+  "1201": {
+    "name": "Integrated Math I",
+    "ap": false,
+    "allowed_years": [9, 10],
+    "department": 3,
+    "course_length": 1,
+    "credit": 1,
+    "shorthand": "Integrated Math 1"
+  },
+  "2200": {
+    "name": "Geometry",
+    "ap": false,
+    "allowed_years": [9, 10, 11, 12],
+    "department": 3,
+    "course_length": 1,
+    "credit": 1,
+    "shorthand": "Geo"
+  },
+  "3200": {
+    "name": "Algebra 2",
+    "ap": false,
+    "allowed_years": [10, 11, 12],
+    "department": 3,
+    "course_length": 1,
+    "credit": 1,
+    "shorthand": "Alg 2"
+  },
+  "4200": {
+    "name": "Precalculus",
+    "ap": false,
+    "allowed_years": [10, 11, 12],
+    "department": 3,
+    "course_length": 1,
+    "credit": 1,
+    "shorthand": "Precalc"
+  },
+  "4201": {
+    "name": "Advanced Precalculus",
+    "ap": false,
+    "allowed_years": [10, 11, 12],
+    "department": 3,
+    "course_length": 1,
+    "credit": 1,
+    "shorthand": "Adv. Precalc"
+  },
+  "4202": {
+    "name": "Calculus",
+    "ap": false,
+    "allowed_years": [11, 12],
+    "department": 3,
+    "course_length": 1,
+    "credit": 1,
+    "shorthand": "Calc"
+  },
+  "5200": {
+    "name": "AP Calculus AB",
+    "ap": true,
+    "allowed_years": [11, 12],
+    "department": 3,
+    "course_length": 1,
+    "credit": 1,
+    "shorthand": "AP Calc AB"
+  },
+  "5201": {
+    "name": "AP Calculus BC",
+    "ap": true,
+    "allowed_years": [11, 12],
+    "department": 3,
+    "course_length": 1,
+    "credit": 1,
+    "shorthand": "AP Calc BC"
+  },
+  "5203": {
+    "name": "AP Calculus BC (Post AB)",
+    "ap": true,
+    "allowed_years": [11, 12],
+    "department": 3,
+    "course_length": 1,
+    "credit": 1,
+    "shorthand": "AP Calc BC (Post AB)"
+  },
+  "5202": {
+    "name": "AP Statistics",
+    "ap": true,
+    "allowed_years": [11, 12],
+    "department": 3,
+    "course_length": 1,
+    "credit": 1,
+    "shorthand": "AP Stats"
+  },
+  "6202": {
+    "name": "Advanced Topics in Mathematics (Varies by year)",
+    "ap": false,
+    "allowed_years": [11, 12],
+    "department": 3,
+    "course_length": 1,
+    "credit": 1,
+    "shorthand": "AT Math"
+  },
+  "1900": {
+    "name": "Design Products",
+    "ap": false,
+    "allowed_years": [9, 10, 11, 12],
+    "department": 4,
+    "course_length": 0.5,
+    "credit": 0.5
+  },
+  "1901": {
+    "name": "Design with Code",
+    "ap": false,
+    "allowed_years": [9, 10, 11, 12],
+    "department": 4,
+    "course_length": 0.5,
+    "credit": 0.5
+  },
+  "1902": {
+    "name": "Design with Physical Computing & Robotics",
+    "ap": false,
+    "allowed_years": [9, 10, 11, 12],
+    "department": 4,
+    "course_length": 0.5,
+    "credit": 0.5
+  },
+  "1903": {
+    "name": "Global Citizenship in the Digital Age",
+    "ap": false,
+    "allowed_years": [9, 10, 11, 12],
+    "department": 4,
+    "course_length": 0.5,
+    "credit": 0.5,
+    "shorthand": "GCDA"
+  },
+  "2900": {
+    "name": "Design Studio",
+    "ap": false,
+    "allowed_years": [10, 11, 12],
+    "department": 4,
+    "course_length": 0.5,
+    "credit": 0.5
+  },
+  "5900": {
+    "name": "AP Computer Science Principles",
+    "ap": true,
+    "allowed_years": [10, 11, 12],
+    "department": 4,
+    "course_length": 1,
+    "credit": 1,
+    "shorthand": "APCSP"
+  },
+  "5901": {
+    "name": "AP Computer Science A",
+    "ap": true,
+    "allowed_years": [10, 11, 12],
+    "department": 4,
+    "course_length": 1,
+    "credit": 1,
+    "shorthand": "APCSA"
+  },
+  "5903": {
+    "name": "Data Science",
+    "ap": false,
+    "allowed_years": [11, 12],
+    "department": 4,
+    "course_length": 1,
+    "credit": 1
+  },
+  "6902": {
+    "name": "Advanced Topics in Computer Science",
+    "ap": false,
+    "allowed_years": [11, 12],
+    "department": 4,
+    "course_length": 0.5,
+    "credit": 0.5,
+    "shorthand": "ATCS"
+  },
+  "1802": {
+    "name": "Wellness 9",
+    "ap": false,
+    "allowed_years": [9],
+    "department": 7,
+    "course_length": 1,
+    "credit": 0.5
+  },
+  "2802": {
+    "name": "Wellness 10",
+    "ap": false,
+    "allowed_years": [10],
+    "department": 7,
+    "course_length": 1,
+    "credit": 1
+  },
+  "3805": {
+    "name": "Lifetime Activities (F)(S)",
+    "ap": false,
+    "allowed_years": [10, 11, 12],
+    "department": 7,
+    "course_length": 0.5,
+    "credit": 0.5
+  },
+  "3801": {
+    "name": "Strength Training & Conditioning (F)(S)",
+    "ap": false,
+    "allowed_years": [9, 10, 11, 12],
+    "department": 7,
+    "course_length": 0.5,
+    "credit": 0.5
+  },
+  "4801": {
+    "name": "Strength Training & Conditioning 2 (F)(S)",
+    "ap": false,
+    "allowed_years": [10, 11, 12],
+    "department": 7,
+    "course_length": 0.5,
+    "credit": 0.5
+  },
+  "3803": {
+    "name": "Lifeguard Training (F)",
+    "ap": false,
+    "allowed_years": [10, 11, 12],
+    "department": 7,
+    "course_length": 0.5,
+    "credit": 0.5
+  },
+  "3804": {
+    "name": "Personal Fitness (F)(S)",
+    "ap": false,
+    "allowed_years": [9, 10, 11, 12],
+    "department": 7,
+    "course_length": 0.5,
+    "credit": 0.5
+  },
+  "5800": {
+    "name": "Deep Learning Seminar I",
+    "ap": false,
+    "allowed_years": [11],
+    "department": 9,
+    "course_length": 1,
+    "credit": 1,
+    "shorthand": "Deep Learning 1"
+  },
+  "5801": {
+    "name": "Deep Learning Seminar II",
+    "ap": false,
+    "allowed_years": [12],
+    "department": 9,
+    "course_length": 1,
+    "credit": 1,
+    "shorthand": "Deep Learning 2"
+  },
+  "0000": {
+    "name": "Free Period",
+    "ap": false,
+    "allowed_years": [9, 10, 11, 12],
+    "department": 11,
+    "course_length": 1,
+    "credit": 1,
+    "shorthand": "Free"
+  },
+  "0001": {
+    "name": "Free Period",
+    "ap": false,
+    "allowed_years": [9, 10, 11, 12],
+    "department": 11,
+    "course_length": 0.5,
+    "credit": 0.5,
+    "shorthand": "Free"
+  },
+  "5050": {
+    "name": "AP Seminar",
+    "ap": true,
+    "allowed_years": [11, 12],
+    "department": 8,
+    "course_length": 1,
+    "credit": 1,
+    "shorthand": "AP Sem"
+  },
+  "5051": {
+    "name": "AP Research",
+    "ap": true,
+    "allowed_years": [12],
+    "department": 8,
+    "course_length": 1,
+    "credit": 1,
+    "prerequisites": ["5050"]
+  },
+  "1510": {
+    "name": "Novice Mid Chinese",
+    "ap": false,
+    "allowed_years": [9, 10, 11, 12],
+    "department": 5,
+    "course_length": 1,
+    "credit": 1,
+    "language": 0
+  },
+  "2510": {
+    "name": "Novice High Chinese",
+    "ap": false,
+    "allowed_years": [9, 10, 11, 12],
+    "department": 5,
+    "course_length": 1,
+    "credit": 1,
+    "language": 0
+  },
+  "3510": {
+    "name": "Intermediate Chinese",
+    "ap": false,
+    "allowed_years": [9, 10, 11, 12],
+    "department": 5,
+    "course_length": 1,
+    "credit": 1,
+    "language": 0
+  },
+  "4510": {
+    "name": "Intermediate Mid Chinese",
+    "ap": false,
+    "allowed_years": [9, 10, 11, 12],
+    "department": 5,
+    "course_length": 1,
+    "credit": 1,
+    "language": 0
+  },
+  "5510": {
+    "name": "AP Chinese Language & Culture",
+    "ap": true,
+    "allowed_years": [9, 10, 11, 12],
+    "department": 5,
+    "course_length": 1,
+    "credit": 1,
+    "language": 0,
+    "shorthand": "AP Chinese"
+  },
+  "6501": {
+    "name": "Advanced Chinese: Culture & Media",
+    "ap": false,
+    "allowed_years": [10, 11, 12],
+    "department": 5,
+    "course_length": 1,
+    "credit": 1,
+    "language": 0
+  },
+  "1511": {
+    "name": "Novice Mid-High Spanish",
+    "ap": false,
+    "allowed_years": [9, 10, 11, 12],
+    "department": 5,
+    "course_length": 1,
+    "credit": 1,
+    "language": 1
+  },
+  "2511": {
+    "name": "Intermediate Spanish",
+    "ap": false,
+    "allowed_years": [9, 10, 11, 12],
+    "department": 5,
+    "course_length": 1,
+    "credit": 1,
+    "language": 1
+  },
+  "3511": {
+    "name": "Intermediate Mid Spanish",
+    "ap": false,
+    "allowed_years": [9, 10, 11, 12],
+    "department": 5,
+    "course_length": 1,
+    "credit": 1,
+    "language": 1
+  },
+  "4511": {
+    "name": "Intermediate High Spanish",
+    "ap": false,
+    "allowed_years": [9, 10, 11, 12],
+    "department": 5,
+    "course_length": 1,
+    "credit": 1,
+    "language": 1
+  },
+  "5511": {
+    "name": "AP Spanish Language & Culture",
+    "ap": true,
+    "allowed_years": [9, 10, 11, 12],
+    "department": 5,
+    "course_length": 1,
+    "credit": 1,
+    "language": 1,
+    "shorthand": "AP Spanish"
+  },
+  "6511": {
+    "name": "Advanced Spanish",
+    "ap": false,
+    "allowed_years": [10, 11, 12],
+    "department": 5,
+    "course_length": 1,
+    "credit": 1,
+    "language": 1
+  },
+  "1502": {
+    "name": "Novice Japanese",
+    "ap": false,
+    "allowed_years": [9, 10, 11, 12],
+    "department": 5,
+    "course_length": 1,
+    "credit": 1,
+    "language": 2
+  },
+  "2502": {
+    "name": "Novice Mid Japanese",
+    "ap": false,
+    "allowed_years": [9, 10, 11, 12],
+    "department": 5,
+    "course_length": 1,
+    "credit": 1,
+    "language": 2
+  },
+  "3502": {
+    "name": "Novice High Japanese",
+    "ap": false,
+    "allowed_years": [9, 10, 11, 12],
+    "department": 5,
+    "course_length": 1,
+    "credit": 1,
+    "language": 2
+  },
+  "4502": {
+    "name": "Intermediate Japanese",
+    "ap": false,
+    "allowed_years": [9, 10, 11, 12],
+    "department": 5,
+    "course_length": 1,
+    "credit": 1,
+    "language": 2
+  },
+  "5502": {
+    "name": "AP Japanese Language & Culture",
+    "ap": true,
+    "allowed_years": [9, 10, 11, 12],
+    "department": 5,
+    "course_length": 1,
+    "credit": 1,
+    "language": 2,
+    "shorthand": "AP Japanese"
+  },
+  "6502": {
+    "name": "Intermediate High Japanese",
+    "ap": false,
+    "allowed_years": [9, 10, 11, 12],
+    "department": 5,
+    "course_length": 1,
+    "credit": 1,
+    "language": 2
+  },
+  "6503": {
+    "name": "Advanced Japanese",
+    "ap": false,
+    "allowed_years": [9, 10, 11, 12],
+    "department": 5,
+    "course_length": 1,
+    "credit": 1,
+    "language": 2
+  },
+  "6504": {
+    "name": "Advanced High Japanese",
+    "ap": false,
+    "allowed_years": [9, 10, 11, 12],
+    "department": 5,
+    "course_length": 1,
+    "credit": 1,
+    "language": 2
+  },
+  "6505": {
+    "name": "Superior Japanese: General Topics",
+    "ap": false,
+    "allowed_years": [9, 10, 11, 12],
+    "department": 5,
+    "course_length": 1,
+    "credit": 1,
+    "language": 2
+  },
+  "6506": {
+    "name": "Superior Japanese: Field Specific Studies & Research",
+    "ap": false,
+    "allowed_years": [10, 11, 12],
+    "department": 5,
+    "course_length": 1,
+    "credit": 1,
+    "language": 2
+  },
+  "6507": {
+    "name": "Superior Japanese: Literature",
+    "ap": false,
+    "allowed_years": [10, 11, 12],
+    "department": 5,
+    "course_length": 1,
+    "credit": 1,
+    "language": 2
+  },
+  "6508": {
+    "name": "Superior Japanese: Innovation & Entrepreneurship",
+    "ap": false,
+    "allowed_years": [10, 11, 12],
+    "department": 5,
+    "course_length": 1,
+    "credit": 1,
+    "language": 2
+  },
+  "1600": {
+    "name": "Introduction to Band",
+    "ap": false,
+    "allowed_years": [9, 10, 11, 12],
+    "department": 6,
+    "course_length": 1,
+    "credit": 1,
+    "type": [0, 0]
+  },
+  "2600": {
+    "name": "Concert Band 1",
+    "ap": false,
+    "allowed_years": [9, 10, 11, 12],
+    "department": 6,
+    "course_length": 1,
+    "credit": 1,
+    "type": [0, 0]
+  },
+  "3600": {
+    "name": "Concert Band 2",
+    "ap": false,
+    "allowed_years": [10, 11, 12],
+    "department": 6,
+    "course_length": 1,
+    "credit": 1,
+    "type": [0, 0]
+  },
+  "4600": {
+    "name": "Wind Ensemble",
+    "ap": false,
+    "allowed_years": [9, 10, 11, 12],
+    "department": 6,
+    "course_length": 1,
+    "credit": 1,
+    "type": [0, 0]
+  },
+  "5600": {
+    "name": "Wind Ensemble Extended Studies",
+    "ap": false,
+    "allowed_years": [11, 12],
+    "department": 6,
+    "course_length": 1,
+    "credit": 1,
+    "type": [0, 0]
+  },
+  "4605": {
+    "name": "Jazz Band",
+    "ap": false,
+    "allowed_years": [9, 10, 11, 12],
+    "department": 6,
+    "course_length": 1,
+    "credit": 1,
+    "type": [0, 0]
+  },
+  "5605": {
+    "name": "Jazz Band Extended Studies",
+    "ap": false,
+    "allowed_years": [11, 12],
+    "department": 6,
+    "course_length": 1,
+    "credit": 1,
+    "type": [0, 0]
+  },
+  "1601": {
+    "name": "Concert Choir 1",
+    "ap": false,
+    "allowed_years": [9, 10, 11, 12],
+    "department": 6,
+    "course_length": 1,
+    "credit": 1,
+    "type": [0, 1]
+  },
+  "2601": {
+    "name": "Concert Choir 2",
+    "ap": false,
+    "allowed_years": [9, 10, 11, 12],
+    "department": 6,
+    "course_length": 1,
+    "credit": 1,
+    "type": [0, 1]
+  },
+  "3601": {
+    "name": "Chamber Singers",
+    "ap": false,
+    "allowed_years": [9, 10, 11, 12],
+    "department": 6,
+    "course_length": 1,
+    "credit": 1,
+    "type": [0, 1]
+  },
+  "4601": {
+    "name": "Vocal Jazz Ensemble",
+    "ap": false,
+    "allowed_years": [10, 11, 12],
+    "department": 6,
+    "course_length": 1,
+    "credit": 1,
+    "type": [0, 1]
+  },
+  "5601": {
+    "name": "Vocal Jazz Ensemble Extended Studies",
+    "ap": false,
+    "allowed_years": [11, 12],
+    "department": 6,
+    "course_length": 1,
+    "credit": 1,
+    "type": [0, 1]
+  },
+  "2604": {
+    "name": "Concert Orchestra 1",
+    "ap": false,
+    "allowed_years": [9, 10, 11, 12],
+    "department": 6,
+    "course_length": 1,
+    "credit": 1,
+    "type": [0, 2]
+  },
+  "3604": {
+    "name": "Concert Orchestra 2",
+    "ap": false,
+    "allowed_years": [10, 11, 12],
+    "department": 6,
+    "course_length": 1,
+    "credit": 1,
+    "type": [0, 2]
+  },
+  "4604": {
+    "name": "Chamber Orchestra",
+    "ap": false,
+    "allowed_years": [9, 10, 11, 12],
+    "department": 6,
+    "course_length": 1,
+    "credit": 1,
+    "type": [0, 2]
+  },
+  "5604": {
+    "name": "Chamber Orchestra Extended Studies",
+    "ap": false,
+    "allowed_years": [11, 12],
+    "department": 6,
+    "course_length": 1,
+    "credit": 1,
+    "type": [0, 2]
+  },
+  "1602": {
+    "name": "Modern Band 1 (F)",
+    "ap": false,
+    "allowed_years": [9, 10, 11, 12],
+    "department": 6,
+    "course_length": 0.5,
+    "credit": 0.5,
+    "type": [1, 0]
+  },
+  "2602": {
+    "name": "Modern Band 2 (S)",
+    "ap": false,
+    "allowed_years": [9, 10, 11, 12],
+    "department": 6,
+    "course_length": 0.5,
+    "credit": 0.5,
+    "type": [1, 0]
+  },
+  "1603": {
+    "name": "Composition & Songwriting 1 (F)(S)",
+    "ap": false,
+    "allowed_years": [9, 10, 11, 12],
+    "department": 6,
+    "course_length": 0.5,
+    "credit": 0.5,
+    "type": [1, 0]
+  },
+  "2603": {
+    "name": "Composition & Songwriting 2 (F)(S)",
+    "ap": false,
+    "allowed_years": [9, 10, 11, 12],
+    "department": 6,
+    "course_length": 0.5,
+    "credit": 0.5,
+    "type": [1, 0]
+  },
+  "1650": {
+    "name": "Acting 1 (F)",
+    "ap": false,
+    "allowed_years": [9, 10, 11, 12],
+    "department": 6,
+    "course_length": 0.5,
+    "credit": 0.5,
+    "type": [2, 0]
+  },
+  "2650": {
+    "name": "Acting 2 (S)",
+    "ap": false,
+    "allowed_years": [9, 10, 11, 12],
+    "department": 6,
+    "course_length": 0.5,
+    "credit": 0.5,
+    "type": [2, 0]
+  },
+  "3650": {
+    "name": "Advanced Acting (F)",
+    "ap": false,
+    "allowed_years": [10, 11, 12],
+    "department": 6,
+    "course_length": 0.5,
+    "credit": 0.5,
+    "type": [2, 0]
+  },
+  "3651": {
+    "name": "Advanced Acting: Acting for the Camera (S)",
+    "ap": false,
+    "allowed_years": [10, 11, 12],
+    "department": 6,
+    "course_length": 0.5,
+    "credit": 0.5,
+    "type": [2, 0]
+  },
+  "1651": {
+    "name": "Stagecraft (F)(S)",
+    "ap": false,
+    "allowed_years": [9, 10, 11, 12],
+    "department": 6,
+    "course_length": 0.5,
+    "credit": 0.5,
+    "type": [2, 0]
+  },
+  "1700": {
+    "name": "Art Foundations",
+    "ap": false,
+    "allowed_years": [9, 10, 11, 12],
+    "department": 6,
+    "course_length": 1,
+    "credit": 1,
+    "type": [3, 0]
+  },
+  "1704": {
+    "name": "Idea to Object: Digital Fabrication (F)(S)",
+    "ap": false,
+    "allowed_years": [10, 11, 12],
+    "department": 6,
+    "course_length": 0.5,
+    "credit": 0.5,
+    "type": [3, 0]
+  },
+  "1705": {
+    "name": "Digital Filmmaking 1 (F)",
+    "ap": false,
+    "allowed_years": [9, 10, 11, 12],
+    "department": 6,
+    "course_length": 0.5,
+    "credit": 0.5,
+    "type": [3, 0]
+  },
+  "2700": {
+    "name": "Digital Filmmaking 2 (S)",
+    "ap": false,
+    "allowed_years": [9, 10, 11, 12],
+    "department": 6,
+    "course_length": 0.5,
+    "credit": 0.5,
+    "type": [3, 0]
+  },
+  "3700": {
+    "name": "Ceramics (F) (S)",
+    "ap": false,
+    "allowed_years": [10, 11, 12],
+    "department": 6,
+    "course_length": 0.5,
+    "credit": 0.5,
+    "type": [3, 0]
+  },
+  "3702": {
+    "name": "Communication Arts (F) (S)",
+    "ap": false,
+    "allowed_years": [10, 11, 12],
+    "department": 6,
+    "course_length": 0.5,
+    "credit": 0.5,
+    "type": [3, 0]
+  },
+  "3703": {
+    "name": "Photography (F)(S)",
+    "ap": false,
+    "allowed_years": [10, 11, 12],
+    "department": 6,
+    "course_length": 0.5,
+    "credit": 0.5,
+    "type": [3, 0]
+  },
+  "3701": {
+    "name": "Printmaking (F)(S)",
+    "ap": false,
+    "allowed_years": [10, 11, 12],
+    "department": 6,
+    "course_length": 0.5,
+    "credit": 0.5,
+    "type": [3, 0]
+  },
+  "4700": {
+    "name": "Advanced Studio Art",
+    "ap": false,
+    "allowed_years": [10, 11, 12],
+    "department": 6,
+    "course_length": 1,
+    "credit": 1,
+    "type": [3, 0]
+  },
+  "5700": {
+    "name": "AP Studio Art: Drawing",
+    "ap": true,
+    "allowed_years": [11, 12],
+    "department": 6,
+    "course_length": 1,
+    "credit": 1,
+    "type": [3, 0]
+  },
+  "5701": {
+    "name": "AP Studio Art: 2D",
+    "ap": true,
+    "allowed_years": [11, 12],
+    "department": 6,
+    "course_length": 1,
+    "credit": 1,
+    "type": [3, 0]
+  },
+  "5702": {
+    "name": "AP Studio Art: 3D",
+    "ap": true,
+    "allowed_years": [11, 12],
+    "department": 6,
+    "course_length": 1,
+    "credit": 1,
+    "type": [3, 0]
+  },
+  "1003": {
+    "name": "Teaching Intern (F)(S)",
+    "ap": false,
+    "allowed_years": [10, 11, 12],
+    "department": 6,
+    "course_length": 0.5,
+    "credit": 0.5
+  },
+  "4000": {
+    "name": "Independent Inquiry (F)(S)",
+    "ap": false,
+    "allowed_years": [11, 12],
+    "department": 6,
+    "course_length": 0.5,
+    "credit": 0.5
+  },
+  "4001": {
+    "name": "Global Online Academy (F)(S)",
+    "ap": false,
+    "allowed_years": [10, 11, 12],
+    "department": 6,
+    "course_length": 0.5,
+    "credit": 0.5,
+    "shorthand": "GOA"
+  }
+}

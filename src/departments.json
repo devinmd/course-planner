@@ -1,0 +1,80 @@
+[
+  {
+    "name": "English",
+    "color": "purple",
+    "classes": [1000, 2000, 4003, 4004, 5000, 5001, 5002],
+    "required_credits": 4
+  },
+  {
+    "name": "Social Studies",
+    "color": "orange",
+    "classes": [1100, 2100, 3101, 4100, 4101, 5100, 5101],
+    "required_credits": 3
+  },
+  {
+    "name": "Science",
+    "color": "green",
+    "classes": [1300, 2301, 2302, 3302, 4300, 4301, 4303, 5300, 5301, 5302, 5304, 6300],
+    "required_credits": 2
+  },
+  {
+    "name": "Math",
+    "color": "blue",
+    "classes": [1201, 2200, 3200, 4200, 4201, 4202, 5200, 5201, 5203, 5202, 6202],
+    "required_credits": 2
+  },
+  {
+    "name": "Design & Innovation",
+    "color": "red",
+    "classes": [1900, 1901, 1902, 1903, 2900, 5900, 5901, 5903, 6902],
+    "required_credits": 1
+  },
+  {
+    "name": "Modern Language",
+    "color": "yellow",
+    "classes": [
+      1510, 2510, 3510, 4510, 5510, 6501, 1511, 2511, 3511, 4511, 5511, 6511, 1502, 2502, 3502, 4502, 5502, 6502, 6503,
+      6504, 6505, 6506, 6507, 6508
+    ],
+    "required_credits": 2
+  },
+  {
+    "name": "Visual & Performing Arts",
+    "color": "pink",
+    "classes": [
+      1600, 2600, 3600, 4600, 5600, 4605, 5605, 1601, 2601, 3601, 4601, 5601, 2604, 3604, 4604, 5604, 1602, 2602, 1603,
+      2603, 1650, 2650, 3650, 3651, 1651, 1700, 1704, 1705, 2700, 3703, 3700, 3701, 3702, 4700, 5700, 5701, 5702
+    ],
+    "required_credits": 1.5
+  },
+  {
+    "name": "Health & Wellness",
+    "color": "gray",
+    "classes": [1802, 2802, 3805, 3801, 4801, 3803, 3804],
+    "required_credits": 2
+  },
+  {
+    "name": "AP Capstone",
+    "color": "gray",
+    "classes": [5050, 5051],
+    "required_credits": 0
+  },
+  {
+    "name": "Deep Learning Signature Courses",
+    "color": "gray",
+    "classes": [5800, 5801],
+    "required_credits": 2
+  },
+  {
+    "name": "Independent Courses",
+    "color": "gray",
+    "classes": [1003, 4000, 4001],
+    "required_credits": 0
+  },
+  {
+    "name": "Free Period",
+    "color": "gray",
+    "classes": ["0000", "0001"],
+    "required_credits": 0
+  }
+]
