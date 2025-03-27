@@ -30,7 +30,7 @@
   --text-light: #505050; */
 
   /* other */
-  --error: #ff0000;
+  --error: #f44747;
   --blue: #2463eb;
 
   /* department colors */
@@ -277,7 +277,6 @@ div button.white:active {
   height: 40px;
   background-color: var(--background-d1);
   box-shadow: 0 1px 1px 0 var(--background-d1);
-  max-width: 240px;
 }
 
 .class-selector button.filled:disabled:hover {
@@ -356,6 +355,20 @@ input {
   height: 32px;
 }
 
+button.red {
+  background-color: var(--error);
+  color: var(--background);
+}
+
+button.blue {
+  background-color: var(--blue);
+  color: var(--background-l1);
+}
+
+button.red:hover, button.blue:hover {
+  opacity: 80%;
+}
+
 button {
   border: none;
   font-size: var(--text-size);
@@ -410,8 +423,18 @@ footer a:hover {
   position: fixed;
   display: flex;
   flex-direction: row;
+  gap: 16px;
+  align-items: center;
+}
+
+.topnav div {
+  display: flex;
   gap: 8px;
   align-items: center;
+}
+
+.topnav button {
+  height: 32px;
 }
 
 .topnav img {

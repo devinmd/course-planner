@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./App.css";
 
 // import class information
@@ -237,6 +237,7 @@ function ClassesGrid({
                         ? assignedClassData.shorthand || assignedClassData.name
                         : assignedClassData.name) || "Select Course"}
                     </button>
+                    {/* second slot */}
                     {useSecondSlot && (
                       <button
                         onClick={() => onClassSlotClick(rowIndex, colIndex, 1, useSecondSlot)}
@@ -246,7 +247,11 @@ function ClassesGrid({
                           backgroundColor: hasClass1 ? `var(--${assignedClassData1.color}-l)` : "",
                         }}
                       >
-                        {secondClassId ? assignedClassData1.name : "Select Class"}
+                        {secondClassId
+                          ? useShorthand
+                            ? assignedClassData1.shorthand
+                            : assignedClassData1.name
+                          : "Select Class"}
                       </button>
                     )}
                   </div>
@@ -380,18 +385,39 @@ function Summary({ assignedClasses }: { assignedClasses: [][] }) {
   );
 }
 
-function TopNav({ onCheck }: { onCheck: (value: boolean) => void }) {
+function TopNav({
+  onCheck,
+  onResetClasses,
+  copyURL,
+}: {
+  onCheck: (value: boolean) => void;
+  onResetClasses: () => void;
+  copyURL: () => void;
+}) {
   return (
     <>
       <div className="topnav">
-        <img src="/icon.svg" />
-        <h2>Course Planner</h2>
+        <div>
+          <img src="/icon.svg" />
+          <h2>Course Planner</h2>
+        </div>
         <div style={{ marginLeft: "auto" }}></div>
-        <h4 style={{ margin: 0 }}>Abbreviate course names</h4>
-        <label className="switch">
+        {/* <h4 style={{ margin: 0 }}>Abbreviate course names</h4> */}
+        {/* <label className="switch">
           <input type="checkbox" onInput={() => onCheck(true)} />
           <span className="slider round"></span>
-        </label>
+        </label> */}
+
+        <button className="white" onClick={() => onCheck(true)}>
+          Toggle Abbreviate Course Names
+        </button>
+
+        <button className="red" onClick={() => onResetClasses()}>
+          Reset Classes
+        </button>
+        <button className="blue" onClick={() => copyURL()}>
+          Copy URL to Your Plan
+        </button>
       </div>
     </>
   );
@@ -404,8 +430,7 @@ export default function App() {
   // create a state to store the selected slot's row and column
   const [selectedSlot, setSelectedSlot] = useState<[number, number, number, boolean] | null>(null);
 
-  // Create the array of classes with some placeholder values
-  const [assignedClasses, setAssignedClasses] = useState<[any][any][any]>([
+  const defaultClasses = [
     [
       ["1802", ""],
       ["1000", ""],
@@ -446,11 +471,29 @@ export default function App() {
       ["", ""],
       ["0000", ""],
     ],
-  ]);
+  ];
+
+  // Create the array of classes with some placeholder values
+  const [assignedClasses, setAssignedClasses] = useState<[any][any][any]>(defaultClasses);
+
+  // runs on first load
+  useEffect(() => {
+    const url = new URL(window.location.href);
+    const classParam = url.searchParams.get("c");
+
+    if (classParam) {
+      setAssignedClasses(decodeClasses(classParam));
+      console.log(decodeClasses(classParam));
+    } else {
+      console.log("No 'c' parameter found in the URL");
+    }
+  }, []); // This will run once when the component is first loaded
 
   // When a class slot is clicked
   function handleClassSlotClick(classSlotIndex: number, yearIndex: number, slot: number, isHalf: boolean) {
     setSelectedSlot([classSlotIndex, yearIndex, slot, isHalf]);
+
+    console.log(assignedClasses);
   }
 
   // When class from the list is selected
@@ -460,7 +503,58 @@ export default function App() {
       updatedClasses[selectedSlot[1]][selectedSlot[0]][selectedSlot[2]] = classId;
       setAssignedClasses(updatedClasses);
       setSelectedSlot(null); // Hide department selector & deselect the slot
+      encodeClasses();
     }
+  }
+
+  function updateQueryParam(key: string, value: string): void {
+    const url = new URL(window.location.href);
+
+    if (value === "") {
+      url.searchParams.delete(key); // Remove the query parameter if the value is an empty string
+    } else {
+      url.searchParams.set(key, value); // Add or update the query parameter
+    }
+
+    window.history.pushState({}, "", url.toString()); // Update the URL without reloading the page
+  }
+
+  function decodeClasses(encoded: string) {
+    const decodedSplit = encoded.replace(/e/g, "nn").match(/\d+|[a-zA-Z]/g) || [];
+    let decodedFinal: string[][][] = new Array(4)
+      .fill([])
+      .map(() => new Array(8).fill(0).map(() => new Array(2).fill("")));
+    let currentIndex = [0, 0, 0];
+    for (let i of decodedSplit) {
+      if (i.length == 4) {
+        decodedFinal[currentIndex[2]][currentIndex[1]][currentIndex[0]] = i;
+      }
+      if (currentIndex[0] >= 1) {
+        currentIndex[1]++;
+        currentIndex[0] = 0;
+      } else {
+        currentIndex[0] += 1;
+      }
+      if (currentIndex[1] >= 8) {
+        currentIndex[2]++;
+        currentIndex[1] = 0;
+      }
+    }
+
+    return decodedFinal;
+  }
+
+  // TODO
+  function encodeClasses() {
+    // encode the selected classes and save in the url so the user can copy and share it
+
+    const encoded: string = JSON.stringify(assignedClasses)
+      .replace(/\["",""\]/g, "e")
+      .replace(/""/g, "n")
+      .replace(/["\[\],]/g, "");
+
+    console.log(encoded);
+    updateQueryParam("c", encoded);
   }
 
   // When cancel button is clicked in department selector
@@ -479,9 +573,30 @@ export default function App() {
     setUseShorthand(!useShorthand);
   }
 
+  function resetClasses() {
+    setAssignedClasses(defaultClasses);
+    updateQueryParam("c", "");
+  }
+
+  function copyURL() {
+    if (navigator.clipboard) {
+      const currentUrl = window.location.href;
+      navigator.clipboard
+        .writeText(currentUrl)
+        .then(() => {
+          console.log("URL copied to clipboard!");
+        })
+        .catch((err) => {
+          console.error("Failed to copy URL: ", err);
+        });
+    } else {
+      console.error("Clipboard API not supported in this environment");
+    }
+  }
+
   return (
     <>
-      <TopNav onCheck={handleToggleShorthands} />
+      <TopNav onCheck={handleToggleShorthands} onResetClasses={resetClasses} copyURL={copyURL} />
 
       <div className="content">
         <ClassesGrid

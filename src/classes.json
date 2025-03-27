@@ -295,8 +295,7 @@
     "allowed_years": [9, 10, 11, 12],
     "department": 3,
     "course_length": 1,
-    "credit": 1,
-    "shorthand": "Geo"
+    "credit": 1
   },
   "3200": {
     "name": "Algebra 2",
@@ -540,8 +539,7 @@
     "course_length": 1,
     "credit": 1,
     "shorthand": "Free",
-    "hide_id":true
-
+    "hide_id": true
   },
   "0001": {
     "name": "Free Period",
@@ -551,8 +549,7 @@
     "course_length": 0.5,
     "credit": 0.5,
     "shorthand": "Free",
-    "hide_id":true
-
+    "hide_id": true
   },
   "5050": {
     "name": "AP Seminar",
@@ -1129,7 +1126,7 @@
     "name": "Teaching Intern (F)(S)",
     "ap": false,
     "allowed_years": [10, 11, 12],
-    "department": 6,
+    "department": 10,
     "course_length": 0.5,
     "credit": 0.5
   },
@@ -1137,7 +1134,7 @@
     "name": "Independent Inquiry (F)(S)",
     "ap": false,
     "allowed_years": [11, 12],
-    "department": 6,
+    "department": 10,
     "course_length": 0.5,
     "credit": 0.5
   },
@@ -1145,88 +1142,81 @@
     "name": "Global Online Academy (F)(S)",
     "ap": false,
     "allowed_years": [10, 11, 12],
-    "department": 6,
+    "department": 10,
     "course_length": 0.5,
     "credit": 0.5,
     "shorthand": "GOA"
   },
   "0002": {
-    "name": "Art Credit",
+    "name": "Other Art Credit",
     "ap": false,
     "allowed_years": [9, 10, 11, 12],
     "department": 6,
     "course_length": 1,
     "credit": 1,
-    "hide_id":true
-
+    "hide_id": true
   },
   "0003": {
-    "name": "Art Credit",
+    "name": "Other Art Credit",
     "ap": false,
     "allowed_years": [9, 10, 11, 12],
     "department": 6,
     "course_length": 0.5,
     "credit": 0.5,
-    "hide_id":true
-
+    "hide_id": true
   },
   "0004": {
-    "name": "Language Credit",
+    "name": "Other Language Credit",
     "ap": false,
     "allowed_years": [9, 10, 11, 12],
     "department": 5,
     "course_length": 1,
     "credit": 1,
-    "hide_id":true
-
+    "hide_id": true
   },
   "0005": {
-    "name": "Language Credit",
+    "name": "Other Language Credit",
     "ap": false,
     "allowed_years": [9, 10, 11, 12],
     "department": 5,
     "course_length": 0.5,
     "credit": 0.5,
-    "hide_id":true
-
+    "hide_id": true
   },
   "0006": {
-    "name": "Health & Wellness Credit",
+    "name": "Other Health & Wellness Credit",
     "ap": false,
     "allowed_years": [9, 10, 11, 12],
     "department": 7,
     "course_length": 1,
     "credit": 1,
-    "hide_id":true
-
+    "hide_id": true
   },
   "0007": {
-    "name": "Health & Wellness Credit",
+    "name": "Other Health & Wellness Credit",
     "ap": false,
     "allowed_years": [9, 10, 11, 12],
     "department": 7,
     "course_length": 0.5,
     "credit": 0.5,
-    "hide_id":true
-
+    "hide_id": true
   },
   "0008": {
-    "name": "Social Studies Credit",
+    "name": "Other Social Studies Credit",
     "ap": false,
     "allowed_years": [9, 10, 11, 12],
     "department": 1,
     "course_length": 0.5,
     "credit": 0.5,
-    "hide_id":true
+    "hide_id": true
   },
   "0009": {
-    "name": "Social Studies Credit",
+    "name": "Other Social Studies Credit",
     "ap": false,
     "allowed_years": [9, 10, 11, 12],
     "department": 1,
     "course_length": 1,
     "credit": 1,
-    "hide_id":true
-
+    "hide_id": true
   }
 }
