@@ -14,6 +14,7 @@ interface ClassDataObject {
   department: number;
   shorthand?: string;
   course_length: number;
+  hide_id?: boolean;
 }
 
 function DepartmentSelector({
@@ -149,7 +150,8 @@ function DepartmentSelector({
                 }
                 style={{ backgroundColor: `var(--${departments[classData.department].color}-l)` }}
               >
-                ({classId}) {useShorthand ? classData.shorthand ?? classData.name : classData.name} ({classData.credit})
+                {classData.hide_id ? "" : `(${classId})`}{" "}
+                {useShorthand ? classData.shorthand ?? classData.name : classData.name} ({classData.credit})
               </button>
             );
           })}
@@ -489,8 +491,8 @@ export default function App() {
           useShorthand={useShorthand}
         />
         {selectedSlot && (
-          <div className="class-selector-wrapper">
-            <div className="class-selector container">
+          <div className="class-selector-wrapper" onClick={() => cancelClassSelector()}>
+            <div className="class-selector container" onClick={(event) => event.stopPropagation()}>
               <DepartmentSelector
                 onSelectClass={handleSelectClass}
                 selectedSlot={selectedSlot}

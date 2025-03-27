@@ -485,7 +485,8 @@
     "allowed_years": [9, 10, 11, 12],
     "department": 7,
     "course_length": 0.5,
-    "credit": 0.5
+    "credit": 0.5,
+    "shorthand": "Strength & Conditioning 1 (F)(S)"
   },
   "4801": {
     "name": "Strength Training & Conditioning 2 (F)(S)",
@@ -493,7 +494,8 @@
     "allowed_years": [10, 11, 12],
     "department": 7,
     "course_length": 0.5,
-    "credit": 0.5
+    "credit": 0.5,
+    "shorthand": "Strength & Conditioning 2 (F)(S)"
   },
   "3803": {
     "name": "Lifeguard Training (F)",
@@ -509,7 +511,8 @@
     "allowed_years": [9, 10, 11, 12],
     "department": 7,
     "course_length": 0.5,
-    "credit": 0.5
+    "credit": 0.5,
+    "shorthand": "P Fit"
   },
   "5800": {
     "name": "Deep Learning Seminar I",
@@ -536,7 +539,9 @@
     "department": 11,
     "course_length": 1,
     "credit": 1,
-    "shorthand": "Free"
+    "shorthand": "Free",
+    "hide_id":true
+
   },
   "0001": {
     "name": "Free Period",
@@ -545,7 +550,9 @@
     "department": 11,
     "course_length": 0.5,
     "credit": 0.5,
-    "shorthand": "Free"
+    "shorthand": "Free",
+    "hide_id":true
+
   },
   "5050": {
     "name": "AP Seminar",
@@ -791,7 +798,8 @@
     "department": 6,
     "course_length": 1,
     "credit": 1,
-    "type": [0, 0]
+    "type": [0, 0],
+    "shorthand": "Intro to Band"
   },
   "2600": {
     "name": "Concert Band 1",
@@ -1141,5 +1149,84 @@
     "course_length": 0.5,
     "credit": 0.5,
     "shorthand": "GOA"
+  },
+  "0002": {
+    "name": "Art Credit",
+    "ap": false,
+    "allowed_years": [9, 10, 11, 12],
+    "department": 6,
+    "course_length": 1,
+    "credit": 1,
+    "hide_id":true
+
+  },
+  "0003": {
+    "name": "Art Credit",
+    "ap": false,
+    "allowed_years": [9, 10, 11, 12],
+    "department": 6,
+    "course_length": 0.5,
+    "credit": 0.5,
+    "hide_id":true
+
+  },
+  "0004": {
+    "name": "Language Credit",
+    "ap": false,
+    "allowed_years": [9, 10, 11, 12],
+    "department": 5,
+    "course_length": 1,
+    "credit": 1,
+    "hide_id":true
+
+  },
+  "0005": {
+    "name": "Language Credit",
+    "ap": false,
+    "allowed_years": [9, 10, 11, 12],
+    "department": 5,
+    "course_length": 0.5,
+    "credit": 0.5,
+    "hide_id":true
+
+  },
+  "0006": {
+    "name": "Health & Wellness Credit",
+    "ap": false,
+    "allowed_years": [9, 10, 11, 12],
+    "department": 7,
+    "course_length": 1,
+    "credit": 1,
+    "hide_id":true
+
+  },
+  "0007": {
+    "name": "Health & Wellness Credit",
+    "ap": false,
+    "allowed_years": [9, 10, 11, 12],
+    "department": 7,
+    "course_length": 0.5,
+    "credit": 0.5,
+    "hide_id":true
+
+  },
+  "0008": {
+    "name": "Social Studies Credit",
+    "ap": false,
+    "allowed_years": [9, 10, 11, 12],
+    "department": 1,
+    "course_length": 0.5,
+    "credit": 0.5,
+    "hide_id":true
+  },
+  "0009": {
+    "name": "Social Studies Credit",
+    "ap": false,
+    "allowed_years": [9, 10, 11, 12],
+    "department": 1,
+    "course_length": 1,
+    "credit": 1,
+    "hide_id":true
+
   }
 }
