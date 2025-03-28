@@ -196,8 +196,8 @@ function ClassesGrid({
                 }
 
                 // get second class if applicable
-                const useSecondSlot = assignedClassData.course_length == 0.5;
                 const secondClassId = assignedClasses[colIndex][rowIndex][1];
+                const useSecondSlot = assignedClassData.course_length == 0.5 || secondClassId != "";
                 let assignedClassData1: ClassDataObject;
                 if (secondClassId) {
                   // has second class
@@ -217,34 +217,36 @@ function ClassesGrid({
                   selectedClassSlot &&
                   selectedClassSlot[0] == rowIndex &&
                   selectedClassSlot[1] == colIndex &&
-                  selectedClassSlot[2] == 0;
+                  selectedClassSlot[2] == 1;
 
-                const hasClass: boolean = assignedClassData.color != null;
-                const hasClass1: boolean = assignedClassData1.color != null;
+                const hasClass1: boolean = assignedClassData.color != null;
+                const hasClass2: boolean = assignedClassData1.color != null;
 
                 // create & return the button
                 return (
                   <div className="class-slot" key={`${rowIndex}-${colIndex}s`}>
-                    <button
-                      key={`${rowIndex}-${colIndex}`}
-                      className={`${hasClass ? "filled" : "white"} ${isSelected1 ? "selected" : ""}`.trim()}
-                      onClick={() => onClassSlotClick(rowIndex, colIndex, 0, useSecondSlot)}
-                      style={{
-                        backgroundColor: hasClass ? `var(--${assignedClassData.color}-l)` : "",
-                      }}
-                    >
-                      {(useShorthand
-                        ? assignedClassData.shorthand || assignedClassData.name
-                        : assignedClassData.name) || "Select Course"}
-                    </button>
+                    {true && (
+                      <button
+                        key={`${rowIndex}-${colIndex}`}
+                        className={`${hasClass1 ? "filled" : "white"} ${isSelected1 ? "selected" : ""}`.trim()}
+                        onClick={() => onClassSlotClick(rowIndex, colIndex, 0, useSecondSlot)}
+                        style={{
+                          backgroundColor: hasClass1 ? `var(--${assignedClassData.color}-l)` : "",
+                        }}
+                      >
+                        {(useShorthand
+                          ? assignedClassData.shorthand || assignedClassData.name
+                          : assignedClassData.name) || "Select Course"}
+                      </button>
+                    )}
                     {/* second slot */}
                     {useSecondSlot && (
                       <button
                         onClick={() => onClassSlotClick(rowIndex, colIndex, 1, useSecondSlot)}
                         key={`${rowIndex}-${colIndex}-2`}
-                        className={`${hasClass1 ? "filled" : "white"} ${isSelected2 ? "selected" : ""}`.trim()}
+                        className={`${hasClass2 ? "filled" : "white"} ${isSelected2 ? "selected" : ""}`.trim()}
                         style={{
-                          backgroundColor: hasClass1 ? `var(--${assignedClassData1.color}-l)` : "",
+                          backgroundColor: hasClass2 ? `var(--${assignedClassData1.color}-l)` : "",
                         }}
                       >
                         {secondClassId
@@ -276,7 +278,7 @@ function Footer() {
         }}
       ></div>
       {/* <div>Course list updated 2025/03/26</div> */}
-      <div>v0.0.2</div>
+      <div>v0.2.1</div>
     </footer>
   );
 }
@@ -592,7 +594,6 @@ export default function App() {
     } else {
       url.searchParams.set(key, value); // Add or update the query parameter
     }
-
     window.history.pushState({}, "", url.toString()); // Update the URL without reloading the page
   }
 
