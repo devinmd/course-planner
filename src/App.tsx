@@ -249,7 +249,7 @@ function ClassesGrid({
                       >
                         {secondClassId
                           ? useShorthand
-                            ? assignedClassData1.shorthand
+                            ? assignedClassData1.shorthand || assignedClassData1.name
                             : assignedClassData1.name
                           : "Select Class"}
                       </button>
@@ -276,7 +276,7 @@ function Footer() {
         }}
       ></div>
       {/* <div>Course list updated 2025/03/26</div> */}
-      <div>v0.0.1</div>
+      <div>v0.0.2</div>
     </footer>
   );
 }
@@ -385,6 +385,19 @@ function Summary({ assignedClasses }: { assignedClasses: [][] }) {
   );
 }
 
+// is mobile browser or not
+const useIsMobile = () => {
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 1024);
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth < 1024);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  return isMobile;
+};
+
 function TopNav({
   onCheck,
   onResetClasses,
@@ -394,30 +407,91 @@ function TopNav({
   onResetClasses: () => void;
   copyURL: () => void;
 }) {
+  const isMobile = useIsMobile();
+  const [showMobileSettings, setShowMobileSettings] = useState<boolean>(false);
+
   return (
     <>
       <div className="topnav">
-        <div>
+        {/* logo */}
+        <div className="logo">
           <img src="/icon.svg" />
           <h2>Course Planner</h2>
         </div>
-        <div style={{ marginLeft: "auto" }}></div>
-        {/* <h4 style={{ margin: 0 }}>Abbreviate course names</h4> */}
-        {/* <label className="switch">
-          <input type="checkbox" onInput={() => onCheck(true)} />
-          <span className="slider round"></span>
-        </label> */}
+        {/* mobile settings toggle button */}
+        {isMobile && (
+          <>
+            <div style={{ marginLeft: "auto" }}></div>
+            <button
+              onClick={() => setShowMobileSettings(!showMobileSettings)}
+              className="mobile-options-button"
+            ></button>
+          </>
+        )}
+        {/* mobile settings modal */}
+        {showMobileSettings && (
+          <div className="mobile-settings-wrapper" onClick={() => setShowMobileSettings(false)}>
+            <div
+              className="container mobile-settings
+          "
+              onClick={(event) => event.stopPropagation()}
+            >
+              <h3>Options</h3>
+              <button
+                className="white"
+                onClick={() => {
+                  setShowMobileSettings(false);
+                }}
+              >Close</button>
+              <button
+                className="white"
+                onClick={() => {
+                  onCheck(true);
+                  setShowMobileSettings(false);
+                }}
+              >
+                Toggle Abbreviated Course Names
+              </button>
 
-        <button className="white" onClick={() => onCheck(true)}>
-          Toggle Abbreviate Course Names
-        </button>
+              <button
+                className="red"
+                onClick={() => {
+                  onResetClasses();
+                  setShowMobileSettings(false);
+                }}
+              >
+                Reset Classes
+              </button>
+              <button
+                className="blue"
+                onClick={() => {
+                  copyURL();
+                  setShowMobileSettings(false);
+                }}
+              >
+                Copy URL for Your Plan
+              </button>
+            </div>
+          </div>
+        )}
+        {/* desktop buttons */}
+        {!isMobile && (
+          <>
+            <div style={{ marginLeft: "auto" }}></div>
+            <div>
+              <button className="white" onClick={() => onCheck(true)}>
+                Toggle Abbreviated Course Names
+              </button>
 
-        <button className="red" onClick={() => onResetClasses()}>
-          Reset Classes
-        </button>
-        <button className="blue" onClick={() => copyURL()}>
-          Copy URL to Your Plan
-        </button>
+              <button className="red" onClick={() => onResetClasses()}>
+                Reset Classes
+              </button>
+              <button className="blue" onClick={() => copyURL()}>
+                Copy URL for Your Plan
+              </button>
+            </div>
+          </>
+        )}
       </div>
     </>
   );
