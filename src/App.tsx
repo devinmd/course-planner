@@ -179,19 +179,31 @@ function ClassesGrid({
   let difficulty: number[] = [0, 0, 0, 0];
   let apCount: number[] = [0, 0, 0, 0];
   for (let [index, y] of assignedClasses.entries()) {
-    let count: number = 0;
     let difficultyNum: number = 0;
+    let count = 8;
     for (let c of y) {
+      if (c[0] == "" && c[1] == "") {
+        // count--
+        continue;
+      }
       for (let i of c) {
         if (i == "") continue;
-        if (classes[i].ap) apCount[index]++;
-        if (classes[i].difficulty == null) continue;
-
-        count++;
-        difficultyNum += classes[i].difficulty;
+        // if empty, ignore
+        // if not empty
+        const classData: ClassDataObject = classes[i]; // get class data
+        if (classData.ap) apCount[index]++; // count ap
+        if (classData.difficulty == null) {
+          // if no course difficulty, remove from count
+          count -= classData.course_length;
+          continue;
+        } // if no difficulty rating, ignore
+        if (classData.course_length == 0.5)
+          difficultyNum += classData.difficulty / 2; // add half difficulty rating if its a half year course
+        else difficultyNum += classData.difficulty;
       }
     }
-    difficulty[index] = difficultyNum / count;
+    console.log(difficultyNum + " " + count);
+    difficulty[index] = Math.min(difficultyNum / count, 5); // cap at 5
   }
 
   return (
@@ -301,7 +313,7 @@ function Footer() {
         }}
       ></div>
       {/* <div>Course list updated 2025/03/26</div> */}
-      <div>v0.3.0</div>
+      <div>v0.3.1</div>
     </footer>
   );
 }
