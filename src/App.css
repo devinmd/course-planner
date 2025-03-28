@@ -32,6 +32,7 @@
   /* other */
   --error: #f44747;
   --blue: #2463eb;
+  --yellow: #dcb12f;
 
   /* department colors */
   --purple-l: #a692fa80;
@@ -373,6 +374,14 @@ div button.white:active {
   box-sizing: border-box;
   color: var(--text-medium);
   line-height: 32px;
+  padding-left: calc(20px + 12px + 12px);
+}
+
+.error-messages div.error-message {
+  background-image: url("../public/error.svg");
+  background-position: 12px 6px;
+  background-size: 20px 20px;
+  background-repeat: no-repeat;
 }
 
 input {
@@ -423,7 +432,6 @@ button {
   box-sizing: border-box;
   font-weight: 500;
   box-shadow: 0 1px 1px 0 var(--background-d1);
-
 }
 
 footer {

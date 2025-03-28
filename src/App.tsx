@@ -351,7 +351,7 @@ function Summary({ assignedClasses }: { assignedClasses: [][] }) {
             (item, index) =>
               item.required_credits > 0 &&
               currentCredits[index] < item.required_credits && (
-                <div key={index}>
+                <div key={index} className="error-message">
                   You need {item.required_credits - currentCredits[index]} more credits of {item.name}.
                 </div>
               )
@@ -361,23 +361,27 @@ function Summary({ assignedClasses }: { assignedClasses: [][] }) {
             (count, index) =>
               count >= 2 &&
               freesPerYear[index] < 1 && (
-                <div key={index}>A free period is required in grade {index + 9} because you have 2 or more APs.</div>
+                <div key={index} className="error-message">
+                  A free period is required in grade {index + 9} because you have 2 or more APs.
+                </div>
               )
           )}
           {/* if too many frees in a year */}
           {freesPerYear.map(
             (count, index) =>
               count > maxFreesPerYear[index] && (
-                <div key={index}>
+                <div key={index} className="error-message">
                   You have too many free periods in grade {index + 9}, maximum is {maxFreesPerYear[index]}.
                 </div>
               )
           )}
-          {!grade9history && <div>You need a Social Studies course in grade 9.</div>}
-          {!grade10history && <div>You need a Social Studies course in grade 10.</div>}
-          {!hasUsHistory && <div>You need to take Race & Ethnic Studies, US History, or AP US History.</div>}
+          {!grade9history && <div className="error-message">You need a Social Studies course in grade 9.</div>}
+          {!grade10history && <div className="error-message">You need a Social Studies course in grade 10.</div>}
+          {!hasUsHistory && (
+            <div className="error-message">You need to take Race & Ethnic Studies, US History, or AP US History.</div>
+          )}
           {!(englishCourses[0] > 0 && englishCourses[1] > 0 && englishCourses[2] > 0 && englishCourses[3] > 0) && (
-            <div>You need to take an English course every year.</div>
+            <div className="error-message">You need to take an English course every year.</div>
           )}
         </div>
       </div>
@@ -567,8 +571,6 @@ export default function App() {
   // When a class slot is clicked
   function handleClassSlotClick(classSlotIndex: number, yearIndex: number, slot: number, isHalf: boolean) {
     setSelectedSlot([classSlotIndex, yearIndex, slot, isHalf]);
-
-    console.log(assignedClasses);
   }
 
   // When class from the list is selected
@@ -595,7 +597,8 @@ export default function App() {
   }
 
   function decodeClasses(encoded: string) {
-    const decodedSplit = encoded.replace(/e/g, "nn").match(/\d+|[a-zA-Z]/g) || [];
+    const decodedSplit = encoded.replace(/e/g, "nn").match(/\d{4}|\d{1,3}|[a-zA-Z]/g) || [];
+    console.log(decodedSplit);
     let decodedFinal: string[][][] = new Array(4)
       .fill([])
       .map(() => new Array(8).fill(0).map(() => new Array(2).fill("")));
@@ -623,12 +626,15 @@ export default function App() {
   function encodeClasses() {
     // encode the selected classes and save in the url so the user can copy and share it
 
+    console.log(assignedClasses);
+
     const encoded: string = JSON.stringify(assignedClasses)
       .replace(/\["",""\]/g, "e")
       .replace(/""/g, "n")
       .replace(/["\[\],]/g, "");
 
     console.log(encoded);
+
     updateQueryParam("c", encoded);
   }
 
