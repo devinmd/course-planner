@@ -257,6 +257,13 @@
   word-break: break-word;
 }
 
+.class-display .container .selected-courses-info {
+  font-size: 14px;
+  color: var(--text-light);
+  font-weight: 500;
+  margin-top: 8px;
+}
+
 /* empty slot */
 div button.white {
   background-color: var(--background-l1);

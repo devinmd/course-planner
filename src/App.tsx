@@ -2,7 +2,8 @@ import { useState, useEffect } from "react";
 import "./App.css";
 
 // import class information
-import classes from "./classes.json";
+import classes1 from "./classes.json";
+const classes = classes1 as Record<string, any>;
 import departments from "./departments.json";
 
 interface ClassDataObject {
@@ -15,6 +16,7 @@ interface ClassDataObject {
   shorthand?: string;
   course_length: number;
   hide_id?: boolean;
+  difficulty?: number;
 }
 
 function DepartmentSelector({
@@ -168,12 +170,29 @@ function ClassesGrid({
   useShorthand,
 }: {
   onClassSlotClick: (row: number, col: number, slotIndex: number, isHalf: boolean) => void;
-  assignedClasses: [][];
+  assignedClasses: string[][][];
   selectedClassSlot: any[] | null;
   useShorthand: boolean;
 }) {
   const headers = ["Freshman", "Sophomore", "Junior", "Senior"];
   const classCount = 8;
+  let difficulty: number[] = [0, 0, 0, 0];
+  let apCount: number[] = [0, 0, 0, 0];
+  for (let [index, y] of assignedClasses.entries()) {
+    let count: number = 0;
+    let difficultyNum: number = 0;
+    for (let c of y) {
+      for (let i of c) {
+        if (i == "") continue;
+        if (classes[i].ap) apCount[index]++;
+        if (classes[i].difficulty == null) continue;
+
+        count++;
+        difficultyNum += classes[i].difficulty;
+      }
+    }
+    difficulty[index] = difficultyNum / count;
+  }
 
   return (
     <>
@@ -186,7 +205,7 @@ function ClassesGrid({
               <h4 key={colIndex + "h"}>{headers[colIndex]} Year</h4>
               {Array.from({ length: classCount }).map((_, rowIndex) => {
                 // get assigned class
-                const assignedClassId = assignedClasses[colIndex][rowIndex][0];
+                const assignedClassId: string = assignedClasses[colIndex][rowIndex][0];
                 let assignedClassData: ClassDataObject;
                 if (assignedClassId != "") {
                   assignedClassData = classes[assignedClassId];
@@ -259,6 +278,10 @@ function ClassesGrid({
                   </div>
                 );
               })}
+              <div className="selected-courses-info">
+                <div>Difficulty: {difficulty[colIndex].toFixed(2)} / 5</div>
+                <div>APs: {apCount[colIndex]}</div>
+              </div>
             </div>
           );
         })}
@@ -278,7 +301,7 @@ function Footer() {
         }}
       ></div>
       {/* <div>Course list updated 2025/03/26</div> */}
-      <div>v0.2.1</div>
+      <div>v0.3.0</div>
     </footer>
   );
 }
@@ -564,7 +587,6 @@ export default function App() {
 
     if (classParam) {
       setAssignedClasses(decodeClasses(classParam));
-      console.log(decodeClasses(classParam));
     } else {
       console.log("No 'c' parameter found in the URL");
     }
@@ -599,6 +621,7 @@ export default function App() {
 
   function decodeClasses(encoded: string) {
     const decodedSplit = encoded.replace(/e/g, "nn").match(/\d{4}|\d{1,3}|[a-zA-Z]/g) || [];
+    console.log("DECODED CLASSES:");
     console.log(decodedSplit);
     let decodedFinal: string[][][] = new Array(4)
       .fill([])

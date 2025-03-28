@@ -6,7 +6,8 @@
     "credit": 1,
     "course_length": 1,
     "department": 0,
-    "required": true
+    "required": true,
+    "difficulty": 2
   },
   "4003": {
     "name": "Psychology of Fear",
@@ -15,7 +16,8 @@
     "credit": 1,
     "course_length": 1,
     "department": 0,
-    "shorthand": "Psych of Fear"
+    "shorthand": "Psych of Fear",
+    "difficulty": 2
   },
   "4004": {
     "name": "Crime & Punishment",
@@ -23,7 +25,8 @@
     "allowed_years": [11, 12],
     "credit": 1,
     "course_length": 1,
-    "department": 0
+    "department": 0,
+    "difficulty": 2
   },
   "2000": {
     "name": "English 10",
@@ -32,7 +35,8 @@
     "credit": 1,
     "course_length": 1,
     "department": 0,
-    "required": true
+    "required": true,
+    "difficulty": 2
   },
   "5000": {
     "name": "AP English Language & Composition",
@@ -41,7 +45,8 @@
     "credit": 1,
     "course_length": 1,
     "department": 0,
-    "shorthand": "AP Lang"
+    "shorthand": "AP Lang",
+    "difficulty": 3
   },
   "5001": {
     "name": "AP English Literature & Composition",
@@ -50,7 +55,8 @@
     "credit": 1,
     "course_length": 1,
     "department": 0,
-    "shorthand": "AP Lit"
+    "shorthand": "AP Lit",
+    "difficulty": 3
   },
   "5002": {
     "name": "SUPA: Introduction to Creative Nonfiction",
@@ -68,7 +74,8 @@
     "course_length": 1,
     "credit": 1,
     "shorthand": "Foundations",
-    "required": true
+    "required": true,
+    "difficulty": 2
   },
   "2100": {
     "name": "Modern World History",
@@ -76,7 +83,8 @@
     "allowed_years": [10],
     "department": 1,
     "course_length": 1,
-    "credit": 1
+    "credit": 1,
+    "difficulty": 2
   },
   "3101": {
     "name": "Japan Studies (F)(S)",
@@ -100,7 +108,8 @@
     "allowed_years": [10, 11, 12],
     "department": 1,
     "course_length": 0.5,
-    "credit": 0.5
+    "credit": 0.5,
+    "difficulty": 2
   },
   "4101": {
     "name": "Race & Ethnic Studies (F)(S)",
@@ -117,7 +126,8 @@
     "department": 1,
     "course_length": 1,
     "credit": 1,
-    "shorthand": "AP World"
+    "shorthand": "AP World",
+    "difficulty": 3
   },
   "5101": {
     "name": "AP US History",
@@ -126,7 +136,8 @@
     "department": 1,
     "course_length": 1,
     "credit": 1,
-    "shorthand": "APUSH"
+    "shorthand": "APUSH",
+    "difficulty": 3
   },
   "5102": {
     "name": "AP Economics",
@@ -178,7 +189,8 @@
     "department": 2,
     "course_length": 1,
     "credit": 1,
-    "shorthand": "Bio"
+    "shorthand": "Bio",
+    "difficulty": 2
   },
   "2301": {
     "name": "Chemistry",
@@ -188,7 +200,8 @@
     "course_length": 1,
     "credit": 1,
     "shorthand": "Chem",
-    "prerequisites": ["1300"]
+    "prerequisites": ["1300"],
+    "difficulty": 2
   },
   "2302": {
     "name": "Dynamics of Physics and Chemistry",
@@ -197,7 +210,8 @@
     "department": 2,
     "course_length": 1,
     "credit": 1,
-    "prerequisites": ["1300"]
+    "prerequisites": ["1300"],
+    "difficulty": 2
   },
   "3302": {
     "name": "Physics",
@@ -206,7 +220,8 @@
     "department": 2,
     "course_length": 1,
     "credit": 1,
-    "prerequisites": ["1300"]
+    "prerequisites": ["1300"],
+    "difficulty": 2
   },
   "4300": {
     "name": "Biomedical Science",
@@ -251,7 +266,8 @@
     "course_length": 1,
     "credit": 1,
     "shorthand": "AP Physics 2",
-    "prerequisites": ["3302"]
+    "prerequisites": ["3302"],
+    "difficulty": 5
   },
   "5301": {
     "name": "AP Biology",
@@ -260,7 +276,8 @@
     "department": 2,
     "course_length": 1,
     "credit": 1,
-    "shorthand": "AP Bio"
+    "shorthand": "AP Bio",
+    "difficulty": 5
   },
   "5302": {
     "name": "AP Chemistry",
@@ -269,7 +286,8 @@
     "department": 2,
     "course_length": 1,
     "credit": 1,
-    "shorthand": "AP Chem"
+    "shorthand": "AP Chem",
+    "difficulty": 5
   },
   "6300": {
     "name": "Synthetic Biology",
@@ -287,7 +305,8 @@
     "department": 3,
     "course_length": 1,
     "credit": 1,
-    "shorthand": "Integrated Math 1"
+    "shorthand": "Integrated Math 1",
+    "difficulty": 2
   },
   "2200": {
     "name": "Geometry",
@@ -295,7 +314,8 @@
     "allowed_years": [9, 10, 11, 12],
     "department": 3,
     "course_length": 1,
-    "credit": 1
+    "credit": 1,
+    "difficulty": 2
   },
   "3200": {
     "name": "Algebra 2",
@@ -304,7 +324,8 @@
     "department": 3,
     "course_length": 1,
     "credit": 1,
-    "shorthand": "Alg 2"
+    "shorthand": "Alg 2",
+    "difficulty": 2
   },
   "4200": {
     "name": "Precalculus",
@@ -313,7 +334,8 @@
     "department": 3,
     "course_length": 1,
     "credit": 1,
-    "shorthand": "Precalc"
+    "shorthand": "Precalc",
+    "difficulty": 3
   },
   "4201": {
     "name": "Advanced Precalculus",
@@ -322,7 +344,8 @@
     "department": 3,
     "course_length": 1,
     "credit": 1,
-    "shorthand": "Adv. Precalc"
+    "shorthand": "Adv. Precalc",
+    "difficulty": 3
   },
   "4202": {
     "name": "Calculus",
@@ -331,7 +354,8 @@
     "department": 3,
     "course_length": 1,
     "credit": 1,
-    "shorthand": "Calc"
+    "shorthand": "Calc",
+    "difficulty": 4
   },
   "5200": {
     "name": "AP Calculus AB",
@@ -340,7 +364,8 @@
     "department": 3,
     "course_length": 1,
     "credit": 1,
-    "shorthand": "AP Calc AB"
+    "shorthand": "AP Calc AB",
+    "difficulty": 4
   },
   "5201": {
     "name": "AP Calculus BC",
@@ -349,7 +374,8 @@
     "department": 3,
     "course_length": 1,
     "credit": 1,
-    "shorthand": "AP Calc BC"
+    "shorthand": "AP Calc BC",
+    "difficulty": 4
   },
   "5203": {
     "name": "AP Calculus BC (Post AB)",
@@ -358,7 +384,8 @@
     "department": 3,
     "course_length": 1,
     "credit": 1,
-    "shorthand": "AP Calc BC (Post AB)"
+    "shorthand": "AP Calc BC (Post AB)",
+    "difficulty": 4
   },
   "5202": {
     "name": "AP Statistics",
@@ -367,7 +394,8 @@
     "department": 3,
     "course_length": 1,
     "credit": 1,
-    "shorthand": "AP Stats"
+    "shorthand": "AP Stats",
+    "difficulty": 4
   },
   "6202": {
     "name": "Advanced Topics in Mathematics (Varies by year)",
@@ -376,7 +404,8 @@
     "department": 3,
     "course_length": 1,
     "credit": 1,
-    "shorthand": "AT Math"
+    "shorthand": "AT Math",
+    "difficulty": 5
   },
   "1900": {
     "name": "Design Products",
@@ -384,7 +413,8 @@
     "allowed_years": [9, 10, 11, 12],
     "department": 4,
     "course_length": 0.5,
-    "credit": 0.5
+    "credit": 0.5,
+    "difficulty": 1
   },
   "1901": {
     "name": "Design with Code",
@@ -392,7 +422,8 @@
     "allowed_years": [9, 10, 11, 12],
     "department": 4,
     "course_length": 0.5,
-    "credit": 0.5
+    "credit": 0.5,
+    "difficulty": 1
   },
   "1902": {
     "name": "Design with Physical Computing & Robotics",
@@ -400,7 +431,8 @@
     "allowed_years": [9, 10, 11, 12],
     "department": 4,
     "course_length": 0.5,
-    "credit": 0.5
+    "credit": 0.5,
+    "difficulty": 1
   },
   "1903": {
     "name": "Global Citizenship in the Digital Age",
@@ -409,7 +441,8 @@
     "department": 4,
     "course_length": 0.5,
     "credit": 0.5,
-    "shorthand": "GCDA"
+    "shorthand": "GCDA",
+    "difficulty": 1
   },
   "2900": {
     "name": "Design Studio",
@@ -417,7 +450,8 @@
     "allowed_years": [10, 11, 12],
     "department": 4,
     "course_length": 0.5,
-    "credit": 0.5
+    "credit": 0.5,
+    "difficulty": 1
   },
   "5900": {
     "name": "AP Computer Science Principles",
@@ -426,7 +460,8 @@
     "department": 4,
     "course_length": 1,
     "credit": 1,
-    "shorthand": "APCSP"
+    "shorthand": "APCSP",
+    "difficulty": 2
   },
   "5901": {
     "name": "AP Computer Science A",
@@ -435,7 +470,8 @@
     "department": 4,
     "course_length": 1,
     "credit": 1,
-    "shorthand": "APCSA"
+    "shorthand": "APCSA",
+    "difficulty": 3
   },
   "5903": {
     "name": "Data Science",
@@ -452,7 +488,8 @@
     "department": 4,
     "course_length": 0.5,
     "credit": 0.5,
-    "shorthand": "AT CS"
+    "shorthand": "AT CS",
+    "difficulty": 4
   },
   "1802": {
     "name": "Wellness 9",
@@ -460,7 +497,8 @@
     "allowed_years": [9],
     "department": 7,
     "course_length": 1,
-    "credit": 0.5
+    "credit": 0.5,
+    "difficulty": 1
   },
   "2802": {
     "name": "Wellness 10",
@@ -468,7 +506,8 @@
     "allowed_years": [10],
     "department": 7,
     "course_length": 1,
-    "credit": 1
+    "credit": 1,
+    "difficulty": 1
   },
   "3805": {
     "name": "Lifetime Activities (F)(S)",
@@ -476,7 +515,8 @@
     "allowed_years": [10, 11, 12],
     "department": 7,
     "course_length": 0.5,
-    "credit": 0.5
+    "credit": 0.5,
+    "difficulty": 1
   },
   "3801": {
     "name": "Strength Training & Conditioning (F)(S)",
@@ -485,7 +525,8 @@
     "department": 7,
     "course_length": 0.5,
     "credit": 0.5,
-    "shorthand": "Strength & Conditioning 1 (F)(S)"
+    "shorthand": "Strength & Conditioning 1 (F)(S)",
+    "difficulty": 1
   },
   "4801": {
     "name": "Strength Training & Conditioning 2 (F)(S)",
@@ -494,7 +535,8 @@
     "department": 7,
     "course_length": 0.5,
     "credit": 0.5,
-    "shorthand": "Strength & Conditioning 2 (F)(S)"
+    "shorthand": "Strength & Conditioning 2 (F)(S)",
+    "difficulty": 1
   },
   "3803": {
     "name": "Lifeguard Training (F)",
@@ -502,7 +544,8 @@
     "allowed_years": [10, 11, 12],
     "department": 7,
     "course_length": 0.5,
-    "credit": 0.5
+    "credit": 0.5,
+    "difficulty": 1
   },
   "3804": {
     "name": "Personal Fitness (F)(S)",
@@ -511,7 +554,8 @@
     "department": 7,
     "course_length": 0.5,
     "credit": 0.5,
-    "shorthand": "P Fit"
+    "shorthand": "P Fit",
+    "difficulty": 1
   },
   "5800": {
     "name": "Deep Learning Seminar I",
@@ -520,7 +564,8 @@
     "department": 9,
     "course_length": 1,
     "credit": 1,
-    "shorthand": "Deep Learning 1"
+    "shorthand": "Deep Learning 1",
+    "difficulty": 1
   },
   "5801": {
     "name": "Deep Learning Seminar II",
@@ -529,7 +574,8 @@
     "department": 9,
     "course_length": 1,
     "credit": 1,
-    "shorthand": "Deep Learning 2"
+    "shorthand": "Deep Learning 2",
+    "difficulty": 1
   },
   "0000": {
     "name": "Free Period",
@@ -539,7 +585,8 @@
     "course_length": 1,
     "credit": 1,
     "shorthand": "Free",
-    "hide_id": true
+    "hide_id": true,
+    "difficulty": 0
   },
   "0001": {
     "name": "Free Period",
@@ -549,7 +596,8 @@
     "course_length": 0.5,
     "credit": 0.5,
     "shorthand": "Free",
-    "hide_id": true
+    "hide_id": true,
+    "difficulty": 0
   },
   "5050": {
     "name": "AP Seminar",
@@ -576,7 +624,8 @@
     "department": 5,
     "course_length": 1,
     "credit": 1,
-    "language": 0
+    "language": 0,
+    "difficulty": 1
   },
   "2510": {
     "name": "Novice High Chinese",
@@ -585,7 +634,8 @@
     "department": 5,
     "course_length": 1,
     "credit": 1,
-    "language": 0
+    "language": 0,
+    "difficulty": 1
   },
   "3510": {
     "name": "Intermediate Chinese",
@@ -594,7 +644,8 @@
     "department": 5,
     "course_length": 1,
     "credit": 1,
-    "language": 0
+    "language": 0,
+    "difficulty": 1
   },
   "4510": {
     "name": "Intermediate Mid Chinese",
@@ -603,7 +654,8 @@
     "department": 5,
     "course_length": 1,
     "credit": 1,
-    "language": 0
+    "language": 0,
+    "difficulty": 2
   },
   "5510": {
     "name": "AP Chinese Language & Culture",
@@ -613,7 +665,8 @@
     "course_length": 1,
     "credit": 1,
     "language": 0,
-    "shorthand": "AP Chinese"
+    "shorthand": "AP Chinese",
+    "difficulty": 3
   },
   "6501": {
     "name": "Advanced Chinese: Culture & Media",
@@ -622,7 +675,8 @@
     "department": 5,
     "course_length": 1,
     "credit": 1,
-    "language": 0
+    "language": 0,
+    "difficulty": 4
   },
   "1511": {
     "name": "Novice Mid-High Spanish",
@@ -631,7 +685,8 @@
     "department": 5,
     "course_length": 1,
     "credit": 1,
-    "language": 1
+    "language": 1,
+    "difficulty": 1
   },
   "2511": {
     "name": "Intermediate Spanish",
@@ -640,7 +695,8 @@
     "department": 5,
     "course_length": 1,
     "credit": 1,
-    "language": 1
+    "language": 1,
+    "difficulty": 1
   },
   "3511": {
     "name": "Intermediate Mid Spanish",
@@ -649,7 +705,8 @@
     "department": 5,
     "course_length": 1,
     "credit": 1,
-    "language": 1
+    "language": 1,
+    "difficulty": 2
   },
   "4511": {
     "name": "Intermediate High Spanish",
@@ -658,7 +715,8 @@
     "department": 5,
     "course_length": 1,
     "credit": 1,
-    "language": 1
+    "language": 1,
+    "difficulty": 2
   },
   "5511": {
     "name": "AP Spanish Language & Culture",
@@ -668,7 +726,8 @@
     "course_length": 1,
     "credit": 1,
     "language": 1,
-    "shorthand": "AP Spanish"
+    "shorthand": "AP Spanish",
+    "difficulty": 3
   },
   "6511": {
     "name": "Advanced Spanish",
@@ -677,7 +736,8 @@
     "department": 5,
     "course_length": 1,
     "credit": 1,
-    "language": 1
+    "language": 1,
+    "difficulty": 4
   },
   "1502": {
     "name": "Novice Japanese",
@@ -686,7 +746,8 @@
     "department": 5,
     "course_length": 1,
     "credit": 1,
-    "language": 2
+    "language": 2,
+    "difficulty": 1
   },
   "2502": {
     "name": "Novice Mid Japanese",
@@ -695,7 +756,8 @@
     "department": 5,
     "course_length": 1,
     "credit": 1,
-    "language": 2
+    "language": 2,
+    "difficulty": 2
   },
   "3502": {
     "name": "Novice High Japanese",
@@ -704,7 +766,8 @@
     "department": 5,
     "course_length": 1,
     "credit": 1,
-    "language": 2
+    "language": 2,
+    "difficulty": 2
   },
   "4502": {
     "name": "Intermediate Japanese",
@@ -713,7 +776,8 @@
     "department": 5,
     "course_length": 1,
     "credit": 1,
-    "language": 2
+    "language": 2,
+    "difficulty": 3
   },
   "5502": {
     "name": "AP Japanese Language & Culture",
@@ -723,7 +787,8 @@
     "course_length": 1,
     "credit": 1,
     "language": 2,
-    "shorthand": "AP Japanese"
+    "shorthand": "AP Japanese",
+    "difficulty": 3
   },
   "6502": {
     "name": "Intermediate High Japanese",
@@ -732,7 +797,8 @@
     "department": 5,
     "course_length": 1,
     "credit": 1,
-    "language": 2
+    "language": 2,
+    "difficulty": 3
   },
   "6503": {
     "name": "Advanced Japanese",
@@ -741,7 +807,8 @@
     "department": 5,
     "course_length": 1,
     "credit": 1,
-    "language": 2
+    "language": 2,
+    "difficulty": 4
   },
   "6504": {
     "name": "Advanced High Japanese",
@@ -750,7 +817,8 @@
     "department": 5,
     "course_length": 1,
     "credit": 1,
-    "language": 2
+    "language": 2,
+    "difficulty": 4
   },
   "6505": {
     "name": "Superior Japanese: General Topics",
@@ -759,7 +827,8 @@
     "department": 5,
     "course_length": 1,
     "credit": 1,
-    "language": 2
+    "language": 2,
+    "difficulty": 5
   },
   "6506": {
     "name": "Superior Japanese: Field Specific Studies & Research",
@@ -768,7 +837,8 @@
     "department": 5,
     "course_length": 1,
     "credit": 1,
-    "language": 2
+    "language": 2,
+    "difficulty": 5
   },
   "6507": {
     "name": "Superior Japanese: Literature",
@@ -777,7 +847,8 @@
     "department": 5,
     "course_length": 1,
     "credit": 1,
-    "language": 2
+    "language": 2,
+    "difficulty": 5
   },
   "6508": {
     "name": "Superior Japanese: Innovation & Entrepreneurship",
@@ -786,7 +857,8 @@
     "department": 5,
     "course_length": 1,
     "credit": 1,
-    "language": 2
+    "language": 2,
+    "difficulty": 5
   },
   "1600": {
     "name": "Introduction to Band",
@@ -796,7 +868,8 @@
     "course_length": 1,
     "credit": 1,
     "type": [0, 0],
-    "shorthand": "Intro to Band"
+    "shorthand": "Intro to Band",
+    "difficulty": 1
   },
   "2600": {
     "name": "Concert Band 1",
@@ -805,7 +878,8 @@
     "department": 6,
     "course_length": 1,
     "credit": 1,
-    "type": [0, 0]
+    "type": [0, 0],
+    "difficulty": 1
   },
   "3600": {
     "name": "Concert Band 2",
@@ -814,7 +888,8 @@
     "department": 6,
     "course_length": 1,
     "credit": 1,
-    "type": [0, 0]
+    "type": [0, 0],
+    "difficulty": 2
   },
   "4600": {
     "name": "Wind Ensemble",
@@ -823,7 +898,8 @@
     "department": 6,
     "course_length": 1,
     "credit": 1,
-    "type": [0, 0]
+    "type": [0, 0],
+    "difficulty": 3
   },
   "5600": {
     "name": "Wind Ensemble Extended Studies",
@@ -832,7 +908,8 @@
     "department": 6,
     "course_length": 1,
     "credit": 1,
-    "type": [0, 0]
+    "type": [0, 0],
+    "difficulty": 4
   },
   "4605": {
     "name": "Jazz Band",
@@ -841,7 +918,8 @@
     "department": 6,
     "course_length": 1,
     "credit": 1,
-    "type": [0, 0]
+    "type": [0, 0],
+    "difficulty": 3
   },
   "5605": {
     "name": "Jazz Band Extended Studies",
@@ -850,7 +928,8 @@
     "department": 6,
     "course_length": 1,
     "credit": 1,
-    "type": [0, 0]
+    "type": [0, 0],
+    "difficulty": 4
   },
   "1601": {
     "name": "Concert Choir 1",
@@ -859,7 +938,8 @@
     "department": 6,
     "course_length": 1,
     "credit": 1,
-    "type": [0, 1]
+    "type": [0, 1],
+    "difficulty": 1
   },
   "2601": {
     "name": "Concert Choir 2",
@@ -868,7 +948,8 @@
     "department": 6,
     "course_length": 1,
     "credit": 1,
-    "type": [0, 1]
+    "type": [0, 1],
+    "difficulty": 1
   },
   "3601": {
     "name": "Chamber Singers",
@@ -877,7 +958,8 @@
     "department": 6,
     "course_length": 1,
     "credit": 1,
-    "type": [0, 1]
+    "type": [0, 1],
+    "difficulty": 2
   },
   "4601": {
     "name": "Vocal Jazz Ensemble",
@@ -886,7 +968,8 @@
     "department": 6,
     "course_length": 1,
     "credit": 1,
-    "type": [0, 1]
+    "type": [0, 1],
+    "difficulty": 3
   },
   "5601": {
     "name": "Vocal Jazz Ensemble Extended Studies",
@@ -895,7 +978,8 @@
     "department": 6,
     "course_length": 1,
     "credit": 1,
-    "type": [0, 1]
+    "type": [0, 1],
+    "difficulty": 4
   },
   "2604": {
     "name": "Concert Orchestra 1",
@@ -904,7 +988,8 @@
     "department": 6,
     "course_length": 1,
     "credit": 1,
-    "type": [0, 2]
+    "type": [0, 2],
+    "difficulty": 1
   },
   "3604": {
     "name": "Concert Orchestra 2",
@@ -913,7 +998,8 @@
     "department": 6,
     "course_length": 1,
     "credit": 1,
-    "type": [0, 2]
+    "type": [0, 2],
+    "difficulty": 2
   },
   "4604": {
     "name": "Chamber Orchestra",
@@ -922,7 +1008,8 @@
     "department": 6,
     "course_length": 1,
     "credit": 1,
-    "type": [0, 2]
+    "type": [0, 2],
+    "difficulty": 3
   },
   "5604": {
     "name": "Chamber Orchestra Extended Studies",
@@ -931,7 +1018,8 @@
     "department": 6,
     "course_length": 1,
     "credit": 1,
-    "type": [0, 2]
+    "type": [0, 2],
+    "difficulty": 4
   },
   "1602": {
     "name": "Modern Band 1 (F)",
@@ -940,7 +1028,8 @@
     "department": 6,
     "course_length": 0.5,
     "credit": 0.5,
-    "type": [1, 0]
+    "type": [1, 0],
+    "difficulty": 1
   },
   "2602": {
     "name": "Modern Band 2 (S)",
@@ -949,7 +1038,8 @@
     "department": 6,
     "course_length": 0.5,
     "credit": 0.5,
-    "type": [1, 0]
+    "type": [1, 0],
+    "difficulty": 1
   },
   "1603": {
     "name": "Composition & Songwriting 1 (F)(S)",
@@ -958,7 +1048,8 @@
     "department": 6,
     "course_length": 0.5,
     "credit": 0.5,
-    "type": [1, 0]
+    "type": [1, 0],
+    "difficulty": 1
   },
   "2603": {
     "name": "Composition & Songwriting 2 (F)(S)",
@@ -967,7 +1058,8 @@
     "department": 6,
     "course_length": 0.5,
     "credit": 0.5,
-    "type": [1, 0]
+    "type": [1, 0],
+    "difficulty": 1
   },
   "1650": {
     "name": "Acting 1 (F)",
@@ -976,7 +1068,8 @@
     "department": 6,
     "course_length": 0.5,
     "credit": 0.5,
-    "type": [2, 0]
+    "type": [2, 0],
+    "difficulty": 1
   },
   "2650": {
     "name": "Acting 2 (S)",
@@ -985,7 +1078,8 @@
     "department": 6,
     "course_length": 0.5,
     "credit": 0.5,
-    "type": [2, 0]
+    "type": [2, 0],
+    "difficulty": 1
   },
   "3650": {
     "name": "Advanced Acting (F)",
@@ -994,7 +1088,8 @@
     "department": 6,
     "course_length": 0.5,
     "credit": 0.5,
-    "type": [2, 0]
+    "type": [2, 0],
+    "difficulty": 1
   },
   "3651": {
     "name": "Advanced Acting: Acting for the Camera (S)",
@@ -1003,7 +1098,8 @@
     "department": 6,
     "course_length": 0.5,
     "credit": 0.5,
-    "type": [2, 0]
+    "type": [2, 0],
+    "difficulty": 1
   },
   "1651": {
     "name": "Stagecraft (F)(S)",
@@ -1012,7 +1108,8 @@
     "department": 6,
     "course_length": 0.5,
     "credit": 0.5,
-    "type": [2, 0]
+    "type": [2, 0],
+    "difficulty": 1
   },
   "1700": {
     "name": "Art Foundations",
@@ -1021,7 +1118,8 @@
     "department": 6,
     "course_length": 1,
     "credit": 1,
-    "type": [3, 0]
+    "type": [3, 0],
+    "difficulty": 1
   },
   "1704": {
     "name": "Idea to Object: Digital Fabrication (F)(S)",
@@ -1030,7 +1128,8 @@
     "department": 6,
     "course_length": 0.5,
     "credit": 0.5,
-    "type": [3, 0]
+    "type": [3, 0],
+    "difficulty": 1
   },
   "1705": {
     "name": "Digital Filmmaking 1 (F)",
@@ -1039,7 +1138,8 @@
     "department": 6,
     "course_length": 0.5,
     "credit": 0.5,
-    "type": [3, 0]
+    "type": [3, 0],
+    "difficulty": 1
   },
   "2700": {
     "name": "Digital Filmmaking 2 (S)",
@@ -1048,7 +1148,8 @@
     "department": 6,
     "course_length": 0.5,
     "credit": 0.5,
-    "type": [3, 0]
+    "type": [3, 0],
+    "difficulty": 1
   },
   "3700": {
     "name": "Ceramics (F) (S)",
@@ -1057,7 +1158,8 @@
     "department": 6,
     "course_length": 0.5,
     "credit": 0.5,
-    "type": [3, 0]
+    "type": [3, 0],
+    "difficulty": 1
   },
   "3702": {
     "name": "Communication Arts (F) (S)",
@@ -1066,7 +1168,8 @@
     "department": 6,
     "course_length": 0.5,
     "credit": 0.5,
-    "type": [3, 0]
+    "type": [3, 0],
+    "difficulty": 1
   },
   "3703": {
     "name": "Photography (F)(S)",
@@ -1075,8 +1178,10 @@
     "department": 6,
     "course_length": 0.5,
     "credit": 0.5,
-    "type": [3, 0]
+    "type": [3, 0],
+    "difficulty": 1
   },
+
   "3701": {
     "name": "Printmaking (F)(S)",
     "ap": false,
@@ -1084,7 +1189,8 @@
     "department": 6,
     "course_length": 0.5,
     "credit": 0.5,
-    "type": [3, 0]
+    "type": [3, 0],
+    "difficulty": 1
   },
   "4700": {
     "name": "Advanced Studio Art",
@@ -1093,7 +1199,8 @@
     "department": 6,
     "course_length": 1,
     "credit": 1,
-    "type": [3, 0]
+    "type": [3, 0],
+    "difficulty": 3
   },
   "5700": {
     "name": "AP Studio Art: Drawing",
@@ -1102,7 +1209,8 @@
     "department": 6,
     "course_length": 1,
     "credit": 1,
-    "type": [3, 0]
+    "type": [3, 0],
+    "difficulty": 3
   },
   "5701": {
     "name": "AP Studio Art: 2D",
@@ -1111,7 +1219,8 @@
     "department": 6,
     "course_length": 1,
     "credit": 1,
-    "type": [3, 0]
+    "type": [3, 0],
+    "difficulty": 3
   },
   "5702": {
     "name": "AP Studio Art: 3D",
@@ -1120,7 +1229,8 @@
     "department": 6,
     "course_length": 1,
     "credit": 1,
-    "type": [3, 0]
+    "type": [3, 0],
+    "difficulty": 3
   },
   "1003": {
     "name": "Teaching Intern (F)(S)",
