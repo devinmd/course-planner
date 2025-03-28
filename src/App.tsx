@@ -421,7 +421,6 @@ function TopNav({
         {/* mobile settings toggle button */}
         {isMobile && (
           <>
-            <div style={{ marginLeft: "auto" }}></div>
             <button
               onClick={() => setShowMobileSettings(!showMobileSettings)}
               className="mobile-options-button"
@@ -442,7 +441,9 @@ function TopNav({
                 onClick={() => {
                   setShowMobileSettings(false);
                 }}
-              >Close</button>
+              >
+                Close
+              </button>
               <button
                 className="white"
                 onClick={() => {
