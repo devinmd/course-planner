@@ -183,7 +183,8 @@ function ClassesGrid({
     let count = 8;
     for (let c of y) {
       if (c[0] == "" && c[1] == "") {
-        // count--
+        // if empty slot, remove form count
+        count--;
         continue;
       }
       for (let i of c) {
@@ -284,7 +285,7 @@ function ClassesGrid({
                           ? useShorthand
                             ? assignedClassData1.shorthand || assignedClassData1.name
                             : assignedClassData1.name
-                          : "Select Class"}
+                          : "Select Course"}
                       </button>
                     )}
                   </div>
@@ -313,28 +314,38 @@ function Footer() {
         }}
       ></div>
       {/* <div>Course list updated 2025/03/26</div> */}
-      <div>v0.3.1</div>
+      <div>v0.3.2</div>
     </footer>
   );
 }
 
 function Summary({ assignedClasses }: { assignedClasses: [][] }) {
-  let currentCredits: number[] = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-  let apsPerYear: number[] = [0, 0, 0, 0];
-  let freesPerYear: number[] = [0, 0, 0, 0];
+  let currentCredits: number[] = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]; // count amount of credits per department that have been fulfilled
+  let apsPerYear: number[] = [0, 0, 0, 0]; // count aps per year
+  let freesPerYear: number[] = [0, 0, 0, 0]; // count frees per year
   const maxFreesPerYear: number[] = [1, 1, 2, 2];
-  let englishCourses = [0, 0, 0, 0]; // every year has an english class
-  let hasUsHistory = false; // us history or apush
-  let grade9history = false; // history in grade 9
-  let grade10history = false; // history in grade 10
+  let englishCourses: number[] = [0, 0, 0, 0]; // every year has an english class
+  let hasUsHistory: boolean = false; // us history or apush or race studies
+  let grade9history: boolean = false; // history in grade 9
+  let grade10history: boolean = false; // history in grade 10
+  let duplicates: string[][] = [[], [], [], []];
 
   // iterate through user's selected classes and add the credits to each department
   for (let [yearIndex, years] of assignedClasses.entries()) {
+    // for each year
+    let seen: string[] = [];
     for (let classIds of years) {
+      // for each class tuple in that year
       for (let j = 0; j < 2; j++) {
-        const classId = classIds[j];
+        const classId: string = classIds[j];
 
         if (classId == "") continue;
+
+        if (seen.includes(classId) && classId != "0000" && classId != "0001") {
+          duplicates[yearIndex].push(classId);
+        } else {
+          seen.push(classId);
+        }
 
         const classData: ClassDataObject = classes[classId];
 
@@ -352,6 +363,8 @@ function Summary({ assignedClasses }: { assignedClasses: [][] }) {
       }
     }
   }
+
+  console.log(duplicates);
 
   return (
     <>
@@ -420,6 +433,13 @@ function Summary({ assignedClasses }: { assignedClasses: [][] }) {
           {!(englishCourses[0] > 0 && englishCourses[1] > 0 && englishCourses[2] > 0 && englishCourses[3] > 0) && (
             <div className="error-message">You need to take an English course every year.</div>
           )}
+          {duplicates.map((year, yearIndex) =>
+            year.map((classId, index) => (
+              <div className="error-message">
+                You cannot take {classes[classId].name} twice in year {yearIndex + 9}.
+              </div>
+            ))
+          )}
         </div>
       </div>
     </>
@@ -443,10 +463,14 @@ function TopNav({
   onCheck,
   onResetClasses,
   copyURL,
+  mobileShare,
+  useAbbreviations,
 }: {
   onCheck: (value: boolean) => void;
   onResetClasses: () => void;
   copyURL: () => void;
+  mobileShare: () => void;
+  useAbbreviations: boolean;
 }) {
   const isMobile = useIsMobile();
   const [showMobileSettings, setShowMobileSettings] = useState<boolean>(false);
@@ -456,7 +480,7 @@ function TopNav({
       <div className="topnav">
         {/* logo */}
         <div className="logo">
-          <img src="/icon.svg" />
+          <img src="/icon.png" />
           <h2>Course Planner</h2>
         </div>
         {/* mobile settings toggle button */}
@@ -466,6 +490,7 @@ function TopNav({
               onClick={() => setShowMobileSettings(!showMobileSettings)}
               className="mobile-options-button"
             ></button>
+            {/* <button onClick={() => mobileShare()} className="mobile-share-button"></button> */}
           </>
         )}
         {/* mobile settings modal */}
@@ -492,7 +517,7 @@ function TopNav({
                   setShowMobileSettings(false);
                 }}
               >
-                Toggle Abbreviated Course Names
+                {useAbbreviations ? "Show Full Course Names" : "Abbreviate Course Names"}
               </button>
 
               <button
@@ -521,14 +546,14 @@ function TopNav({
           <>
             <div style={{ marginLeft: "auto" }}></div>
             <div>
-              <button className="white" onClick={() => onCheck(true)}>
-                Toggle Abbreviated Course Names
+              <button className="white abbreviations" onClick={() => onCheck(true)}>
+                {useAbbreviations ? "Show Full Course Names" : "Abbreviate Course Names"}
               </button>
 
-              <button className="red" onClick={() => onResetClasses()}>
+              <button className="red reset" onClick={() => onResetClasses()}>
                 Reset Classes
               </button>
-              <button className="blue" onClick={() => copyURL()}>
+              <button className="blue copyurl" onClick={() => copyURL()}>
                 Copy URL for Your Plan
               </button>
             </div>
@@ -632,7 +657,7 @@ export default function App() {
   }
 
   function decodeClasses(encoded: string) {
-    const decodedSplit = encoded.replace(/e/g, "nn").match(/\d{4}|\d{1,3}|[a-zA-Z]/g) || [];
+    const decodedSplit = encoded.replace(/b/g, "nn").match(/\d{4}|\d{1,3}|[a-zA-Z]/g) || [];
     console.log("DECODED CLASSES:");
     console.log(decodedSplit);
     let decodedFinal: string[][][] = new Array(4)
@@ -665,7 +690,7 @@ export default function App() {
     console.log(assignedClasses);
 
     const encoded: string = JSON.stringify(assignedClasses)
-      .replace(/\["",""\]/g, "e")
+      .replace(/\["",""\]/g, "b")
       .replace(/""/g, "n")
       .replace(/["\[\],]/g, "");
 
@@ -711,9 +736,31 @@ export default function App() {
     }
   }
 
+  function mobileShare() {
+    if (navigator.share) {
+      const currentUrl = window.location.href;
+
+      navigator
+        .share({
+          title: "Course Planner",
+          url: currentUrl,
+        })
+        .then(() => console.log("Successful share"))
+        .catch((error) => console.log("Error sharing", error));
+    } else {
+      console.log("Share not supported on this browser");
+    }
+  }
+
   return (
     <>
-      <TopNav onCheck={handleToggleShorthands} onResetClasses={resetClasses} copyURL={copyURL} />
+      <TopNav
+        onCheck={handleToggleShorthands}
+        onResetClasses={resetClasses}
+        copyURL={copyURL}
+        mobileShare={mobileShare}
+        useAbbreviations={useShorthand}
+      />
 
       <div className="content">
         <ClassesGrid
