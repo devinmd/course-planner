@@ -434,7 +434,7 @@ function Summary({ assignedClasses }: { assignedClasses: [][] }) {
             <div className="error-message">You need to take an English course every year.</div>
           )}
           {duplicates.map((year, yearIndex) =>
-            year.map((classId, index) => (
+            year.map((classId) => (
               <div className="error-message">
                 You cannot take {classes[classId].name} twice in year {yearIndex + 9}.
               </div>
@@ -463,13 +463,11 @@ function TopNav({
   onCheck,
   onResetClasses,
   copyURL,
-  mobileShare,
   useAbbreviations,
 }: {
   onCheck: (value: boolean) => void;
   onResetClasses: () => void;
   copyURL: () => void;
-  mobileShare: () => void;
   useAbbreviations: boolean;
 }) {
   const isMobile = useIsMobile();
@@ -490,7 +488,6 @@ function TopNav({
               onClick={() => setShowMobileSettings(!showMobileSettings)}
               className="mobile-options-button"
             ></button>
-            {/* <button onClick={() => mobileShare()} className="mobile-share-button"></button> */}
           </>
         )}
         {/* mobile settings modal */}
@@ -736,29 +733,12 @@ export default function App() {
     }
   }
 
-  function mobileShare() {
-    if (navigator.share) {
-      const currentUrl = window.location.href;
-
-      navigator
-        .share({
-          title: "Course Planner",
-          url: currentUrl,
-        })
-        .then(() => console.log("Successful share"))
-        .catch((error) => console.log("Error sharing", error));
-    } else {
-      console.log("Share not supported on this browser");
-    }
-  }
-
   return (
     <>
       <TopNav
         onCheck={handleToggleShorthands}
         onResetClasses={resetClasses}
         copyURL={copyURL}
-        mobileShare={mobileShare}
         useAbbreviations={useShorthand}
       />
 
