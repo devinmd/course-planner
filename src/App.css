@@ -135,24 +135,13 @@
   }
 
   button.mobile-options-button {
-    background-image: url("./menu.svg");
+    background-image: url("../public/menu.svg");
     background-size: 24px 24px !important;
     background-position: center !important;
     background-repeat: no-repeat;
     box-shadow: none;
     position: fixed;
     left: 8px;
-    top: 8px;
-  }
-
-  button.mobile-share-button {
-    background-image: url("./share.svg");
-    background-size: 24px 24px;
-    background-position: center;
-    background-repeat: no-repeat;
-    box-shadow: none;
-    position: fixed;
-    right: 8px;
     top: 8px;
   }
 
@@ -401,7 +390,7 @@ div button.white:active {
 }
 
 .error-messages div.error-message {
-  background-image: url("./error.svg");
+  background-image: url("../public/error.svg");
   background-position: 12px 6px;
   background-size: 20px 20px;
   background-repeat: no-repeat;
@@ -515,12 +504,12 @@ footer a:hover {
 
 .topnav button.reset {
   padding-left: 32px;
-  background-image: url("./trash.svg");
+  background-image: url("../public/trash.svg");
 }
 
 .topnav button.copyurl {
   padding-left: 32px;
-  background-image: url("./link.svg");
+  background-image: url("../public/link.svg");
 }
 
 .topnav div.logo img {
