@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 import "./App.css";
+import "./mobile.css";
+import "./print.css";
 
 // import class information
 import classes1 from "./classes.json";
@@ -304,17 +306,18 @@ function ClassesGrid({
 
 function Footer() {
   const [showTos, setShowTos] = useState(false);
-  const version = "0.4.0";
+  const version = "0.4.2";
   const d = new Date();
   const copyrightYear = d.getFullYear();
   const url = new URL(window.location.href).hostname + new URL(window.location.href).pathname.replace(/\/$/, "");
+  const contactLink = "https://forms.gle/qb8T4QdjP1F4EPVW6";
   return (
     <>
       <footer className="normal-footer">
         <div>© {copyrightYear} Course Planner. All Rights Reserved</div>
 
         <div className="spacer" style={{ marginLeft: "auto" }}></div>
-        <a href="https://forms.gle/qb8T4QdjP1F4EPVW6" target="_blank">
+        <a href={contactLink} target="_blank">
           Contact
         </a>
         <div
@@ -338,8 +341,10 @@ function Footer() {
       </footer>
       {showTos && (
         <div className="tos">
-          There is no guarantee your planned schedule has no conflicts. This app should only be used as a reference. You
-          should always consult with your counselor and reference Veracross and the 2025-26 framework.
+          The Course Planner app is a reference tool for planning your class schedule. It does not guarantee that your
+          schedule is free from conflicts and/or meets all prerequisites for courses and graduation requirements. Always
+          consult with your counselor and refer to Veracross and the official 2025-26 Framework for final course
+          selection.
         </div>
       )}
     </>
@@ -559,6 +564,9 @@ function TopNav({
                 }}
               >
                 Copy URL for Your Plan
+              </button>
+              <button className="blue" onClick={() => window.print()}>
+                Print Your Plan
               </button>
             </div>
           </div>

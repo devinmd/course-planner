@@ -1,0 +1,167 @@
+/* mobile */
+@media screen and (min-width: 0px) and (max-width: 1024px) {
+  .content {
+    padding: 0;
+    margin-bottom: 16px;
+    gap: 16px;
+    margin-top: 48px;
+  }
+  .container {
+    padding: 8px;
+  }
+  h4 {
+    margin-left: 4px;
+    margin-bottom: 0;
+  }
+  div.class-display {
+    gap: 8px;
+    overflow-x: scroll;
+    box-sizing: border-box;
+    padding: 16px 16px 0 16px;
+    max-width: 100vw;
+  }
+
+  div.class-display .container div.selected-courses-info {
+    margin-left: 8px;
+    margin-top: 0;
+  }
+  h2 {
+    white-space: nowrap;
+    text-align: center;
+  }
+  h3 {
+    margin: 16px 0 -24px 16px;
+  }
+
+  div.topnav {
+    padding: 16px;
+    height: 48px;
+    justify-content: center;
+  }
+  /* div.topnav h4,
+  div.topnav div,
+  div.topnav input,
+  div.topnav label {
+    display: none;
+  } */
+
+  div.topnav div.logo img {
+    max-width: auto;
+    height: 26px;
+  }
+
+  div.mobile-settings {
+    margin: 64px 16px 0 16px;
+    box-sizing: border-box;
+    max-width: 100vw;
+    z-index: 1001;
+    overflow-x: scroll;
+    overflow: hidden;
+    /* top: 64px; */
+    padding: 16px;
+    /* left: 16px; */
+    display: flex;
+    flex-direction: column;
+    max-height: 50vh;
+    width: 100%;
+    max-height: 50vh;
+  }
+
+  div.mobile-settings button {
+    height: 40px;
+  }
+
+  button.mobile-options-button {
+    background-image: url("../public/menu.svg");
+    background-size: 24px 24px !important;
+    background-position: center !important;
+    background-repeat: no-repeat;
+    box-shadow: none;
+    position: fixed;
+    left: 8px;
+    top: 8px;
+  }
+
+  div.mobile-settings h3 {
+    margin: 0;
+  }
+
+  div.class-selector-wrapper,
+  div.mobile-settings-wrapper {
+    position: fixed;
+    height: 100vh;
+    width: 100vw;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    background-color: #00000080;
+    pointer-events: auto; /* Ensures clicks go to the overlay */
+  }
+
+  div.class-selector.container {
+    margin: 64px 16px 0 16px;
+    box-sizing: border-box;
+    max-width: 100vw;
+    z-index: 1001;
+    overflow-x: scroll;
+    overflow: hidden;
+    /* top: 64px; */
+    padding: 16px;
+    /* left: 16px; */
+  }
+
+  div.class-selector.container div.department-list,
+  div.class-selector.container div.class-list {
+    gap: 8px;
+    overflow: scroll;
+    max-height: 50vh;
+  }
+
+  div.class-selector.container div button {
+    max-width: none;
+    /* font-size: 16px; */
+  }
+
+  div.class-selector.container .header {
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 16px;
+  }
+  div.class-selector.container .header input {
+    max-width: none;
+    width: 100%;
+    height: 40px;
+    padding: 0 16px;
+    font-size: 16px; /* prevent browser from zooming in */
+  }
+
+  div.class-selector.container .header h3 {
+    margin: 0;
+  }
+  div.summary.container {
+    margin: 0 16px 16px 16px;
+    padding: 16px;
+  }
+  div.summary.container div.credit-requirements {
+    gap: 8px;
+  }
+  div.summary.container div.error-messages {
+    margin-top: 16px;
+  }
+  div.summary.container div.error-messages div {
+    padding: 4px 40px;
+    height: auto;
+    min-height: 32px;
+    display: flex;
+    align-items: center;
+    line-height: 20px;
+  }
+  footer {
+    padding: 16px !important;
+    flex-direction: column;
+    gap: 8px !important;
+  }
+  footer div.spacer {
+    display: none;
+  }
+}

@@ -43,7 +43,6 @@ h4 {
   font-weight: 600;
   margin: 0 0 8px 0;
   text-align: center;
-
 }
 
 .container {
@@ -54,4 +53,40 @@ h4 {
   border: 1px solid var(--background-d1);
   box-sizing: border-box;
   transition: 100ms;
+}
+
+button {
+  border: none;
+  font-size: var(--text-size);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 80ms;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--background-1);
+  height: 40px;
+  color: #202020;
+  font-family: inherit;
+  white-space: normal; /* Allows text to wrap */
+  word-wrap: break-word; /* Ensures words break if needed */
+  overflow-wrap: break-word; /* Alternative word break handling */
+  padding: 0 16px;
+  display: flex;
+  box-sizing: border-box;
+  font-weight: 500;
+  box-shadow: 0 1px 1px 0 var(--background-d1);
+}
+
+input {
+  box-shadow: 0 1px 1px 0 var(--background-d1);
+  border: 1px solid var(--background-d1);
+  background-color: var(--background);
+  width: 25%;
+  box-sizing: border-box;
+  border-radius: 4px;
+  padding: 4px 8px;
+  font-size: var(--text-size);
+  transition: 80ms;
+  font-weight: 500;
+  height: 32px;
 }
