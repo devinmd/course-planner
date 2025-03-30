@@ -64,7 +64,6 @@ function DepartmentSelector({
         }
       }
     }
-    console.log(classIdList);
   }
 
   const getHeaderText = () => {
@@ -95,6 +94,7 @@ function DepartmentSelector({
           }
           onInput={(e) => handleSearch(e.currentTarget.value)}
           className="search-box"
+          value={searchVal ? searchVal : ""}
         />
         <div
           style={{
@@ -203,7 +203,6 @@ function ClassesGrid({
         else difficultyNum += classData.difficulty;
       }
     }
-    console.log(difficultyNum + " " + count);
     difficulty[index] = Math.min(difficultyNum / count, 5); // cap at 5
   }
 
@@ -292,7 +291,7 @@ function ClassesGrid({
                 );
               })}
               <div className="selected-courses-info">
-                <div>Difficulty: {difficulty[colIndex].toFixed(2)} / 5</div>
+                {/* <div>Difficulty: {difficulty[colIndex].toFixed(2)} / 5</div> */}
                 <div>APs: {apCount[colIndex]}</div>
               </div>
             </div>
@@ -304,18 +303,46 @@ function ClassesGrid({
 }
 
 function Footer() {
+  const [showTos, setShowTos] = useState(false);
+  const version = "0.4.0";
+  const d = new Date();
+  const copyrightYear = d.getFullYear();
+  const url = new URL(window.location.href).hostname + new URL(window.location.href).pathname.replace(/\/$/, "");
   return (
-    <footer>
-      {/* <a>Contact</a>
-      <a>Help</a> */}
-      <div
-        style={{
-          marginLeft: "auto",
-        }}
-      ></div>
-      {/* <div>Course list updated 2025/03/26</div> */}
-      <div>v0.3.2</div>
-    </footer>
+    <>
+      <footer className="normal-footer">
+        <div>© {copyrightYear} Course Planner. All Rights Reserved</div>
+
+        <div className="spacer" style={{ marginLeft: "auto" }}></div>
+        <a href="https://forms.gle/qb8T4QdjP1F4EPVW6" target="_blank">
+          Contact
+        </a>
+        <div
+          onClick={() => {
+            setShowTos(!showTos);
+            window.scrollTo(0, document.body.scrollHeight);
+          }}
+          className="tos-button"
+        >
+          {showTos ? "Hide Terms of Service" : "Terms of Service"}
+        </div>
+        <div>{version}</div>
+      </footer>
+      <footer className="print-footer">
+        <div>© {copyrightYear} Course Planner. All Rights Reserved</div>
+
+        <div style={{ marginLeft: "auto" }}></div>
+        <div>{url}</div>
+
+        <div>{version}</div>
+      </footer>
+      {showTos && (
+        <div className="tos">
+          There is no guarantee your planned schedule has no conflicts. This app should only be used as a reference. You
+          should always consult with your counselor and reference Veracross and the 2025-26 framework.
+        </div>
+      )}
+    </>
   );
 }
 
@@ -363,8 +390,6 @@ function Summary({ assignedClasses }: { assignedClasses: [][] }) {
       }
     }
   }
-
-  console.log(duplicates);
 
   return (
     <>
@@ -553,6 +578,13 @@ function TopNav({
               <button className="blue copyurl" onClick={() => copyURL()}>
                 Copy URL for Your Plan
               </button>
+              <button className="blue print" onClick={() => window.print()}>
+                Print Your Plan
+              </button>
+              <div className="print-header">
+                Printed Plan
+                {/* {new URL(window.location.href).hostname + new URL(window.location.href).pathname.replace(/\/$/, "")} */}
+              </div>
             </div>
           </>
         )}
@@ -661,20 +693,25 @@ export default function App() {
       .fill([])
       .map(() => new Array(8).fill(0).map(() => new Array(2).fill("")));
     let currentIndex = [0, 0, 0];
-    for (let i of decodedSplit) {
-      if (i.length == 4) {
-        decodedFinal[currentIndex[2]][currentIndex[1]][currentIndex[0]] = i;
+    try {
+      for (let i of decodedSplit) {
+        if (i.length == 4) {
+          decodedFinal[currentIndex[2]][currentIndex[1]][currentIndex[0]] = i;
+        }
+        if (currentIndex[0] >= 1) {
+          currentIndex[1]++;
+          currentIndex[0] = 0;
+        } else {
+          currentIndex[0] += 1;
+        }
+        if (currentIndex[1] >= 8) {
+          currentIndex[2]++;
+          currentIndex[1] = 0;
+        }
       }
-      if (currentIndex[0] >= 1) {
-        currentIndex[1]++;
-        currentIndex[0] = 0;
-      } else {
-        currentIndex[0] += 1;
-      }
-      if (currentIndex[1] >= 8) {
-        currentIndex[2]++;
-        currentIndex[1] = 0;
-      }
+    } catch (err) {
+      console.warn(err);
+      return assignedClasses;
     }
 
     return decodedFinal;
@@ -684,14 +721,10 @@ export default function App() {
   function encodeClasses() {
     // encode the selected classes and save in the url so the user can copy and share it
 
-    console.log(assignedClasses);
-
     const encoded: string = JSON.stringify(assignedClasses)
       .replace(/\["",""\]/g, "b")
       .replace(/""/g, "n")
       .replace(/["\[\],]/g, "");
-
-    console.log(encoded);
 
     updateQueryParam("c", encoded);
   }
