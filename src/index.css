@@ -52,7 +52,6 @@ h4 {
   box-shadow: 0 1px 1px 0 var(--background-d1);
   border: 1px solid var(--background-d1);
   box-sizing: border-box;
-  transition: 100ms;
 }
 
 button {
@@ -60,7 +59,7 @@ button {
   font-size: var(--text-size);
   border-radius: 8px;
   cursor: pointer;
-  transition: 80ms;
+  transition: 50ms;
   align-items: center;
   justify-content: center;
   background-color: var(--background-1);

@@ -314,7 +314,10 @@ function Footer() {
   return (
     <>
       <footer className="normal-footer">
-        <div>© {copyrightYear} Course Planner. All Rights Reserved</div>
+        <div className="copyright">
+          {/* <img src="/icon.png" /> */}
+          <div>© {copyrightYear} Course Planner</div>
+        </div>
 
         <div className="spacer" style={{ marginLeft: "auto" }}></div>
         <a href={contactLink} target="_blank">
@@ -332,7 +335,10 @@ function Footer() {
         <div>{version}</div>
       </footer>
       <footer className="print-footer">
-        <div>© {copyrightYear} Course Planner. All Rights Reserved</div>
+        <div className="copyright">
+          {/* <img src="/icon.png" /> */}
+          <div>© {copyrightYear} Course Planner</div>
+        </div>
 
         <div style={{ marginLeft: "auto" }}></div>
         <div>{url}</div>
@@ -357,10 +363,12 @@ function Summary({ assignedClasses }: { assignedClasses: [][] }) {
   let freesPerYear: number[] = [0, 0, 0, 0]; // count frees per year
   const maxFreesPerYear: number[] = [1, 1, 2, 2];
   let englishCourses: number[] = [0, 0, 0, 0]; // every year has an english class
-  let hasUsHistory: boolean = false; // us history or apush or race studies
-  let grade9history: boolean = false; // history in grade 9
-  let grade10history: boolean = false; // history in grade 10
+  let hasUsHistory = false; // us history or apush or race studies
+  let grade9history = false; // history in grade 9
+  let grade10history = false; // history in grade 1
+  let hasStudyOfJapan = false;
   let duplicates: string[][] = [[], [], [], []];
+  let hasDigitalLiteracy = false;
 
   // iterate through user's selected classes and add the credits to each department
   for (let [yearIndex, years] of assignedClasses.entries()) {
@@ -392,6 +400,24 @@ function Summary({ assignedClasses }: { assignedClasses: [][] }) {
           if (yearIndex == 1) grade10history = true;
         }
         if (classId == "4100" || classId == "5101" || classId == "4101") hasUsHistory = true; // count US history credits
+        if (classId == "1903" || classId == "5900") hasDigitalLiteracy = true; // gcda or csp
+        if (
+          classId == "6100" ||
+          classId == "3101" ||
+          classId == "1502" ||
+          classId == "2502" ||
+          classId == "3502" ||
+          classId == "4502" ||
+          classId == "5502" ||
+          classId == "6502" ||
+          classId == "6503" ||
+          classId == "6504" ||
+          classId == "6505" ||
+          classId == "6506" ||
+          classId == "6507" ||
+          classId == "6508"
+        )
+          hasStudyOfJapan = true; // study of japan credit
       }
     }
   }
@@ -424,7 +450,6 @@ function Summary({ assignedClasses }: { assignedClasses: [][] }) {
           )}
           {/* <div>APs: {apsPerYear[0] + apsPerYear[1] + apsPerYear[2] + apsPerYear[3]}</div> */}
         </div>
-
         <div className="error-messages">
           {/* if doesnt meet minimum department credit requirements */}
           {departments.map(
@@ -458,7 +483,10 @@ function Summary({ assignedClasses }: { assignedClasses: [][] }) {
           {!grade9history && <div className="error-message">You need a Social Studies course in grade 9.</div>}
           {!grade10history && <div className="error-message">You need a Social Studies course in grade 10.</div>}
           {!hasUsHistory && (
-            <div className="error-message">You need to take Race & Ethnic Studies, US History, or AP US History.</div>
+            <div className="error-message">
+              You need to take Race & Ethnic Studies, US History, or AP US History to fulfill your Study of the United
+              States requirement.
+            </div>
           )}
           {!(englishCourses[0] > 0 && englishCourses[1] > 0 && englishCourses[2] > 0 && englishCourses[3] > 0) && (
             <div className="error-message">You need to take an English course every year.</div>
@@ -469,6 +497,18 @@ function Summary({ assignedClasses }: { assignedClasses: [][] }) {
                 You cannot take {classes[classId].name} twice in year {yearIndex + 9}.
               </div>
             ))
+          )}
+          {!hasDigitalLiteracy && (
+            <div className="error-message">
+              You need to take Global Citizenship in the Digital Age (GCDA) or AP Computer Science Principles (APCSP) to
+              fulfill your Digital Literacy requirement.
+            </div>
+          )}
+          {!hasStudyOfJapan && (
+            <div className="error-message">
+              You need to take any Japanese course, Study of Japan, or Japan Seminar fulfill your Study of Japan
+              requirement.
+            </div>
           )}
         </div>
       </div>
@@ -603,7 +643,7 @@ function TopNav({
 
 export default function App() {
   // state to store users preference on using class shorthands
-  const [useShorthand, setUseShorthand] = useState<boolean>(false);
+  const [useShorthand, setUseShorthand] = useState<boolean>(true);
 
   // create a state to store the selected slot's row and column
   const [selectedSlot, setSelectedSlot] = useState<[number, number, number, boolean] | null>(null);

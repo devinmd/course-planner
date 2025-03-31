@@ -2,9 +2,9 @@
   /* background */
   --background-l1: #ffffff;
   --background: #f5f7f7;
-  --background-d1: #e8ebf0;
+  --background-d1: #e5e7eb;
   --background-d2: #d7dbe2;
-  --background-d3: #c6cbd5;
+  /* --background-d3: #c6cbd5; */
 
   /* --background-l1: #202020;
   --background: #101010;
@@ -115,9 +115,8 @@ div button.white {
 }
 
 /* white button hover */
-div button.white:hover {
+button.white:hover {
   background-color: var(--background);
-  /* border: 1px solid var(--background-d1); */
 }
 
 /* empty slot selected */
@@ -131,8 +130,9 @@ div button.white:hover {
 }
 
 /* selected slot */
-div.class-display .container div.class-slot button.selected {
+.class-slot button.selected {
   outline: 2px solid var(--accent);
+  border-color: transparent;
 }
 
 /* filled slot hover */
@@ -167,6 +167,7 @@ button.filled:hover {
 /* disabled class button hover */
 .class-selector button.filled:disabled:hover {
   opacity: 50%;
+  outline: none;
 }
 
 .credit-requirements {
@@ -201,25 +202,22 @@ button.filled:hover {
   margin-top: 32px;
 }
 
-.error-messages div {
+.error-messages .error-message {
   margin: 0;
-  /* border: 1px solid var(--background-d1); */
-  background-color: var(--background);
   border-radius: 8px;
   height: 32px;
   padding: 0 16px;
   font-weight: 500;
   align-items: center;
   font-size: var(--text-size);
-  box-sizing: border-box;
   color: var(--text-medium);
   line-height: 32px;
   padding-left: calc(20px + 12px + 12px);
-}
-
-.error-messages .error-message {
+  box-sizing: border-box;
+  background-color: var(--background-l1);
+  border: 1px solid var(--background-d1);
   background-image: url("../public/error.svg");
-  background-position: 12px 6px;
+  background-position: 12px 5px;
   background-size: 20px 20px;
   background-repeat: no-repeat;
 }
@@ -254,6 +252,19 @@ footer {
   font-weight: 500;
   display: flex;
   gap: 32px;
+}
+
+footer div.copyright {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  align-items: center;
+}
+
+footer img {
+  height: 16px;
+  filter: grayscale(0);
+  width: auto;
 }
 
 footer a {
