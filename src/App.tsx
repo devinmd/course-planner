@@ -293,7 +293,30 @@ function ClassesGrid({
                 );
               })}
               <div className="selected-courses-info">
-                {/* <div>Difficulty: {difficulty[colIndex].toFixed(2)} / 5</div> */}
+                <div
+                  style={{
+                    display: "none",
+                  }}
+                >
+                  Difficulty:
+                  <span style={{}}> {Math.min(difficulty[colIndex] + 1, 5).toFixed(2)}/5</span>
+                </div>
+                <div
+                  className="bar-wrapper"
+                  style={{
+                    margin: 0,
+                    marginBottom: "8px",
+                    display: "none",
+                  }}
+                >
+                  <div
+                    className="bar"
+                    style={{
+                      width: Math.min(((difficulty[colIndex] + 1) / 5) * 100, 100) + "%",
+                      backgroundColor: `hsla(${120 - ((difficulty[colIndex] - 0.5) / 3) * 120}, 100%, 40%, 60%)`,
+                    }}
+                  ></div>
+                </div>
                 <div>APs: {apCount[colIndex]}</div>
               </div>
             </div>
@@ -306,7 +329,7 @@ function ClassesGrid({
 
 function Footer() {
   const [showTos, setShowTos] = useState(false);
-  const version = "0.4.2";
+  const version = "0.4.3";
   const d = new Date();
   const copyrightYear = d.getFullYear();
   const url = new URL(window.location.href).hostname + new URL(window.location.href).pathname.replace(/\/$/, "");
@@ -330,7 +353,7 @@ function Footer() {
           }}
           className="tos-button"
         >
-          {showTos ? "Hide Terms of Service" : "Terms of Service"}
+          {showTos ? "Hide Terms of Service ↓" : "Terms of Service"}
         </div>
         <div>{version}</div>
       </footer>
@@ -506,7 +529,7 @@ function Summary({ assignedClasses }: { assignedClasses: [][] }) {
           )}
           {!hasStudyOfJapan && (
             <div className="error-message">
-              You need to take any Japanese course, Study of Japan, or Japan Seminar fulfill your Study of Japan
+              You need to take a Japanese language course, Study of Japan, or Japan Seminar fulfill your Study of Japan
               requirement.
             </div>
           )}
