@@ -676,7 +676,8 @@
     "course_length": 1,
     "credit": 1,
     "language": 0,
-    "difficulty": 4
+    "difficulty": 4,
+    "shorthand:": "Adv. Chinese: Culture & Media"
   },
   "1511": {
     "name": "Novice Mid-High Spanish",
@@ -737,7 +738,8 @@
     "course_length": 1,
     "credit": 1,
     "language": 1,
-    "difficulty": 4
+    "difficulty": 4,
+    "shorthand": "Adv. Spanish"
   },
   "1502": {
     "name": "Novice Japanese",
@@ -808,7 +810,8 @@
     "course_length": 1,
     "credit": 1,
     "language": 2,
-    "difficulty": 4
+    "difficulty": 4,
+    "shorthand": "Adv. Japanese"
   },
   "6504": {
     "name": "Advanced High Japanese",
@@ -818,7 +821,8 @@
     "course_length": 1,
     "credit": 1,
     "language": 2,
-    "difficulty": 4
+    "difficulty": 4,
+    "shorthand": "Adv. High Japanese"
   },
   "6505": {
     "name": "Superior Japanese: General Topics",
@@ -1089,7 +1093,8 @@
     "course_length": 0.5,
     "credit": 0.5,
     "type": [2, 0],
-    "difficulty": 1
+    "difficulty": 1,
+    "shorthand": "Adv. Acting (F)"
   },
   "3651": {
     "name": "Advanced Acting: Acting for the Camera (S)",
@@ -1099,7 +1104,8 @@
     "course_length": 0.5,
     "credit": 0.5,
     "type": [2, 0],
-    "difficulty": 1
+    "difficulty": 1,
+    "shorthand": "Adv. Acting: Acting for the Camera (S)"
   },
   "1651": {
     "name": "Stagecraft (F)(S)",
@@ -1129,7 +1135,8 @@
     "course_length": 0.5,
     "credit": 0.5,
     "type": [3, 0],
-    "difficulty": 1
+    "difficulty": 1,
+    "shorthand": "Idea to Object (F)(S)"
   },
   "1705": {
     "name": "Digital Filmmaking 1 (F)",
@@ -1139,7 +1146,8 @@
     "course_length": 0.5,
     "credit": 0.5,
     "type": [3, 0],
-    "difficulty": 1
+    "difficulty": 1,
+    "shorthand": "Filmmaking 1 (F)"
   },
   "2700": {
     "name": "Digital Filmmaking 2 (S)",
@@ -1149,10 +1157,11 @@
     "course_length": 0.5,
     "credit": 0.5,
     "type": [3, 0],
-    "difficulty": 1
+    "difficulty": 1,
+    "shorthand": "Filmmaking 2 (F)"
   },
   "3700": {
-    "name": "Ceramics (F) (S)",
+    "name": "Ceramics (F)(S)",
     "ap": false,
     "allowed_years": [10, 11, 12],
     "department": 6,
@@ -1162,7 +1171,7 @@
     "difficulty": 1
   },
   "3702": {
-    "name": "Communication Arts (F) (S)",
+    "name": "Communication Arts (F)(S)",
     "ap": false,
     "allowed_years": [10, 11, 12],
     "department": 6,
@@ -1200,7 +1209,8 @@
     "course_length": 1,
     "credit": 1,
     "type": [3, 0],
-    "difficulty": 3
+    "difficulty": 3,
+    "shorthand": "Adv. Studio Art"
   },
   "5700": {
     "name": "AP Studio Art: Drawing",
