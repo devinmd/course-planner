@@ -1250,6 +1250,14 @@
     "course_length": 0.5,
     "credit": 0.5
   },
+  "1004": {
+    "name": "Skills for Success (F)(S)",
+    "ap": false,
+    "allowed_years": [9, 10, 11, 12],
+    "department": 10,
+    "course_length": 0.5,
+    "credit": 0.5
+  },
   "4000": {
     "name": "Independent Inquiry (F)(S)",
     "ap": false,

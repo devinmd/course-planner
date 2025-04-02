@@ -295,7 +295,7 @@ function ClassesGrid({
               <div className="selected-courses-info">
                 <div
                   style={{
-                    display: "none",
+                    // display: "none",
                   }}
                 >
                   Difficulty:
@@ -306,7 +306,7 @@ function ClassesGrid({
                   style={{
                     margin: 0,
                     marginBottom: "8px",
-                    display: "none",
+                    // display: "none",
                   }}
                 >
                   <div
@@ -329,7 +329,7 @@ function ClassesGrid({
 
 function Footer() {
   const [showTos, setShowTos] = useState(false);
-  const version = "0.4.3";
+  const version = "1.0.1";
   const d = new Date();
   const copyrightYear = d.getFullYear();
   const url = new URL(window.location.href).hostname + new URL(window.location.href).pathname.replace(/\/$/, "");
@@ -529,8 +529,8 @@ function Summary({ assignedClasses }: { assignedClasses: [][] }) {
           )}
           {!hasStudyOfJapan && (
             <div className="error-message">
-              You need to take a Japanese language course, Study of Japan, or Japan Seminar fulfill your Study of Japan
-              requirement.
+              You need to take a Japanese language course, Study of Japan, or Japan Seminar to fulfill your Study of
+              Japan requirement.
             </div>
           )}
         </div>

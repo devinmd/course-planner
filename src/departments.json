@@ -129,7 +129,7 @@
   {
     "name": "Independent Courses",
     "color": "gray",
-    "classes": [1003, 4000, 4001],
+    "classes": [1003, 1004, 4000, 4001],
     "required_credits": 0
   },
   {
