@@ -137,5 +137,11 @@
     "color": "gray",
     "classes": ["0000", "0001"],
     "required_credits": 0
+  },
+  {
+    "name": "Electives",
+    "color": "gray",
+    "classes": [],
+    "required_credits": 4.5
   }
 ]

@@ -294,9 +294,11 @@ function ClassesGrid({
               })}
               <div className="selected-courses-info">
                 <div
-                  style={{
-                    // display: "none",
-                  }}
+                  style={
+                    {
+                      // display: "none",
+                    }
+                  }
                 >
                   Difficulty:
                   <span style={{}}> {Math.min(difficulty[colIndex] + 1, 5).toFixed(2)}/5</span>
@@ -329,7 +331,7 @@ function ClassesGrid({
 
 function Footer() {
   const [showTos, setShowTos] = useState(false);
-  const version = "1.0.1";
+  const version = "1.1.0";
   const d = new Date();
   const copyrightYear = d.getFullYear();
   const url = new URL(window.location.href).hostname + new URL(window.location.href).pathname.replace(/\/$/, "");
@@ -381,7 +383,7 @@ function Footer() {
 }
 
 function Summary({ assignedClasses }: { assignedClasses: [][] }) {
-  let currentCredits: number[] = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]; // count amount of credits per department that have been fulfilled
+  let currentCredits: number[] = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]; // count amount of credits per department that have been fulfilled
   let apsPerYear: number[] = [0, 0, 0, 0]; // count aps per year
   let freesPerYear: number[] = [0, 0, 0, 0]; // count frees per year
   const maxFreesPerYear: number[] = [1, 1, 2, 2];
@@ -411,8 +413,14 @@ function Summary({ assignedClasses }: { assignedClasses: [][] }) {
         }
 
         const classData: ClassDataObject = classes[classId];
-
         currentCredits[classData.department] += classData.credit; // count credits
+        if (
+          currentCredits[classData.department] > departments[classData.department].required_credits &&
+          classData.department != 11
+        ) {
+          // if over the minimum required credits for that department, add to electives
+          currentCredits[12] += classData.credit;
+        }
         if (classId == "5050") currentCredits[0]++; // ap seminar counts as english credit
         if (classData.ap) apsPerYear[yearIndex]++; // count aps
         if (classId == "0000" || classId == "0001") freesPerYear[yearIndex]++; // count frees
