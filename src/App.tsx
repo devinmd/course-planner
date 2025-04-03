@@ -1,3 +1,5 @@
+import { Analytics } from "@vercel/analytics/react";
+
 import { useState, useEffect } from "react";
 import "./App.css";
 import "./mobile.css";
@@ -301,7 +303,7 @@ function ClassesGrid({
                   }
                 >
                   Difficulty:
-                  <span style={{}}> {Math.min(difficulty[colIndex] + 1, 5).toFixed(2)}/5</span>
+                  <span style={{ float: "right" }}> {Math.min(difficulty[colIndex] + 1, 5).toFixed(2)}/5</span>
                 </div>
                 <div
                   className="bar-wrapper"
@@ -328,19 +330,28 @@ function ClassesGrid({
     </>
   );
 }
-
 function Footer() {
   const [showTos, setShowTos] = useState(false);
-  const version = "1.1.0";
+  const version = "1.1.1";
   const d = new Date();
   const copyrightYear = d.getFullYear();
   const url = new URL(window.location.href).hostname + new URL(window.location.href).pathname.replace(/\/$/, "");
   const contactLink = "https://forms.gle/qb8T4QdjP1F4EPVW6";
+  const sourceCodeLink = "https://github.com/devinmd/course-planner";
+
+  useEffect(() => {
+    if (showTos) {
+      // Wait for DOM to update before scrolling
+      setTimeout(() => {
+        document.querySelector(".tos")?.scrollIntoView({ behavior: "auto" });
+      }, 100);
+    }
+  }, [showTos]);
+
   return (
     <>
       <footer className="normal-footer">
         <div className="copyright">
-          {/* <img src="/icon.png" /> */}
           <div>© {copyrightYear} Course Planner</div>
         </div>
 
@@ -348,28 +359,24 @@ function Footer() {
         <a href={contactLink} target="_blank">
           Contact
         </a>
-        <div
-          onClick={() => {
-            setShowTos(!showTos);
-            window.scrollTo(0, document.body.scrollHeight);
-          }}
-          className="tos-button"
-        >
+        <div onClick={() => setShowTos(!showTos)} className="tos-button">
           {showTos ? "Hide Terms of Service ↓" : "Terms of Service"}
         </div>
+        <a href={sourceCodeLink} target="_blank">
+          Source Code
+        </a>
         <div>{version}</div>
       </footer>
+
       <footer className="print-footer">
         <div className="copyright">
-          {/* <img src="/icon.png" /> */}
           <div>© {copyrightYear} Course Planner</div>
         </div>
-
         <div style={{ marginLeft: "auto" }}></div>
         <div>{url}</div>
-
         <div>{version}</div>
       </footer>
+
       {showTos && (
         <div className="tos">
           The Course Planner app is a reference tool for planning your class schedule. It does not guarantee that your
@@ -576,6 +583,7 @@ function TopNav({
 
   return (
     <>
+      <Analytics />
       <div className="topnav">
         {/* logo */}
         <div className="logo">
