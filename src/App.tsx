@@ -413,7 +413,12 @@ function Summary({ assignedClasses }: { assignedClasses: [][] }) {
 
         if (classId == "") continue;
 
-        if (seen.includes(classId) && classId != "0000" && classId != "0001") {
+        if (
+          seen.includes(classId) &&
+          classId != "0000" &&
+          classId != "0001" &&
+          !duplicates[yearIndex].includes(classId)
+        ) {
           duplicates[yearIndex].push(classId);
         } else {
           seen.push(classId);
