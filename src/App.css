@@ -42,6 +42,15 @@
   --gray-l: #9ea8be80;
   --orange-l: #fb992a80;
   --pink-l: #fc85a980;
+
+  --purple: #a692fac0;
+  --green: #3ecc5fc0;
+  --yellow: #ffcb2ec0;
+  --blue: #438af5c0;
+  --red: #f95748c0;
+  --gray: #9ea8bec0;
+  --orange: #fb992ac0;
+  --pink: #fc85a9c0;
 }
 
 #root {
@@ -135,9 +144,16 @@ button.white:hover {
   border-color: transparent;
 }
 
+button.filled.hovered {
+  outline: 2px solid var(--accent);
+  border-color: transparent;
+}
+
 /* filled slot hover */
 button.filled:hover {
-  opacity: 80%;
+  opacity: 100%;
+  outline: 2px solid var(--accent);
+  border-color: transparent;
 }
 /* filled slot selected hover */
 .class-display .container .class-slot button.filled.selected:hover {

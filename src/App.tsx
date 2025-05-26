@@ -21,6 +21,7 @@ interface ClassDataObject {
   course_length: number;
   hide_id?: boolean;
   difficulty?: number;
+  prerequisites?: string[];
 }
 
 function DepartmentSelector({
@@ -167,6 +168,52 @@ function DepartmentSelector({
   );
 }
 
+function ClassButton({
+  rowIndex,
+  colIndex,
+  slotIndex,
+  classId,
+  classData,
+  isSelected,
+  isHighlighted,
+  useShorthand,
+  onClick,
+  onHover,
+  onUnhover,
+}: {
+  rowIndex: number;
+  colIndex: number;
+  slotIndex: number;
+  classId: string;
+  classData: ClassDataObject;
+  isSelected: boolean;
+  isHighlighted: boolean;
+  useShorthand: boolean;
+  onClick: () => void;
+  onHover?: () => void;
+  onUnhover?: () => void;
+}) {
+  const hasClass = classData.color != null;
+
+  return (
+    <button
+      key={`${rowIndex}-${colIndex}-${slotIndex}-${classId}`}
+      className={`${hasClass ? "filled" : "white"} ${isSelected ? "selected" : ""} ${
+        isHighlighted ? "hovered" : ""
+      }`.trim()}
+      onClick={onClick}
+      onMouseOver={onHover}
+      onMouseLeave={onUnhover}
+      style={{
+        backgroundColor: isHighlighted ? `var(--${classData.color})` : hasClass ? `var(--${classData.color}-l)` : "",
+      }}
+    >
+      {(useShorthand ? classData.shorthand || classData.name : classData.name) || "Select Course"}
+    </button>
+  );
+}
+
+// grid of classes buttons
 function ClassesGrid({
   onClassSlotClick,
   assignedClasses,
@@ -178,6 +225,8 @@ function ClassesGrid({
   selectedClassSlot: any[] | null;
   useShorthand: boolean;
 }) {
+  const [hoveredClassID, setHoveredClassID] = useState("");
+  const [classIDsToHighlight, setClassIDsToHighlight] = useState<string[]>([]);
   const headers = ["Freshman", "Sophomore", "Junior", "Senior"];
   const classCount = 8;
   let difficulty: number[] = [0, 0, 0, 0];
@@ -209,6 +258,37 @@ function ClassesGrid({
     }
     difficulty[index] = Math.min(difficultyNum / count, 5); // cap at 5
   }
+
+  useEffect(() => {
+    if (!hoveredClassID || !classes[hoveredClassID]) {
+      setClassIDsToHighlight([]);
+      return;
+    }
+
+    const highlightIDs: string[] = [];
+
+    // Always include the hovered class itself
+    highlightIDs.push(hoveredClassID);
+
+    // Add prerequisites if they exist
+    const prerequisites = classes[hoveredClassID].prerequisites;
+    if (Array.isArray(prerequisites)) {
+      for (const group of prerequisites) {
+        for (const id of group) {
+          highlightIDs.push(id);
+        }
+      }
+    }
+
+    // add all items in the same department
+    const department = classes[hoveredClassID].department;
+    for (const classId in classes) {
+      if (classes[classId].department === department) {
+        highlightIDs.push(classId);
+      }
+    }
+    setClassIDsToHighlight(highlightIDs);
+  }, [hoveredClassID, classes]);
 
   return (
     <>
@@ -242,54 +322,54 @@ function ClassesGrid({
                   assignedClassData1 = {} as ClassDataObject;
                 }
 
-                const isSelected1 =
+                const isSelected1 = Boolean(
                   selectedClassSlot &&
-                  selectedClassSlot[0] == rowIndex &&
-                  selectedClassSlot[1] == colIndex &&
-                  selectedClassSlot[2] == 0;
+                    selectedClassSlot[0] === rowIndex &&
+                    selectedClassSlot[1] === colIndex &&
+                    selectedClassSlot[2] === 0
+                );
 
-                const isSelected2 =
+                const isSelected2 = Boolean(
                   selectedClassSlot &&
-                  selectedClassSlot[0] == rowIndex &&
-                  selectedClassSlot[1] == colIndex &&
-                  selectedClassSlot[2] == 1;
-
-                const hasClass1: boolean = assignedClassData.color != null;
-                const hasClass2: boolean = assignedClassData1.color != null;
+                    selectedClassSlot[0] === rowIndex &&
+                    selectedClassSlot[1] === colIndex &&
+                    selectedClassSlot[2] === 1
+                );
 
                 // create & return the button
                 return (
                   <div className="class-slot" key={`${rowIndex}-${colIndex}s`}>
-                    {true && (
-                      <button
-                        key={`${rowIndex}-${colIndex}`}
-                        className={`${hasClass1 ? "filled" : "white"} ${isSelected1 ? "selected" : ""}`.trim()}
-                        onClick={() => onClassSlotClick(rowIndex, colIndex, 0, useSecondSlot)}
-                        style={{
-                          backgroundColor: hasClass1 ? `var(--${assignedClassData.color}-l)` : "",
-                        }}
-                      >
-                        {(useShorthand
-                          ? assignedClassData.shorthand || assignedClassData.name
-                          : assignedClassData.name) || "Select Course"}
-                      </button>
-                    )}
-                    {/* second slot */}
+                    <ClassButton
+                      rowIndex={rowIndex}
+                      colIndex={colIndex}
+                      slotIndex={0}
+                      classId={assignedClassId}
+                      classData={assignedClassData}
+                      isSelected={isSelected1}
+                      isHighlighted={classIDsToHighlight.includes(assignedClassId)}
+                      useShorthand={useShorthand}
+                      onClick={() => onClassSlotClick(rowIndex, colIndex, 0, useSecondSlot)}
+                      onHover={() => {
+                        setHoveredClassID(assignedClassId);
+                      }}
+                      onUnhover={() => setHoveredClassID("")}
+                    />
+
                     {useSecondSlot && (
-                      <button
+                      <ClassButton
+                        rowIndex={rowIndex}
+                        colIndex={colIndex}
+                        slotIndex={1}
+                        classId={secondClassId}
+                        classData={assignedClassData1}
+                        isSelected={isSelected2}
+                        isHighlighted={classIDsToHighlight.includes(secondClassId)}
+                        useShorthand={useShorthand}
                         onClick={() => onClassSlotClick(rowIndex, colIndex, 1, useSecondSlot)}
-                        key={`${rowIndex}-${colIndex}-2`}
-                        className={`${hasClass2 ? "filled" : "white"} ${isSelected2 ? "selected" : ""}`.trim()}
-                        style={{
-                          backgroundColor: hasClass2 ? `var(--${assignedClassData1.color}-l)` : "",
+                        onHover={() => {
+                          setHoveredClassID(assignedClassId);
                         }}
-                      >
-                        {secondClassId
-                          ? useShorthand
-                            ? assignedClassData1.shorthand || assignedClassData1.name
-                            : assignedClassData1.name
-                          : "Select Course"}
-                      </button>
+                      />
                     )}
                   </div>
                 );
@@ -330,9 +410,10 @@ function ClassesGrid({
     </>
   );
 }
+
 function Footer() {
   const [showTos, setShowTos] = useState(false);
-  const version = "1.1.1";
+  const version = "1.1.2";
   const d = new Date();
   const copyrightYear = d.getFullYear();
   const url = new URL(window.location.href).hostname + new URL(window.location.href).pathname.replace(/\/$/, "");
