@@ -1,4 +1,3 @@
-
 @media print {
   body {
     background-color: white;
@@ -36,6 +35,8 @@
   button.filled {
     /* background-color: var(--background-d2) !important; */
     /* -webkit-print-color-adjust: exact; */
+    color: black !important;
+
   }
 
   button.white {

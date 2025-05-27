@@ -122,7 +122,7 @@ function DepartmentSelector({
             <button
               key={index}
               onClick={() => setSelectedDepartment(index)}
-              style={{ backgroundColor: `var(--${item.color}-l)` }}
+              style={{ backgroundColor: `var(--${item.color}-l)`, color: `var(--${item.color}-d)` }}
               className="filled"
             >
               {item.name}
@@ -177,6 +177,7 @@ function ClassButton({
   isSelected,
   isHighlighted,
   useShorthand,
+  error,
   onClick,
   onHover,
   onUnhover,
@@ -189,6 +190,7 @@ function ClassButton({
   isSelected: boolean;
   isHighlighted: boolean;
   useShorthand: boolean;
+  error: boolean;
   onClick: () => void;
   onHover?: () => void;
   onUnhover?: () => void;
@@ -199,13 +201,14 @@ function ClassButton({
     <button
       key={`${rowIndex}-${colIndex}-${slotIndex}-${classId}`}
       className={`${hasClass ? "filled" : "white"} ${isSelected ? "selected" : ""} ${
-        isHighlighted ? "hovered" : ""
-      }`.trim()}
+        isHighlighted ? "highlight" : ""
+      } ${error ? "error" : ""}`.trim()}
       onClick={onClick}
       onMouseOver={onHover}
       onMouseLeave={onUnhover}
       style={{
         backgroundColor: isHighlighted ? `var(--${classData.color})` : hasClass ? `var(--${classData.color}-l)` : "",
+        color: hasClass ?`var(--${classData.color}-d)` : "default",
       }}
     >
       {(useShorthand ? classData.shorthand || classData.name : classData.name) || "Select Course"}
@@ -231,29 +234,28 @@ function ClassesGrid({
   const classCount = 8;
   let difficulty: number[] = [0, 0, 0, 0];
   let apCount: number[] = [0, 0, 0, 0];
-  for (let [index, y] of assignedClasses.entries()) {
+  for (let [index, year] of assignedClasses.entries()) {
     let difficultyNum: number = 0;
     let count = 8;
-    for (let c of y) {
-      if (c[0] == "" && c[1] == "") {
-        // if empty slot, remove form count
-        count--;
+    for (let slot of year) {
+      if (slot[0] == "" && slot[1] == "") {
+        count--; // if empty slot, remove form count
         continue;
       }
-      for (let i of c) {
-        if (i == "") continue;
-        // if empty, ignore
-        // if not empty
-        const classData: ClassDataObject = classes[i]; // get class data
-        if (classData.ap) apCount[index]++; // count ap
+      for (let courseId of slot) {
+        if (courseId == "") continue; // if empty, ignore
+        const classData: ClassDataObject = classes[courseId]; // get class data
+        if (classData.ap) apCount[index]++; // count aps
         if (classData.difficulty == null) {
-          // if no course difficulty, remove from count
+          // if no difficulty has been assigned for this course, remove from count
           count -= classData.course_length;
-          continue;
-        } // if no difficulty rating, ignore
-        if (classData.course_length == 0.5)
-          difficultyNum += classData.difficulty / 2; // add half difficulty rating if its a half year course
-        else difficultyNum += classData.difficulty;
+        } else if (classData.course_length == 0.5) {
+          // add half difficulty rating if its a half year course
+          difficultyNum += classData.difficulty / 2;
+        } else {
+          // add difficulty
+          difficultyNum += classData.difficulty;
+        }
       }
     }
     difficulty[index] = Math.min(difficultyNum / count, 5); // cap at 5
@@ -267,10 +269,10 @@ function ClassesGrid({
 
     const highlightIDs: string[] = [];
 
-    // Always include the hovered class itself
+    // include the hovered class itself
     highlightIDs.push(hoveredClassID);
 
-    // Add prerequisites if they exist
+    // add prerequisites if they exist
     const prerequisites = classes[hoveredClassID].prerequisites;
     if (Array.isArray(prerequisites)) {
       for (const group of prerequisites) {
@@ -280,7 +282,9 @@ function ClassesGrid({
       }
     }
 
-    // add all items in the same department
+    // add all classes in the same department
+    // this could be made faster by only checking selected classes for their department
+    // right now it checks for all classes in the same department even if it's not chosen
     const department = classes[hoveredClassID].department;
     for (const classId in classes) {
       if (classes[classId].department === department) {
@@ -300,7 +304,7 @@ function ClassesGrid({
             <div className="container" key={colIndex}>
               <h4 key={colIndex + "h"}>{headers[colIndex]} Year</h4>
               {Array.from({ length: classCount }).map((_, rowIndex) => {
-                // get assigned class
+                // get assigned class data
                 const assignedClassId: string = assignedClasses[colIndex][rowIndex][0];
                 let assignedClassData: ClassDataObject;
                 if (assignedClassId != "") {
@@ -310,31 +314,35 @@ function ClassesGrid({
                   assignedClassData = {} as ClassDataObject;
                 }
 
-                // get second class if applicable
+                // Get second selected class if it exists
                 const secondClassId = assignedClasses[colIndex][rowIndex][1];
-                const useSecondSlot = assignedClassData.course_length == 0.5 || secondClassId != "";
+                const useSecondSlot = assignedClassData.course_length === 0.5 || secondClassId !== "";
                 let assignedClassData1: ClassDataObject;
                 if (secondClassId) {
-                  // has second class
-                  assignedClassData1 = classes[secondClassId];
+                  // Has second class
+                  assignedClassData1 = {
+                    ...classes[secondClassId],
+                  };
                   assignedClassData1.color = departments[assignedClassData1.department].color;
                 } else {
                   assignedClassData1 = {} as ClassDataObject;
                 }
 
-                const isSelected1 = Boolean(
-                  selectedClassSlot &&
-                    selectedClassSlot[0] === rowIndex &&
-                    selectedClassSlot[1] === colIndex &&
-                    selectedClassSlot[2] === 0
-                );
-
-                const isSelected2 = Boolean(
-                  selectedClassSlot &&
-                    selectedClassSlot[0] === rowIndex &&
-                    selectedClassSlot[1] === colIndex &&
-                    selectedClassSlot[2] === 1
-                );
+                // tuple to store selected state
+                let isSelected = [
+                  Boolean(
+                    selectedClassSlot &&
+                      selectedClassSlot[0] === rowIndex &&
+                      selectedClassSlot[1] === colIndex &&
+                      selectedClassSlot[2] === 0
+                  ),
+                  Boolean(
+                    selectedClassSlot &&
+                      selectedClassSlot[0] === rowIndex &&
+                      selectedClassSlot[1] === colIndex &&
+                      selectedClassSlot[2] === 1
+                  ),
+                ];
 
                 // create & return the button
                 return (
@@ -345,9 +353,10 @@ function ClassesGrid({
                       slotIndex={0}
                       classId={assignedClassId}
                       classData={assignedClassData}
-                      isSelected={isSelected1}
+                      isSelected={isSelected[0]}
                       isHighlighted={classIDsToHighlight.includes(assignedClassId)}
                       useShorthand={useShorthand}
+                      error={false}
                       onClick={() => onClassSlotClick(rowIndex, colIndex, 0, useSecondSlot)}
                       onHover={() => {
                         setHoveredClassID(assignedClassId);
@@ -362,12 +371,13 @@ function ClassesGrid({
                         slotIndex={1}
                         classId={secondClassId}
                         classData={assignedClassData1}
-                        isSelected={isSelected2}
+                        isSelected={isSelected[1]}
                         isHighlighted={classIDsToHighlight.includes(secondClassId)}
                         useShorthand={useShorthand}
+                        error={false}
                         onClick={() => onClassSlotClick(rowIndex, colIndex, 1, useSecondSlot)}
                         onHover={() => {
-                          setHoveredClassID(assignedClassId);
+                          setHoveredClassID(secondClassId);
                         }}
                       />
                     )}
@@ -413,7 +423,7 @@ function ClassesGrid({
 
 function Footer() {
   const [showTos, setShowTos] = useState(false);
-  const version = "1.1.2";
+  const version = "1.1.3";
   const d = new Date();
   const copyrightYear = d.getFullYear();
   const url = new URL(window.location.href).hostname + new URL(window.location.href).pathname.replace(/\/$/, "");

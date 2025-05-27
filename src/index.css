@@ -77,15 +77,23 @@ button {
 }
 
 input {
-  box-shadow: 0 1px 1px 0 var(--background-d1);
-  border: 1px solid var(--background-d1);
-  background-color: var(--background);
+  /* box-shadow: 0 1px 1px 0 var(--background-d1); */
+  /* border: 1px solid var(--background-d1); */
+  background-color: var(--background-d1);
   width: 25%;
   box-sizing: border-box;
-  border-radius: 4px;
-  padding: 4px 8px;
+  border-radius: 8px;
+  padding: 0 16px;
   font-size: var(--text-size);
-  transition: 80ms;
+  transition: 50ms;
   font-weight: 500;
-  height: 32px;
+  height: 30px;
+  line-height: 30px;
+  border: none;
+  outline: none;
+  box-shadow: none;
+}
+
+input:focus {
+  outline: 2px solid var(--accent);
 }

@@ -31,26 +31,37 @@
 
   /* other */
   --error: #f44747;
+  --error-l1: hsl(0, 80%, 95%);
+
   --accent: #2463eb;
 
   /* department colors */
-  --purple-l: #a692fa80;
-  --green-l: #3ecc5f80;
-  --yellow-l: #ffcb2e80;
-  --blue-l: #438af580;
-  --red-l: #f9574880;
-  --gray-l: #9ea8be80;
-  --orange-l: #fb992a80;
-  --pink-l: #fc85a980;
-
-  --purple: #a692fac0;
-  --green: #3ecc5fc0;
-  --yellow: #ffcb2ec0;
-  --blue: #438af5c0;
-  --red: #f95748c0;
-  --gray: #9ea8bec0;
-  --orange: #fb992ac0;
-  --pink: #fc85a9c0;
+  --purple: hsl(252, 91%, 85%);
+  --green: hsl(134, 58%, 65%);
+  --yellow: hsl(45, 100%, 70%);
+  --blue: hsl(216, 90%, 70%);
+  --red: hsl(5, 100%, 70%);
+  --gray: hsl(221, 25%, 75%);
+  --orange: hsl(32, 96%, 70%);
+  --pink: hsl(342, 95%, 75%);
+  /* reduced saturation and increased lightness */
+  --purple-l: hsl(252, 91%, 90%);
+  --green-l: hsl(134, 58%, 80%);
+  --yellow-l: hsl(45, 100%, 80%);
+  --blue-l: hsl(216, 90%, 85%);
+  --red-l: hsl(5, 100%, 85%);
+  --gray-l: hsl(221, 20%, 85%);
+  --orange-l: hsl(32, 96%, 80%);
+  --pink-l: hsl(342, 95%, 85%);
+  /* reduced lightness */
+  --purple-d: hsl(252, 91%, 30%);
+  --green-d: hsl(134, 58%, 20%);
+  --yellow-d: hsl(45, 100%, 15%);
+  --blue-d: hsl(216, 90%, 25%);
+  --red-d: hsl(5, 100%, 20%);
+  --gray-d: hsl(221, 40%, 20%);
+  --orange-d: hsl(32, 96%, 15%);
+  --pink-d: hsl(342, 95%, 20%);
 }
 
 #root {
@@ -144,8 +155,13 @@ button.white:hover {
   border-color: transparent;
 }
 
-button.filled.hovered {
+button.filled.highlight {
   outline: 2px solid var(--accent);
+  border-color: transparent;
+}
+
+button.filled.error {
+  outline: 2px solid var(--error);
   border-color: transparent;
 }
 
@@ -231,8 +247,8 @@ button.filled:hover {
   line-height: 32px;
   padding-left: calc(20px + 12px + 12px);
   box-sizing: border-box;
-  background-color: var(--background-l1);
-  border: 1px solid var(--background-d1);
+  background-color: var(--error-l1);
+  color: var(--red-d);
   background-image: url("../public/error.svg");
   background-position: 12px 5px;
   background-size: 20px 20px;
