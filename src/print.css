@@ -2,10 +2,15 @@
   body {
     background-color: white;
   }
+
+  h3.title {
+    display: none;
+  }
+
   div.content {
     padding: 0;
     width: 100vw;
-    gap: 32px;
+    gap: 16px;
   }
   div.content div.class-display {
     gap: 0;
@@ -36,7 +41,6 @@
     /* background-color: var(--background-d2) !important; */
     /* -webkit-print-color-adjust: exact; */
     color: black !important;
-
   }
 
   button.white {
@@ -57,10 +61,12 @@
     height: 26px !important;
   }
 
-  div.summary.container {
+  div.summary.container,
+  div.notes.container {
     box-shadow: none;
     border: 1px solid var(--background-d2);
-    padding: 24px !important;
+    padding: 16px !important;
+    box-shadow: none !important;
   }
 
   div.error-messages {
@@ -68,7 +74,7 @@
   }
 
   div.summary.container .credit-requirements {
-    gap: 16px 32px !important;
+    gap: 8px 16px !important;
   }
 
   div.class-selector-wrapper {
@@ -81,7 +87,7 @@
 
   .container h3 {
     margin-top: 0;
-    margin-bottom: 16px !important;
+    margin-bottom: 4px !important;
   }
 
   div.selected-courses-info {
@@ -115,7 +121,7 @@
   }
   footer.print-footer {
     display: flex !important;
-    padding: 16px 0 !important;
+    padding: 16px 0 0 0 !important;
     border-top: 1px solid var(--background-d2) !important;
   }
   .topnav .print-header {
@@ -123,5 +129,18 @@
     font-weight: 500;
     font-size: 14px;
     color: var(--text-light);
+  }
+
+  .notes-textarea {
+    display: none !important;
+  }
+  .notes-print {
+    display: block !important;
+    height: 100%;
+  }
+
+  div.notes.container {
+    border: none !important;
+    padding-top: 0 !important;
   }
 }

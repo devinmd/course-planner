@@ -208,7 +208,7 @@ function ClassButton({
       onMouseLeave={onUnhover}
       style={{
         backgroundColor: isHighlighted ? `var(--${classData.color})` : hasClass ? `var(--${classData.color}-l)` : "",
-        color: hasClass ?`var(--${classData.color}-d)` : "default",
+        color: hasClass ? `var(--${classData.color}-d)` : "default",
       }}
     >
       {(useShorthand ? classData.shorthand || classData.name : classData.name) || "Select Course"}
@@ -296,7 +296,7 @@ function ClassesGrid({
 
   return (
     <>
-      <h3>Your 4-Year Plan</h3>
+      <h3 className="title">Your 4-Year Plan</h3>
 
       <div className="class-display">
         {Array.from({ length: headers.length }).map((_, colIndex) => {
@@ -423,7 +423,7 @@ function ClassesGrid({
 
 function Footer() {
   const [showTos, setShowTos] = useState(false);
-  const version = "1.1.3";
+  const version = "1.1.4";
   const d = new Date();
   const copyrightYear = d.getFullYear();
   const url = new URL(window.location.href).hostname + new URL(window.location.href).pathname.replace(/\/$/, "");
@@ -775,6 +775,34 @@ function TopNav({
     </>
   );
 }
+function Notes() {
+  const [value, setValue] = useState("");
+
+  function handleInput(e: React.FormEvent<HTMLTextAreaElement>) {
+    const textarea = e.currentTarget;
+    textarea.style.height = "auto";
+    textarea.style.height = textarea.scrollHeight + "px";
+    setValue(textarea.value);
+  }
+
+  return (
+    <>
+      <div className="notes container">
+        <h3>Notes</h3>
+        <textarea
+          wrap="soft"
+          placeholder="Type notes here"
+          value={value}
+          rows={3}
+          onInput={handleInput}
+          style={{ overflow: "hidden", resize: "none" }}
+          className="notes-textarea"
+        ></textarea>
+        <div className="notes-print">{value}</div>
+      </div>
+    </>
+  );
+}
 
 export default function App() {
   // state to store users preference on using class shorthands
@@ -980,6 +1008,7 @@ export default function App() {
         )}
         {/* Error messages & notes */}
         <Summary assignedClasses={assignedClasses} />
+        <Notes />
       </div>
       {/* Footer */}
       <Footer />

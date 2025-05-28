@@ -97,3 +97,33 @@ input {
 input:focus {
   outline: 2px solid var(--accent);
 }
+
+textarea {
+  resize: none;
+  background-color: var(--background-d1);
+  outline: none;
+  border: none;
+  padding: 16px;
+  border-radius: 8px;
+  box-sizing: border-box;
+  width: 100%;
+  font-weight: 500;
+  line-height: 1.25em;
+  color: var(--text);
+  font-size: var(--text-size);
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+}
+
+.notes-print {
+  display: none;
+  width: 100%;
+  outline: none;
+  border: none;
+  font-weight: 500;
+  white-space: pre-wrap;
+  padding: 0;
+  line-height: 1.25em;
+  color: var(--text);
+  font-size: var(--text-size);
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+}
