@@ -25,6 +25,10 @@
     box-shadow: none;
   }
 
+  div.mobile-settings {
+    display: none !important;
+  }
+
   div.content div.class-display div.container h4 {
     margin: 0 0 0px 0;
   }
@@ -35,6 +39,10 @@
   div.content div.class-display div.container button {
     box-shadow: none;
     border: 1px solid var(--background-d2);
+  }
+
+  button {
+    outline: none !important;
   }
 
   button.filled {

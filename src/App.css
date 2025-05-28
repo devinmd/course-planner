@@ -363,16 +363,16 @@ footer.print-footer {
 }
 
 .topnav button.reset {
-  padding-left: 32px;
+  padding-left: 34px;
   background-image: url("../public/trash.svg");
 }
 
 .topnav button.print {
-  padding-left: 32px;
+  padding-left: 34px;
   background-image: url("../public/print.svg");
 }
 .topnav button.copyurl {
-  padding-left: 32px;
+  padding-left: 34px;
   background-image: url("../public/link.svg");
 }
 

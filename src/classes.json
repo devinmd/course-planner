@@ -69,7 +69,8 @@
     "allowed_years": [11, 12],
     "credit": 1,
     "course_length": 1,
-    "department": 0
+    "department": 0,
+    "difficulty": 3
   },
   "1100": {
     "name": "Foundations of the Modern World",
@@ -97,7 +98,8 @@
     "allowed_years": [10, 11, 12],
     "department": 1,
     "course_length": 0.5,
-    "credit": 0.5
+    "credit": 0.5,
+    "difficulty": 1
   },
   "3103": {
     "name": "Contemporary World Issues: Sustainable Development (F)(S)",
@@ -105,7 +107,8 @@
     "allowed_years": [10, 11, 12],
     "department": 1,
     "course_length": 0.5,
-    "credit": 0.5
+    "credit": 0.5,
+    "difficulty": 1
   },
   "4100": {
     "name": "US History",
@@ -122,7 +125,8 @@
     "allowed_years": [10, 11, 12],
     "department": 1,
     "course_length": 0.5,
-    "credit": 0.5
+    "credit": 0.5,
+    "difficulty": 1
   },
   "5100": {
     "name": "AP World History",
@@ -151,7 +155,8 @@
     "department": 1,
     "course_length": 1,
     "credit": 1,
-    "shorthand": "AP Econ"
+    "shorthand": "AP Econ",
+    "difficulty": 3
   },
   "5103": {
     "name": "AP Microeconomics",
@@ -160,7 +165,8 @@
     "department": 1,
     "course_length": 1,
     "credit": 1,
-    "shorthand": "AP Micro"
+    "shorthand": "AP Micro",
+    "difficulty": 3
   },
   "5104": {
     "name": "SUPA: Psychology",
@@ -169,7 +175,8 @@
     "department": 1,
     "course_length": 1,
     "credit": 1,
-    "shorthand": "SUPA: Psych"
+    "shorthand": "SUPA: Psych",
+    "difficulty": 3
   },
   "5105": {
     "name": "SUPA: Introduction to Entrepreneurship",
@@ -177,7 +184,8 @@
     "allowed_years": [11, 12],
     "department": 1,
     "course_length": 1,
-    "credit": 1
+    "credit": 1,
+    "difficulty": 3
   },
   "6100": {
     "name": "Japan Seminar",
@@ -185,7 +193,8 @@
     "allowed_years": [12],
     "department": 1,
     "course_length": 1,
-    "credit": 1
+    "credit": 1,
+    "difficulty": 2
   },
   "1300": {
     "name": "Biology",
@@ -206,7 +215,7 @@
     "credit": 1,
     "shorthand": "Chem",
     "prerequisites": [["1300"]],
-    "difficulty": 2
+    "difficulty": 3
   },
   "2302": {
     "name": "Dynamics of Physics and Chemistry",
@@ -226,7 +235,7 @@
     "course_length": 1,
     "credit": 1,
     "prerequisites": [["1300"]],
-    "difficulty": 2
+    "difficulty": 3
   },
   "4300": {
     "name": "Biomedical Science",
@@ -235,7 +244,8 @@
     "department": 2,
     "course_length": 1,
     "credit": 1,
-    "shorthand": "Biomed"
+    "shorthand": "Biomed",
+    "difficulty": 3
   },
   "4301": {
     "name": "Organic Chemistry",
@@ -244,7 +254,8 @@
     "department": 2,
     "course_length": 1,
     "credit": 1,
-    "shorthand": "Org. Chem"
+    "shorthand": "Org. Chem",
+    "difficulty": 3
   },
   "4303": {
     "name": "Food Science and Sustainability",
@@ -252,7 +263,8 @@
     "allowed_years": [11, 12],
     "department": 2,
     "course_length": 1,
-    "credit": 1
+    "credit": 1,
+    "difficulty": 2
   },
   "5300": {
     "name": "AP Environmental Science",
@@ -261,7 +273,8 @@
     "department": 2,
     "course_length": 1,
     "credit": 1,
-    "shorthand": "APES"
+    "shorthand": "APES",
+    "difficulty": 4
   },
   "5304": {
     "name": "AP Physics 2",
@@ -301,7 +314,8 @@
     "department": 2,
     "course_length": 1,
     "credit": 1,
-    "shorthand": "Syn Bio"
+    "shorthand": "Syn Bio",
+    "difficulty": 3
   },
   "1201": {
     "name": "Integrated Math I",
@@ -466,7 +480,7 @@
     "course_length": 1,
     "credit": 1,
     "shorthand": "APCSP",
-    "difficulty": 2
+    "difficulty": 3
   },
   "5901": {
     "name": "AP Computer Science A",
@@ -476,7 +490,7 @@
     "course_length": 1,
     "credit": 1,
     "shorthand": "APCSA",
-    "difficulty": 3
+    "difficulty": 4
   },
   "5903": {
     "name": "Data Science",
@@ -484,7 +498,8 @@
     "allowed_years": [11, 12],
     "department": 4,
     "course_length": 1,
-    "credit": 1
+    "credit": 1,
+    "difficulty": 3
   },
   "6902": {
     "name": "Advanced Topics in Computer Science",
@@ -611,7 +626,8 @@
     "department": 8,
     "course_length": 1,
     "credit": 1,
-    "shorthand": "AP Sem"
+    "shorthand": "AP Sem",
+    "difficulty": 3
   },
   "5051": {
     "name": "AP Research",
@@ -620,7 +636,8 @@
     "department": 8,
     "course_length": 1,
     "credit": 1,
-    "prerequisites": [["5050"]]
+    "prerequisites": [["5050"]],
+    "difficulty": 3
   },
   "1510": {
     "name": "Novice Mid Chinese",
@@ -650,7 +667,7 @@
     "course_length": 1,
     "credit": 1,
     "language": 0,
-    "difficulty": 1
+    "difficulty": 2
   },
   "4510": {
     "name": "Intermediate Mid Chinese",
@@ -702,7 +719,7 @@
     "course_length": 1,
     "credit": 1,
     "language": 1,
-    "difficulty": 1
+    "difficulty": 2
   },
   "3511": {
     "name": "Intermediate Mid Spanish",
@@ -764,7 +781,7 @@
     "course_length": 1,
     "credit": 1,
     "language": 2,
-    "difficulty": 2
+    "difficulty": 1
   },
   "3502": {
     "name": "Novice High Japanese",
@@ -784,7 +801,7 @@
     "course_length": 1,
     "credit": 1,
     "language": 2,
-    "difficulty": 3
+    "difficulty": 2
   },
   "5502": {
     "name": "AP Japanese Language & Culture",
@@ -1098,7 +1115,7 @@
     "course_length": 0.5,
     "credit": 0.5,
     "type": [2, 0],
-    "difficulty": 1,
+    "difficulty": 2,
     "shorthand": "Adv. Acting (F)"
   },
   "3651": {
@@ -1109,7 +1126,7 @@
     "course_length": 0.5,
     "credit": 0.5,
     "type": [2, 0],
-    "difficulty": 1,
+    "difficulty": 2,
     "shorthand": "Adv. Acting: Acting for the Camera (S)"
   },
   "1651": {
@@ -1253,7 +1270,8 @@
     "allowed_years": [10, 11, 12],
     "department": 10,
     "course_length": 0.5,
-    "credit": 0.5
+    "credit": 0.5,
+    "difficulty": 1
   },
   "1004": {
     "name": "Skills for Success (F)(S)",
@@ -1261,7 +1279,8 @@
     "allowed_years": [9, 10, 11, 12],
     "department": 10,
     "course_length": 0.5,
-    "credit": 0.5
+    "credit": 0.5,
+    "difficulty": 1
   },
   "4000": {
     "name": "Independent Inquiry (F)(S)",
@@ -1269,7 +1288,8 @@
     "allowed_years": [11, 12],
     "department": 10,
     "course_length": 0.5,
-    "credit": 0.5
+    "credit": 0.5,
+    "difficulty": 1
   },
   "4001": {
     "name": "Global Online Academy (F)(S)",
@@ -1278,7 +1298,8 @@
     "department": 10,
     "course_length": 0.5,
     "credit": 0.5,
-    "shorthand": "GOA"
+    "shorthand": "GOA",
+    "difficulty": 1
   },
   "0002": {
     "name": "Other Art Credit",
@@ -1287,7 +1308,8 @@
     "department": 6,
     "course_length": 1,
     "credit": 1,
-    "hide_id": true
+    "hide_id": true,
+    "difficulty": 1
   },
   "0003": {
     "name": "Other Art Credit",
@@ -1296,7 +1318,8 @@
     "department": 6,
     "course_length": 0.5,
     "credit": 0.5,
-    "hide_id": true
+    "hide_id": true,
+    "difficulty": 1
   },
   "0004": {
     "name": "Other Language Credit",
@@ -1305,7 +1328,8 @@
     "department": 5,
     "course_length": 1,
     "credit": 1,
-    "hide_id": true
+    "hide_id": true,
+    "difficulty": 1
   },
   "0005": {
     "name": "Other Language Credit",
@@ -1314,7 +1338,8 @@
     "department": 5,
     "course_length": 0.5,
     "credit": 0.5,
-    "hide_id": true
+    "hide_id": true,
+    "difficulty": 1
   },
   "0006": {
     "name": "Other Health & Wellness Credit",
@@ -1323,7 +1348,8 @@
     "department": 7,
     "course_length": 1,
     "credit": 1,
-    "hide_id": true
+    "hide_id": true,
+    "difficulty": 1
   },
   "0007": {
     "name": "Other Health & Wellness Credit",
@@ -1332,7 +1358,8 @@
     "department": 7,
     "course_length": 0.5,
     "credit": 0.5,
-    "hide_id": true
+    "hide_id": true,
+    "difficulty": 1
   },
   "0008": {
     "name": "Other Social Studies Credit",
@@ -1341,7 +1368,8 @@
     "department": 1,
     "course_length": 0.5,
     "credit": 0.5,
-    "hide_id": true
+    "hide_id": true,
+    "difficulty": 1
   },
   "0009": {
     "name": "Other Social Studies Credit",
@@ -1350,6 +1378,7 @@
     "department": 1,
     "course_length": 1,
     "credit": 1,
-    "hide_id": true
+    "hide_id": true,
+    "difficulty": 1
   }
 }

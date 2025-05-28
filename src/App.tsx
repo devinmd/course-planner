@@ -423,7 +423,7 @@ function ClassesGrid({
 
 function Footer() {
   const [showTos, setShowTos] = useState(false);
-  const version = "1.1.4";
+  const version = "1.1.5";
   const d = new Date();
   const copyrightYear = d.getFullYear();
   const url = new URL(window.location.href).hostname + new URL(window.location.href).pathname.replace(/\/$/, "");
@@ -628,7 +628,7 @@ function Summary({ assignedClasses }: { assignedClasses: [][] }) {
           {duplicates.map((year, yearIndex) =>
             year.map((classId) => (
               <div className="error-message">
-                You cannot take {classes[classId].name} twice in year {yearIndex + 9}.
+                You cannot take {classes[classId].name} more than once in year {yearIndex + 9}.
               </div>
             ))
           )}
