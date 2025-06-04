@@ -339,7 +339,7 @@
   "3200": {
     "name": "Algebra 2",
     "ap": false,
-    "allowed_years": [10, 11, 12],
+    "allowed_years": [9, 10, 11, 12],
     "department": 3,
     "course_length": 1,
     "credit": 1,
