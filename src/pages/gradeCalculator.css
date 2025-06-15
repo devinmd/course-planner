@@ -1,0 +1,169 @@
+.class-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.class-container {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.class-container input.class-name {
+  font-size: 16px;
+  font-weight: 500;
+  border: none;
+  outline: none;
+  background-color: transparent;
+  padding: 0;
+  flex-grow: 1;
+  margin: 0;
+  border-radius: 0;
+  height: 24px;
+}
+
+.class-grade-container {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+
+.class-grade-container .delete-class-btn {
+  height: 32px;
+  width: 32px;
+  border: none;
+  outline: none;
+  background-color: var(--error-l1);
+  color: var(--error);
+  box-shadow: none;
+}
+.class-grade-container .delete-class-btn:disabled {
+  cursor: default;
+  display: none;
+}
+
+.class-grade-container .strand-count-input {
+  width: 72px;
+}
+
+.class-grade-container .strands-wrapper {
+  display: flex;
+  width: 100%;
+}
+
+.class-grade-container .strands-wrapper .strand {
+  white-space: nowrap;
+  background-color: lightgreen;
+  height: 32px;
+  align-items: center;
+  transition: 50ms;
+  display: flex;
+  flex: 1;
+  font-weight: 500;
+  min-width: 156px;
+  position: relative;
+  justify-content: center;
+}
+
+.class-grade-container .strands-wrapper .strand:first-child {
+  border-radius: 8px 0 0 8px;
+}
+
+.class-grade-container .strands-wrapper .strand:last-child {
+  border-radius: 0 8px 8px 0;
+}
+
+.class-grade-container .strands-wrapper .strand button {
+  border: none;
+  outline: none;
+  box-shadow: none;
+  width: 24px;
+  min-width: 24px;
+  position: absolute;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  background-color: #505050a0;
+  color: white;
+  justify-content: center;
+  max-height: 100%;
+  visibility: hidden;
+}
+
+.class-grade-container .strands-wrapper .strand button:first-child {
+  border-radius: 8px 0 0 8px;
+  top: 0;
+  left: 0;
+}
+
+.class-grade-container .strands-wrapper .strand button:last-child {
+  border-radius: 0 8px 8px 0;
+  top: 0;
+  right: 0;
+}
+
+.class-grade-container .strands-wrapper .strand:hover {
+  border-radius: 8px;
+}
+
+.class-grade-container .strands-wrapper .strand:hover button {
+  visibility: visible;
+}
+
+.class-grade-container .final-grade-wrapper .final-grade {
+  height: 32px;
+  align-items: center;
+  display: flex;
+  border-radius: 8px;
+  font-weight: 600;
+  justify-content: center;
+  font-size: 24px;
+  width: 64px;
+}
+
+.add-class-button-wrapper {
+  align-items: center;
+  justify-content: center;
+  display: flex;
+}
+
+.add-class-button-wrapper button {
+  background-color: var(--background-d1);
+  box-shadow: none;
+  transition: 50ms;
+  font-size: 16px;
+  border: none;
+}
+
+.add-class-button-wrapper button:hover {
+  background-color: var(--background-d2);
+}
+
+.gpa-container {
+  align-items: center;
+  justify-content: center;
+  display: flex;
+}
+
+.gpa-container .gpa {
+  font-size: 32px;
+  font-weight: 600;
+  height: 64px;
+  background-color: var(--background-d1);
+  text-align: center;
+  border-radius: 8px;
+  line-height: 64px;
+  width: 96px;
+}
+
+.add-class-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-top: 16px;
+  align-items: center;
+}
+
+.add-class-wrapper .add-class-button {
+  background-color: var(--background-l1);
+}
