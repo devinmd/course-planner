@@ -3,7 +3,7 @@ import { Analytics } from "@vercel/analytics/react";
 import { useState, useEffect } from "react";
 import "./App.css";
 
-import { Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import CoursePlannerPage from "./pages/CoursePlanner";
 import GradeCalculatorPage from "./pages/GradeCalculator";
 import NotFoundPage from "./pages/NotFound";

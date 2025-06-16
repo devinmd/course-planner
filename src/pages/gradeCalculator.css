@@ -1,6 +1,5 @@
 .class-list {
-  display: flex;
-  flex-direction: column;
+  display: grid;
   gap: 16px;
 }
 
@@ -27,6 +26,31 @@
   display: flex;
   gap: 16px;
   align-items: center;
+}
+
+.strand-count {
+  display: flex;
+  flex-direction: row;
+  gap: 4px;
+  align-items: center;
+  background-color: var(--background-d1);
+  border-radius: 8px;
+}
+.strand-count button {
+  background-color: var(--background-d1);
+  border: none;
+  outline: none;
+  padding: 0;
+  box-shadow: none;
+  height: 32px;
+  width: 24px;
+}
+
+.strand-count button:first-child {
+  border-radius: 8px 0 0 8px;
+}
+.strand-count button:last-child {
+  border-radius: 0 8px 8px 0;
 }
 
 .class-grade-container .delete-class-btn {
@@ -160,10 +184,35 @@
 .add-class-wrapper {
   display: flex;
   justify-content: center;
-  margin-top: 16px;
   align-items: center;
 }
 
 .add-class-wrapper .add-class-button {
   background-color: var(--background-l1);
+}
+
+@media screen and (min-width: 0px) and (max-width: 1024px) {
+  .class-container {
+    width: 100%;
+  }
+
+  .class-grade-container .strands-wrapper .strand {
+    min-width: 80px;
+    border-radius: 8px !important;
+  }
+
+  .class-grade-container .strands-wrapper .strand button {
+    visibility: visible;
+  }
+
+  .gpa-container {
+    margin: 16px;
+  }
+
+  .class-list {
+    padding: 16px;
+    max-width: 100vw; /* prevent it from overflowing off screen */
+    overflow-x: auto; /* allow horizontal scroll */
+    box-sizing: border-box;
+  }
 }

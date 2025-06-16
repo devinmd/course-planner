@@ -628,7 +628,7 @@ function TopNav({
           <img src="/icon.png" />
           <h2>Course Planner</h2>
         </div>
-        <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+        {!isMobile && <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
           <div
             style={{
               background: "var(--error)",
@@ -645,7 +645,7 @@ function TopNav({
           <Link to="/gradecalculator">
             <h2>Grade & GPA Calculator</h2>
           </Link>
-        </div>
+        </div>}
 
         {/* mobile settings toggle button */}
         {isMobile && (

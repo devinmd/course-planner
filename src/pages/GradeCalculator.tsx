@@ -1,15 +1,9 @@
-import { createContext, useContext, useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import "../App.css";
 import "./gradeCalculator.css";
 import grades from "../resources/grades.json";
 import { useAppContext } from "../AppContext";
 import { Link } from "react-router-dom";
-
-interface ClassGradeData {
-  finalGradeIndex: number;
-  proficiencies: number[];
-  className: string;
-}
 
 // Utility hook
 const useIsMobile = () => {
@@ -30,9 +24,11 @@ function TopNav() {
         <img src="/icon.png" />
         <h2>Grade & GPA Calculator</h2>
       </div>
-      <Link to="/">
-        <h2>Course Planner</h2>
-      </Link>
+      {!isMobile && (
+        <Link to="/">
+          <h2>Course Planner</h2>
+        </Link>
+      )}
     </div>
   );
 }
@@ -56,32 +52,42 @@ function ClassGrade({
   deleteClass: (index: number) => void;
   totalClasses: number;
 }) {
+  const isMobile = useIsMobile();
+
   // number of strands
   const [strandCount, setStrandCount] = useState(strandValues.length);
   // final computed letter grade (index of a letter grade)
   const [letterGradeIndex, setLetterGradeIndex] = useState<number>(finalGradeIndex);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = parseInt(e.target.value);
-    if (!isNaN(value) && value >= 1 && value <= 5) {
-      setStrandCount(value);
+  // handle changing in strand count
+  function updateStrandCount(delta: number) {
+    let temp = strandCount + delta;
+    temp = Math.min(Math.max(temp, 1), 5);
+    console.log(temp);
+    if (delta == 1) {
+      // add
+      updateProficiencies(classIndex, temp - 1, 0);
+    } else if (delta == -1) {
+      updateProficiencies(classIndex, -1, 0);
     }
-  };
+    setStrandCount(temp);
+    updateLetterGrade(temp);
+  }
 
-  // when the user changes a strand's proficiency
+  // change a specific strand's proficiency
   function updateStrandValue(strandIndex: number, delta: number) {
     let newProficiency = Math.min(Math.max(strandValues[strandIndex] + delta, 0), 5);
     // update proficiencies
     updateProficiencies(classIndex, strandIndex, newProficiency);
     // re-compute letter grade
-    updateLetterGrade();
+    updateLetterGrade(strandCount);
   }
 
   // compute letter grade based on strands
-  const updateLetterGrade = () => {
+  const updateLetterGrade = (strandNumber: number) => {
     let score = 0;
     for (let i of strandValues) score += grades.proficiencies[i].points;
-    let map = grades.pointConversions[strandCount - 1];
+    let map = grades.pointConversions[strandNumber - 1];
     for (const [i, value] of map.entries()) {
       if (score === value) {
         setLetterGradeIndex(i);
@@ -103,15 +109,13 @@ function ClassGrade({
         <button className="delete-class-btn" onClick={() => deleteClass(classIndex)} disabled={totalClasses === 1}>
           X
         </button>
-        <input
-          type="number"
-          value={strandCount}
-          min={1}
-          max={5}
-          name="Strand Count"
-          className="strand-count-input"
-          onChange={handleChange}
-        />
+
+        <div className="strand-count">
+          <button onClick={() => updateStrandCount(-1)}>-</button>
+          <div>{strandCount}</div>
+          <button onClick={() => updateStrandCount(1)}>+</button>
+        </div>
+
         <div className="strands-wrapper" style={{ marginRight: "auto" }}>
           {strandValues.map((value, strandIndex) => (
             <div
@@ -124,7 +128,7 @@ function ClassGrade({
               <button onClick={() => updateStrandValue(strandIndex, 1)} disabled={value == 5}>
                 -
               </button>
-              <div>{grades.proficiencies[value].name}</div>
+              <div>{isMobile ? grades.proficiencies[value].abbreviation : grades.proficiencies[value].name}</div>
               <button onClick={() => updateStrandValue(strandIndex, -1)} disabled={value == 0}>
                 +
               </button>
@@ -161,7 +165,7 @@ function GpaCalculation({ userGrades }: { userGrades: number[] }) {
 
   return (
     <div className="container gpa-container">
-      <div className="gpa">{(Math.round((gpa + Number.EPSILON) * 100) / 100).toFixed(2).replace(/\.00$/, "")}</div>
+      <div className="gpa">{(Math.round((gpa + Number.EPSILON) * 100) / 100).toFixed(2).replace(/\.00$/, ".0")}</div>
     </div>
   );
 }
@@ -194,6 +198,14 @@ function GradeCalculator() {
   //
   const updateClassProficiencies = (classIndex: number, strandIndex: number, newProficiency: number) => {
     const temp = [...userGradesList];
+    if (strandIndex == temp[classIndex].proficiencies.length) {
+      // add new strand
+      temp[classIndex].proficiencies.push(0);
+    }
+    if (strandIndex == -1) {
+      // remove a strand
+      temp[classIndex].proficiencies.pop();
+    }
     temp[classIndex].proficiencies[strandIndex] = newProficiency;
     setUserGradesList(temp);
   };
@@ -226,12 +238,11 @@ function GradeCalculator() {
               totalClasses={userGradesList.length}
             />
           ))}
-
-          <div className="add-class-wrapper">
-            <button onClick={addClass} className="add-class-button">
-              Add Class
-            </button>
-          </div>
+        </div>
+        <div className="add-class-wrapper">
+          <button onClick={addClass} className="add-class-button">
+            Add Class
+          </button>
         </div>
       </div>
     </>

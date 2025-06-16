@@ -70,10 +70,7 @@
   --proficiency-ah: #fee5a1;
   --proficiency-a: #f4b374;
   --proficiency-b: #e89a9a;
-
 }
-
-
 
 .content {
   margin: 64px auto 32px auto;
@@ -124,6 +121,7 @@ footer .tos-button:hover {
   text-decoration: underline;
 }
 
+/* tos */
 .tos {
   padding: 0 64px 32px 64px;
   font-size: var(--footer-text-size);
@@ -137,7 +135,6 @@ footer .tos-button:hover {
 .tos p {
   margin: 0;
   max-width: 960px;
-
 }
 
 footer.print-footer {
