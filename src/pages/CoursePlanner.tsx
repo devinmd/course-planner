@@ -197,18 +197,26 @@ function ClassButton({
 }) {
   const hasClass = classData.color != null;
 
+  const [isMarked, setIsMarked] = useState(false);
+
+  function handleDoubleClick() {
+    setIsMarked((prev) => !prev);
+  }
+
   return (
     <button
+      onDoubleClick={() => handleDoubleClick()}
       key={`${rowIndex}-${colIndex}-${slotIndex}-${classId}`}
       className={`${hasClass ? "filled" : "white"} ${isSelected ? "selected" : ""} ${
         isHighlighted ? "highlight" : ""
-      } ${error ? "error" : ""}`.trim()}
+      } ${isMarked ? "marked" : ""} ${error ? "error" : ""}`.trim()}
       onClick={onClick}
       onMouseOver={onHover}
       onMouseLeave={onUnhover}
       style={{
         backgroundColor: isHighlighted ? `var(--${classData.color})` : hasClass ? `var(--${classData.color}-l)` : "",
         color: hasClass ? `var(--${classData.color}-d)` : "default",
+        border: isMarked ? `2px dashed var(--${classData.color}-d)` : "",
       }}
     >
       {(useShorthand ? classData.shorthand || classData.name : classData.name) || "Select Course"}
@@ -628,24 +636,26 @@ function TopNav({
           <img src="/icon.png" />
           <h2>Course Planner</h2>
         </div>
-        {!isMobile && <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-          <div
-            style={{
-              background: "var(--error)",
-              borderRadius: "16px",
-              height: "20px",
-              lineHeight: "20px",
-              padding: "0 8px",
-              color: "white",
-            }}
-          >
-            NEW
-          </div>
+        {!isMobile && (
+          <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+            <div
+              style={{
+                background: "var(--error)",
+                borderRadius: "16px",
+                height: "20px",
+                lineHeight: "20px",
+                padding: "0 8px",
+                color: "white",
+              }}
+            >
+              NEW
+            </div>
 
-          <Link to="/gradecalculator">
-            <h2>Grade & GPA Calculator</h2>
-          </Link>
-        </div>}
+            <Link to="/gradecalculator">
+              <h2>Grade & GPA Calculator</h2>
+            </Link>
+          </div>
+        )}
 
         {/* mobile settings toggle button */}
         {isMobile && (
@@ -891,7 +901,6 @@ export default function CoursePlanner() {
     console.log(defaultClasses);
 
     const deepClone = (obj: any) => JSON.parse(JSON.stringify(obj));
-
 
     setAssignedClasses(deepClone(defaultClasses));
     updateQueryParam("c", "");
