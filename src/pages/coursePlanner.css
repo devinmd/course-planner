@@ -168,7 +168,7 @@ button.filled:hover {
   box-sizing: border-box;
   background-color: var(--error-l1);
   color: var(--red-d);
-  background-image: url("../public/error.svg");
+  background-image: url("/error.svg");
   background-position: 12px 5px;
   background-size: 20px 20px;
   background-repeat: no-repeat;
@@ -231,16 +231,16 @@ button.blue:hover {
 
 .topnav button.reset {
   padding-left: 34px;
-  background-image: url("../public/trash.svg");
+  background-image: url("/trash.svg");
 }
 
 .topnav button.print {
   padding-left: 34px;
-  background-image: url("../public/print.svg");
+  background-image: url("/print.svg");
 }
 .topnav button.copyurl {
   padding-left: 34px;
-  background-image: url("../public/link.svg");
+  background-image: url("/link.svg");
 }
 
 .topnav .print-header {
@@ -321,7 +321,7 @@ button.blue:hover {
   }
 
   button.mobile-options-button {
-    background-image: url("../public/menu.svg");
+    background-image: url("/menu.svg");
     background-size: 24px 24px !important;
     background-position: center !important;
     background-repeat: no-repeat;

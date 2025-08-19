@@ -517,7 +517,7 @@ function Summary({ assignedClasses }: { assignedClasses: string[][][] }) {
             (item, index) =>
               item.required_credits > 0 && (
                 <div key={index}>
-                  {item.name}:{" "}
+                  {item.name}
                   <span style={{ float: "right" }}>
                     {currentCredits[index]}/{item.required_credits}
                   </span>
