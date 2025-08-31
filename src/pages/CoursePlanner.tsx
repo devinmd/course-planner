@@ -637,13 +637,15 @@ function TopNav({
           <h2>Course Planner</h2>
         </div>
         {!isMobile && (
-          <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+          <div style={{ display: "flex", alignItems: "center", gap: "8px" }} className="gpa-page-button">
             <div
               style={{
                 background: "var(--error)",
                 borderRadius: "16px",
                 height: "20px",
                 lineHeight: "20px",
+                fontSize:"14px",
+                fontWeight: "600",
                 padding: "0 8px",
                 color: "white",
               }}

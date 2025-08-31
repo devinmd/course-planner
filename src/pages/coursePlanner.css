@@ -499,6 +499,9 @@ button.blue:hover {
     height: 48px !important;
     border-bottom: 1px solid var(--background-d2) !important;
   }
+  .topnav .gpa-page-button{
+    display: none !important;
+  }
   div.topnav div.logo img {
     max-width: auto !important;
     height: 26px !important;

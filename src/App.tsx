@@ -10,7 +10,7 @@ import NotFoundPage from "./pages/NotFound";
 
 function Footer() {
   const [showTos, setShowTos] = useState(false);
-  const version = "1.2.0";
+  const version = "1.2.1";
   const d = new Date();
   const copyrightYear = d.getFullYear();
   const url = new URL(window.location.href).hostname + new URL(window.location.href).pathname.replace(/\/$/, "");
