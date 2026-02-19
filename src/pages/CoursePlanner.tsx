@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import "../App.css";
 import "./coursePlanner.css";
 import { useAppContext } from "../AppContext";
-import { Link } from "react-router-dom";
+import TopNav from "../components/TopNav";
 
 // import class information
 import classes1 from "../resources/classes.json";
@@ -207,9 +207,8 @@ function ClassButton({
     <button
       onDoubleClick={() => handleDoubleClick()}
       key={`${rowIndex}-${colIndex}-${slotIndex}-${classId}`}
-      className={`${hasClass ? "filled" : "white"} ${isSelected ? "selected" : ""} ${
-        isHighlighted ? "highlight" : ""
-      } ${isMarked ? "marked" : ""} ${error ? "error" : ""}`.trim()}
+      className={`${hasClass ? "filled" : "white"} ${isSelected ? "selected" : ""} ${isHighlighted ? "highlight" : ""
+        } ${isMarked ? "marked" : ""} ${error ? "error" : ""}`.trim()}
       onClick={onClick}
       onMouseOver={onHover}
       onMouseLeave={onUnhover}
@@ -256,6 +255,10 @@ function ClassesGrid({
         if (courseId == "") continue; // if empty, ignore
         const classData: ClassDataObject = classes[courseId]; // get class data
         if (classData.ap) apCount[index]++; // count aps
+
+        difficultyNum += parseInt(courseId.charAt(0));
+
+        /*
         if (classData.difficulty == null) {
           // if no difficulty has been assigned for this course, remove from count
           count -= classData.course_length;
@@ -265,7 +268,7 @@ function ClassesGrid({
         } else {
           // add difficulty
           difficultyNum += classData.difficulty;
-        }
+        }*/
       }
     }
     difficulty[index] = Math.min(difficultyNum / count, 5); // cap at 5
@@ -306,7 +309,10 @@ function ClassesGrid({
 
   return (
     <>
-      <h3 className="title">Your 4-Year Plan</h3>
+      <div style={{ display: "flex" }}>
+        {/* <span contentEditable style={{ fontSize: "1.25rem", fontWeight: "600", minWidth: "2rem" }} />  */}
+        <h3 className="title">Your 4-Year Plan</h3>
+      </div>
 
       <div className="class-display">
         {Array.from({ length: headers.length }).map((_, colIndex) => {
@@ -342,15 +348,15 @@ function ClassesGrid({
                 let isSelected = [
                   Boolean(
                     selectedClassSlot &&
-                      selectedClassSlot[0] === rowIndex &&
-                      selectedClassSlot[1] === colIndex &&
-                      selectedClassSlot[2] === 0
+                    selectedClassSlot[0] === rowIndex &&
+                    selectedClassSlot[1] === colIndex &&
+                    selectedClassSlot[2] === 0
                   ),
                   Boolean(
                     selectedClassSlot &&
-                      selectedClassSlot[0] === rowIndex &&
-                      selectedClassSlot[1] === colIndex &&
-                      selectedClassSlot[2] === 1
+                    selectedClassSlot[0] === rowIndex &&
+                    selectedClassSlot[1] === colIndex &&
+                    selectedClassSlot[2] === 1
                   ),
                 ];
 
@@ -402,8 +408,8 @@ function ClassesGrid({
                     }
                   }
                 >
-                  Difficulty:
-                  <span style={{ float: "right" }}> {Math.min(difficulty[colIndex] + 1, 5).toFixed(2)}/5</span>
+                  Course workload:
+                  <span style={{ float: "right" }}> {Math.min(difficulty[colIndex] + 1, 5).toFixed(1)}/5</span>
                 </div>
                 <div
                   className="bar-wrapper"
@@ -421,7 +427,7 @@ function ClassesGrid({
                     }}
                   ></div>
                 </div>
-                <div>APs: {apCount[colIndex]}</div>
+                {/* <div>APs: {apCount[colIndex]}</div> */}
               </div>
             </div>
           );
@@ -602,152 +608,6 @@ function Summary({ assignedClasses }: { assignedClasses: string[][][] }) {
 }
 
 // is mobile browser or not
-const useIsMobile = () => {
-  const [isMobile, setIsMobile] = useState(window.innerWidth < 1024);
-
-  useEffect(() => {
-    const handleResize = () => setIsMobile(window.innerWidth < 1024);
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
-
-  return isMobile;
-};
-
-function TopNav({
-  onCheck,
-  onResetClasses,
-  copyURL,
-  useAbbreviations,
-}: {
-  onCheck: (value: boolean) => void;
-  onResetClasses: () => void;
-  copyURL: () => void;
-  useAbbreviations: boolean;
-}) {
-  const isMobile = useIsMobile();
-  const [showMobileSettings, setShowMobileSettings] = useState<boolean>(false);
-
-  return (
-    <>
-      <div className="topnav">
-        {/* logo */}
-        <div className="logo">
-          <img src="/icon.png" />
-          <h2>Course Planner</h2>
-        </div>
-        {!isMobile && (
-          <div style={{ display: "flex", alignItems: "center", gap: "8px" }} className="gpa-page-button">
-            <div
-              style={{
-                background: "var(--error)",
-                borderRadius: "16px",
-                height: "20px",
-                lineHeight: "20px",
-                fontSize:"14px",
-                fontWeight: "600",
-                padding: "0 8px",
-                color: "white",
-              }}
-            >
-              NEW
-            </div>
-
-            <Link to="/gradecalculator">
-              <h2>Grade & GPA Calculator</h2>
-            </Link>
-          </div>
-        )}
-
-        {/* mobile settings toggle button */}
-        {isMobile && (
-          <>
-            <button
-              onClick={() => setShowMobileSettings(!showMobileSettings)}
-              className="mobile-options-button"
-            ></button>
-          </>
-        )}
-        {/* mobile settings modal */}
-        {showMobileSettings && (
-          <div className="mobile-settings-wrapper" onClick={() => setShowMobileSettings(false)}>
-            <div
-              className="container mobile-settings
-          "
-              onClick={(event) => event.stopPropagation()}
-            >
-              <h3>Options</h3>
-              <button
-                className="white"
-                onClick={() => {
-                  setShowMobileSettings(false);
-                }}
-              >
-                Close
-              </button>
-              <button
-                className="white"
-                onClick={() => {
-                  onCheck(true);
-                  setShowMobileSettings(false);
-                }}
-              >
-                {useAbbreviations ? "Show Full Course Names" : "Abbreviate Course Names"}
-              </button>
-
-              <button
-                className="red"
-                onClick={() => {
-                  onResetClasses();
-                  setShowMobileSettings(false);
-                }}
-              >
-                Reset Classes
-              </button>
-              <button
-                className="blue"
-                onClick={() => {
-                  copyURL();
-                  setShowMobileSettings(false);
-                }}
-              >
-                Copy URL for Your Plan
-              </button>
-              <button className="blue" onClick={() => window.print()}>
-                Print Your Plan
-              </button>
-            </div>
-          </div>
-        )}
-        {/* desktop buttons */}
-        {!isMobile && (
-          <>
-            <div style={{ marginLeft: "auto" }}></div>
-            <div className="topnav-buttons">
-              <button className="white abbreviations" onClick={() => onCheck(true)}>
-                {useAbbreviations ? "Show Full Course Names" : "Abbreviate Course Names"}
-              </button>
-
-              <button className="red reset" onClick={() => onResetClasses()}>
-                Reset Classes
-              </button>
-              <button className="blue copyurl" onClick={() => copyURL()}>
-                Copy URL for Your Plan
-              </button>
-              <button className="blue print" onClick={() => window.print()}>
-                Print Your Plan
-              </button>
-            </div>
-            <div className="print-header">
-              Printed Plan
-              {/* {new URL(window.location.href).hostname + new URL(window.location.href).pathname.replace(/\/$/, "")} */}
-            </div>
-          </>
-        )}
-      </div>
-    </>
-  );
-}
 
 function Notes() {
   const [value, setValue] = useState("");

@@ -1,0 +1,126 @@
+.topnav {
+  background-color: var(--background-l1);
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0 4rem;
+  height: 4rem;
+  box-shadow: 0 1px 1px 0 var(--background-d1);
+  border-bottom: 1px solid var(--background-d1);
+  z-index: 99;
+  position: fixed;
+  display: flex;
+  flex-direction: row;
+  gap: 4rem;
+  align-items: center;
+}
+
+.topnav div {
+  display: flex;
+  gap: 16px;
+}
+
+.topnav img.logo {
+  height: 1.5rem;
+}
+
+.topnav button {
+  height: 32px;
+  background-position: 8px center;
+  background-repeat: no-repeat;
+  background-size: 20px 20px;
+}
+
+.topnav button.reset {
+  padding-left: 34px;
+  background-image: url("/trash.svg");
+}
+
+.topnav button.print {
+  padding-left: 34px;
+  background-image: url("/print.svg");
+}
+
+.topnav button.copyurl {
+  padding-left: 34px;
+  background-image: url("/link.svg");
+}
+
+.topnav .print-header {
+  display: none;
+}
+
+/* Mobile Styles */
+@media screen and (min-width: 0px) and (max-width: 1024px) {
+  div.topnav {
+    padding: 16px;
+    height: 48px;
+    justify-content: center;
+  }
+
+  div.topnav div.logo img {
+    max-width: auto;
+    height: 26px;
+  }
+
+  div.mobile-settings {
+    margin: 64px 16px 0 16px;
+    box-sizing: border-box;
+    max-width: 100vw;
+    z-index: 1001;
+    overflow-x: scroll;
+    overflow: hidden;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    max-height: 50vh;
+    width: 100%;
+  }
+
+  div.mobile-settings button {
+    height: 40px;
+  }
+
+  button.mobile-options-button {
+    background-image: url("/menu.svg");
+    background-size: 24px 24px !important;
+    background-position: center !important;
+    background-repeat: no-repeat;
+    box-shadow: none;
+    position: fixed;
+    left: 8px;
+    top: 8px;
+  }
+
+  div.mobile-settings h3 {
+    margin: 0;
+  }
+
+  div.mobile-settings-wrapper {
+    position: fixed;
+    height: 100vh;
+    width: 100vw;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    background-color: #00000080;
+  }
+}
+
+/* Print Styles */
+@media print {
+  .topnav {
+    box-shadow: none !important;
+    padding: 0 !important;
+    height: 48px !important;
+    border-bottom: 1px solid var(--background-d2) !important;
+  }
+
+  .topnav .gpa-page-button {
+    display: none !important;
+  }
+
+  div.topnav div.logo img {
+    max-width: auto !important;
+    height: 26px !important;
+  }
+}
