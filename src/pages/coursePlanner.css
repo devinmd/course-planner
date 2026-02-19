@@ -27,7 +27,7 @@
   flex: 1;
   min-width: 0;
   padding: 0 4px;
-  line-height: 14px;
+  line-height: 1;
   /* wrap for 3 lines then use ellipsis */
   overflow: hidden;
   -webkit-line-clamp: 3;
@@ -156,14 +156,14 @@ button.filled:hover {
 
 .error-messages .error-message {
   margin: 0;
-  border-radius: 8px;
-  height: 32px;
-  padding: 0 16px;
+  border-radius: 0.5rem;
+  height: 2rem;
+  padding: 0 1rem;
   font-weight: 500;
   align-items: center;
   font-size: var(--text-size);
   color: var(--text-medium);
-  line-height: 32px;
+  line-height: 2rem;
   padding-left: calc(20px + 12px + 12px);
   box-sizing: border-box;
   background-color: var(--error-l1);

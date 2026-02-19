@@ -1,6 +1,5 @@
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
   font-size: 16px;
   font-weight: 400;
 
@@ -11,19 +10,6 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
-
-input,
-button,
-div,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
 }
 
 #root {
@@ -44,13 +30,13 @@ body {
 }
 
 h2 {
-  font-size: var(--title-size);
+  font-size: 1.5rem;
   font-weight: 700;
   margin: 0;
 }
 
 h3 {
-  font-size: var(--heading-size);
+  font-size: 1.25rem;
   font-weight: 700;
   margin: 0 0 -16px 0;
 }
@@ -60,7 +46,7 @@ div.container h3 {
 }
 
 h4 {
-  font-size: var(--small-heading-size);
+  font-size: 1rem;
   font-weight: 600;
   margin: 0 0 8px 0;
   text-align: center;
@@ -68,29 +54,30 @@ h4 {
 
 .container {
   background-color: var(--background-l1);
-  padding: 24px;
-  border-radius: 16px;
+  padding: 1.5rem;
+  border-radius: 1rem;
   box-shadow: 0 1px 1px 0 var(--background-d1);
   border: 1px solid var(--background-d1);
   box-sizing: border-box;
+
+  font-size: 0.875rem;
 }
 
 button {
   border: none;
-  font-size: var(--text-size);
-  border-radius: 8px;
+  font-size: 0.875rem;
+  border-radius: 0.5rem;
   cursor: pointer;
   transition: 50ms;
   align-items: center;
   justify-content: center;
   background-color: var(--background-1);
-  height: 40px;
-  color: #202020;
+  height: 2.5rem;
   font-family: inherit;
-  white-space: normal; /* Allows text to wrap */
-  word-wrap: break-word; /* Ensures words break if needed */
-  overflow-wrap: break-word; /* Alternative word break handling */
-  padding: 0 16px;
+  white-space: normal; 
+  word-wrap: break-word; 
+  overflow-wrap: break-word;
+  padding: 0 1rem;
   display: flex;
   box-sizing: border-box;
   font-weight: 500;
@@ -103,13 +90,12 @@ input {
   background-color: var(--background-d1);
   width: 25%;
   box-sizing: border-box;
-  border-radius: 8px;
-  padding: 0 16px;
-  font-size: var(--text-size);
+  border-radius: 0.5rem;
+  padding: 0 1rem;
+  font-size: 0.875rem;
   transition: 50ms;
   font-weight: 500;
-  height: 30px;
-  line-height: 30px;
+  height: 2rem;
   border: none;
   outline: none;
   box-shadow: none;
@@ -124,14 +110,14 @@ textarea {
   background-color: var(--background-d1);
   outline: none;
   border: none;
-  padding: 16px;
-  border-radius: 8px;
+  padding: 1rem;
+  border-radius: 0.5rem;
   box-sizing: border-box;
   width: 100%;
   font-weight: 500;
-  line-height: 1.25em;
+  line-height: 1.25;
   color: var(--text);
-  font-size: var(--text-size);
+  font-size: 0.875rem;
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
 }
 
@@ -143,9 +129,9 @@ textarea {
   font-weight: 500;
   white-space: pre-wrap;
   padding: 0;
-  line-height: 1.25em;
+  line-height: 1.25;
   color: var(--text);
-  font-size: var(--text-size);
+  font-size: 0.875rem;
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
 }
 

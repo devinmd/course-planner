@@ -171,13 +171,13 @@
 }
 
 .gpa-container .gpa {
-  font-size: 32px;
+  font-size: 2rem;
   font-weight: 600;
-  height: 64px;
+  height: 4rem;
   background-color: var(--background-d1);
   text-align: center;
   border-radius: 8px;
-  line-height: 64px;
+  line-height: 4rem;
   width: 96px;
 }
 

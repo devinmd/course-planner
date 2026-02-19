@@ -8,7 +8,7 @@ footer {
   margin-top: auto;
   border-top: 1px solid var(--background-d1);
   color: var(--text-light);
-  font-size: var(--footer-text-size);
+  font-size: 0.75rem;
   font-weight: 400;
   display: flex;
   gap: 32px;
