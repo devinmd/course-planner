@@ -3,7 +3,7 @@ import "../App.css";
 import "./gradeCalculator.css";
 import grades from "../resources/grades.json";
 import { useAppContext } from "../AppContext";
-import { Link } from "react-router-dom";
+import TopNav from "../components/TopNav";
 
 // Utility hook
 const useIsMobile = () => {
@@ -15,23 +15,6 @@ const useIsMobile = () => {
   }, []);
   return isMobile;
 };
-
-function TopNav() {
-  const isMobile = useIsMobile();
-  return (
-    <div className="topnav">
-      <div className="logo">
-        <img src="/icon.png" />
-        <h2>Grade & GPA Calculator</h2>
-      </div>
-      {!isMobile && (
-        <Link to="/">
-          <h2>Course Planner</h2>
-        </Link>
-      )}
-    </div>
-  );
-}
 
 function ClassGrade({
   classIndex,
@@ -103,7 +86,7 @@ function ClassGrade({
   };
 
   return (
-    <div className="container class-container">
+    <div className="card class-container">
       <input type="text" className="class-name" placeholder="Class Name" name="Class Name" defaultValue={className} />
       <div className="class-grade-container">
         <button className="delete-class-btn" onClick={() => deleteClass(classIndex)} disabled={totalClasses === 1}>
@@ -164,7 +147,7 @@ function GpaCalculation({ userGrades }: { userGrades: number[] }) {
   }, [userGrades]);
 
   return (
-    <div className="container gpa-container">
+    <div className="card gpa-container">
       <div className="gpa">{(Math.round((gpa + Number.EPSILON) * 100) / 100).toFixed(2).replace(/\.00$/, ".0")}</div>
     </div>
   );

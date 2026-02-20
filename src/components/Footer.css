@@ -6,7 +6,7 @@ footer {
   min-height: 4rem;
   background-color: var(--background-l1);
   margin-top: auto;
-  border-top: 1px solid var(--background-d1);
+  box-shadow: 0 -1px 4px 1px #00000008;
   color: var(--text-light);
   font-size: 0.75rem;
   font-weight: 400;
@@ -41,7 +41,7 @@ footer .tos-button:hover {
 /* Terms of Service */
 .tos {
   padding: 0 64px 32px 64px;
-  font-size: var(--footer-text-size);
+  font-size: 0.75rem;
   background-color: var(--background-l1);
   color: var(--text-light);
   display: flex;

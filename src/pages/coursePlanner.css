@@ -1,34 +1,34 @@
-/* the 4 columns' container */
-.class-display {
+.year-columns {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
-  gap: 32px;
+  gap: 2rem;
 }
 
-/* the columns */
-.class-display .container {
+.year-columns .card.year-column {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 1rem;
+  text-align: center;
 }
 
-/* class slot */
-.class-display .container .class-slot {
+.year-columns .card.year-column .class-slots {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.year-columns .card.year-column .class-slots .class-slot {
   display: flex;
   flex-direction: row;
-  gap: 8px;
-  max-width: 240px;
+  gap: 0.5rem;
+  max-width: 16rem;
   width: 100%;
-  min-width: 180px;
+  min-width: 12rem;
 }
 
-/* class slot button */
-.class-display .container .class-slot button {
+.year-columns .card.year-column .class-slots .class-slot button {
   flex: 1;
-  min-width: 0;
-  padding: 0 4px;
-  line-height: 1;
-  /* wrap for 3 lines then use ellipsis */
+  padding: 0 0.25rem;
   overflow: hidden;
   -webkit-line-clamp: 3;
   line-clamp: 3;
@@ -38,108 +38,62 @@
   box-sizing: border-box;
 }
 
-/* AP count */
-.class-display .container .selected-courses-info {
-  font-size: 14px;
+.year-columns .card.year-column .year-column-info {
   color: var(--text-light);
-  font-weight: 500;
-  margin-top: 8px;
+  text-align: left;
 }
 
-/* white button */
-div button.white {
-  background-color: var(--background-l1);
-  color: var(--text-light);
-  border: 1px solid var(--background-d1);
-}
+/*  */
 
-/* white button hover */
-button.white:hover {
+button.white {
   background-color: var(--background);
+  color: var(--text-light);
 }
 
-/* empty slot selected */
-.class-display .container .class-slot button.white.selected {
+button.white:hover {
   background-color: var(--background-d1);
 }
 
-/* filled slot */
-.class-display .container .class-slot button.filled {
-  color: var(--text);
+.year-columns .card .class-slot button.white.selected {
+  background-color: var(--background-d1);
 }
 
-/* selected slot */
-.class-slot button.selected {
+.class-slot button.selected,
+button.filled.highlight,
+button.filled:hover {
   outline: 2px solid var(--accent);
-  border-color: transparent;
-}
-
-button.filled.highlight {
-  outline: 2px solid var(--accent);
-  border-color: transparent;
 }
 
 button.filled.error {
   outline: 2px solid var(--error);
-  border-color: transparent;
 }
 
-/* filled slot hover */
-button.filled:hover {
-  opacity: 100%;
-  outline: 2px solid var(--accent);
-  border-color: transparent;
-}
-/* filled slot selected hover */
-.class-display .container .class-slot button.filled.selected:hover {
-  opacity: 100%;
-}
+/*  */
 
 .class-selector div.header {
   display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-  gap: 32px;
+  gap: 2rem;
 }
 
 .class-selector div.department-list,
 .class-selector div.class-list {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 16px;
-  position: relative; /* Ensures ::after is positioned within this div */
+  grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+  gap: 1rem;
 }
 
-/* disabled class button */
-.class-selector button:disabled {
-  opacity: 50%;
+.class-selector button:disabled,
+.class-selector button.filled:disabled:hover {
+  opacity: 0.5;
   cursor: default;
 }
-/* disabled class button hover */
-.class-selector button.filled:disabled:hover {
-  opacity: 50%;
-  outline: none;
-}
+
+/*  */
 
 .credit-requirements {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 16px 32px;
-  font-weight: 500;
-}
-
-.bar-wrapper {
-  height: 8px;
-  background-color: var(--background);
-  padding: 0;
-  margin-top: 4px;
-  border-radius: 4px;
-}
-
-.bar-wrapper .bar {
-  height: 8px;
-  padding: 0;
-  border-radius: 4px;
+  grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+  gap: 1rem 2rem;
 }
 
 .credit-requirements div {
@@ -147,11 +101,24 @@ button.filled:hover {
   font-size: var(--text-size);
 }
 
+.bar-wrapper {
+  height: 0.5rem;
+  background-color: var(--background);
+  padding: 0;
+  margin-top: 0.25rem;
+  border-radius: 0.25rem;
+}
+
+.bar-wrapper .bar {
+  height: 8px;
+  padding: 0;
+  border-radius: 0.25rem;
+}
+
 .error-messages {
   display: flex;
   flex-direction: column;
-  gap: 8px;
-  margin-top: 32px;
+  gap: 0.5rem;
 }
 
 .error-messages .error-message {
@@ -174,6 +141,8 @@ button.filled:hover {
   background-repeat: no-repeat;
 }
 
+/*  */
+
 button.red {
   background-color: var(--error);
   color: var(--background);
@@ -186,42 +155,30 @@ button.blue {
 
 button.red:hover,
 button.blue:hover {
-  opacity: 80%;
+  opacity: 0.7;
 }
 
 /* mobile */
 @media screen and (min-width: 0px) and (max-width: 1024px) {
   .content {
     padding: 0;
-    margin-bottom: 16px;
-    gap: 16px;
-    margin-top: 48px;
+    margin-bottom: 1rem;
+    gap: 1rem;
+    margin-top: 3rem;
   }
-  .container {
-    padding: 8px;
+  .card {
+    padding: 0.5rem;
+    gap: 0.5rem;
   }
-  h4 {
-    margin-left: 4px;
-    margin-bottom: 0;
-  }
-  div.class-display {
-    gap: 8px;
+  div.year-columns {
+    gap: 0.5rem;
     overflow-x: scroll;
     box-sizing: border-box;
-    padding: 16px 16px 0 16px;
+    padding: 1rem 1rem 0 1rem;
     max-width: 100vw;
   }
-
-  div.class-display .container div.selected-courses-info {
-    margin-left: 8px;
-    margin-top: 0;
-  }
-  h2 {
-    white-space: nowrap;
-    text-align: center;
-  }
-  h3 {
-    margin: 16px 0 -24px 16px;
+  h3.title {
+    margin: 16px 0 0 1rem;
   }
 
   div.class-selector-wrapper,
@@ -233,35 +190,31 @@ button.blue:hover {
     left: 0;
     z-index: 1000;
     background-color: #00000080;
-    pointer-events: auto; /* Ensures clicks go to the overlay */
+    pointer-events: auto;
   }
 
-  div.class-selector.container {
-    margin: 64px 16px 0 16px;
+  div.class-selector.card {
+    margin: 4rem 1rem 0 1rem;
     box-sizing: border-box;
     max-width: 100vw;
     z-index: 1001;
-    border: none;
     overflow-x: scroll;
-    box-shadow: none;
     overflow: hidden;
-    /* top: 64px; */
-    padding: 16px;
-    /* left: 16px; */
+    padding: 1rem;
   }
 
   textarea {
     font-size: 16px;
   }
 
-  div.class-selector.container div.department-list,
-  div.class-selector.container div.class-list {
+  div.class-selector.card div.department-list,
+  div.class-selector.card div.class-list {
     gap: 8px;
     overflow: scroll;
     max-height: 50vh;
   }
 
-  div.class-selector.container div button {
+  div.class-selector.card div button {
     max-width: none;
     /* font-size: 16px; */
   }
@@ -270,12 +223,12 @@ button.blue:hover {
     outline: none !important;
   }
 
-  div.class-selector.container .header {
+  div.class-selector.card .header {
     flex-wrap: wrap;
-    gap: 8px;
-    margin-bottom: 16px;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
   }
-  div.class-selector.container .header input {
+  div.class-selector.card .header input {
     max-width: none;
     width: 100%;
     height: 40px;
@@ -283,21 +236,25 @@ button.blue:hover {
     font-size: 16px; /* prevent browser from zooming in */
   }
 
-  div.class-selector.container .header h3 {
+  .class-selector div.class-list {
+    padding: 0;
+  }
+
+  div.class-selector.card .header h3 {
     margin: 0;
   }
-  div.summary.container,
-  div.notes.container {
+  div.summary.card,
+  div.notes.card {
     margin: 0 16px 0 16px;
     padding: 16px;
   }
-  div.summary.container div.credit-requirements {
+  div.summary.card div.credit-requirements {
     gap: 8px;
   }
-  div.summary.container div.error-messages {
+  div.summary.card div.error-messages {
     margin-top: 16px;
   }
-  div.summary.container div.error-messages div {
+  div.summary.card div.error-messages div {
     padding: 4px 40px;
     height: auto;
     min-height: 32px;
@@ -336,14 +293,14 @@ button.blue:hover {
     width: 100vw;
     gap: 16px;
   }
-  div.content div.class-display {
+  div.content div.year-columns {
     gap: 0;
     max-width: 100%;
     grid-template-columns: calc(25% - 6px) calc(25% - 6px) calc(25% - 6px) calc(25% - 6px);
     gap: 8px;
     box-sizing: border-box;
   }
-  div.content div.class-display div.container {
+  div.content div.year-columns div.card {
     border: none;
     padding: 0;
     box-shadow: none;
@@ -353,14 +310,14 @@ button.blue:hover {
     display: none !important;
   }
 
-  div.content div.class-display div.container h4 {
+  div.content div.year-columns div.card h4 {
     margin: 0 0 0px 0;
   }
-  div.content div.class-display div.container div.class-slot {
+  div.content div.year-columns div.card div.class-slot {
     min-width: auto;
   }
 
-  div.content div.class-display div.container button {
+  div.content div.year-columns div.card button {
     box-shadow: none;
     border: 1px solid var(--background-d2);
   }
@@ -379,8 +336,8 @@ button.blue:hover {
     text-indent: -9999px !important;
   }
 
-  div.summary.container,
-  div.notes.container {
+  div.summary.card,
+  div.notes.card {
     box-shadow: none;
     border: 1px solid var(--background-d2);
     padding: 16px !important;
@@ -391,7 +348,7 @@ button.blue:hover {
     display: none;
   }
 
-  div.summary.container .credit-requirements {
+  div.summary.card .credit-requirements {
     gap: 8px 16px !important;
   }
 
@@ -403,12 +360,12 @@ button.blue:hover {
     margin: 16px 0 -16px 0;
   }
 
-  .container h3 {
+  .card h3 {
     margin-top: 0;
     margin-bottom: 4px !important;
   }
 
-  div.selected-courses-info {
+  div.year-column-info {
     display: none;
   }
 
@@ -451,7 +408,7 @@ button.blue:hover {
     height: 100%;
   }
 
-  div.notes.container {
+  div.notes.card {
     border: none !important;
     padding-top: 0 !important;
   }

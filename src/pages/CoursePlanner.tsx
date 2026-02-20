@@ -272,6 +272,7 @@ function ClassesGrid({
       }
     }
     difficulty[index] = Math.min(difficultyNum / count, 5); // cap at 5
+    console.log(difficulty)
   }
 
   useEffect(() => {
@@ -309,125 +310,116 @@ function ClassesGrid({
 
   return (
     <>
-      <div style={{ display: "flex" }}>
-        {/* <span contentEditable style={{ fontSize: "1.25rem", fontWeight: "600", minWidth: "2rem" }} />  */}
-        <h3 className="title">Your 4-Year Plan</h3>
-      </div>
+    
+      <h3 className="title" style={{ marginBottom: "-1rem" }}>Your 4-Year Plan</h3>
 
-      <div className="class-display">
+      <div className="year-columns">
         {Array.from({ length: headers.length }).map((_, colIndex) => {
           return (
-            <div className="container" key={colIndex}>
+            <div className="card year-column" key={colIndex}>
               <h4 key={colIndex + "h"}>{headers[colIndex]} Year</h4>
-              {Array.from({ length: classCount }).map((_, rowIndex) => {
-                // get assigned class data
-                const assignedClassId: string = assignedClasses[colIndex][rowIndex][0];
-                let assignedClassData: ClassDataObject;
-                if (assignedClassId != "") {
-                  assignedClassData = classes[assignedClassId];
-                  assignedClassData.color = departments[assignedClassData.department].color;
-                } else {
-                  assignedClassData = {} as ClassDataObject;
-                }
 
-                // Get second selected class if it exists
-                const secondClassId = assignedClasses[colIndex][rowIndex][1];
-                const useSecondSlot = assignedClassData.course_length === 0.5 || secondClassId !== "";
-                let assignedClassData1: ClassDataObject;
-                if (secondClassId) {
-                  // Has second class
-                  assignedClassData1 = {
-                    ...classes[secondClassId],
-                  };
-                  assignedClassData1.color = departments[assignedClassData1.department].color;
-                } else {
-                  assignedClassData1 = {} as ClassDataObject;
-                }
+              <div className="class-slots">
 
-                // tuple to store selected state
-                let isSelected = [
-                  Boolean(
-                    selectedClassSlot &&
-                    selectedClassSlot[0] === rowIndex &&
-                    selectedClassSlot[1] === colIndex &&
-                    selectedClassSlot[2] === 0
-                  ),
-                  Boolean(
-                    selectedClassSlot &&
-                    selectedClassSlot[0] === rowIndex &&
-                    selectedClassSlot[1] === colIndex &&
-                    selectedClassSlot[2] === 1
-                  ),
-                ];
 
-                // create & return the button
-                return (
-                  <div className="class-slot" key={`${rowIndex}-${colIndex}s`}>
-                    <ClassButton
-                      rowIndex={rowIndex}
-                      colIndex={colIndex}
-                      slotIndex={0}
-                      classId={assignedClassId}
-                      classData={assignedClassData}
-                      isSelected={isSelected[0]}
-                      isHighlighted={classIDsToHighlight.includes(assignedClassId)}
-                      useShorthand={useShorthand}
-                      error={false}
-                      onClick={() => onClassSlotClick(rowIndex, colIndex, 0, useSecondSlot)}
-                      onHover={() => {
-                        setHoveredClassID(assignedClassId);
-                      }}
-                      onUnhover={() => setHoveredClassID("")}
-                    />
+                {Array.from({ length: classCount }).map((_, rowIndex) => {
+                  // get assigned class data
+                  const assignedClassId: string = assignedClasses[colIndex][rowIndex][0];
+                  let assignedClassData: ClassDataObject;
+                  if (assignedClassId != "") {
+                    assignedClassData = classes[assignedClassId];
+                    assignedClassData.color = departments[assignedClassData.department].color;
+                  } else {
+                    assignedClassData = {} as ClassDataObject;
+                  }
 
-                    {useSecondSlot && (
+                  // Get second selected class if it exists
+                  const secondClassId = assignedClasses[colIndex][rowIndex][1];
+                  const useSecondSlot = assignedClassData.course_length === 0.5 || secondClassId !== "";
+                  let assignedClassData1: ClassDataObject;
+                  if (secondClassId) {
+                    // Has second class
+                    assignedClassData1 = {
+                      ...classes[secondClassId],
+                    };
+                    assignedClassData1.color = departments[assignedClassData1.department].color;
+                  } else {
+                    assignedClassData1 = {} as ClassDataObject;
+                  }
+
+                  // tuple to store selected state
+                  let isSelected = [
+                    Boolean(
+                      selectedClassSlot &&
+                      selectedClassSlot[0] === rowIndex &&
+                      selectedClassSlot[1] === colIndex &&
+                      selectedClassSlot[2] === 0
+                    ),
+                    Boolean(
+                      selectedClassSlot &&
+                      selectedClassSlot[0] === rowIndex &&
+                      selectedClassSlot[1] === colIndex &&
+                      selectedClassSlot[2] === 1
+                    ),
+                  ];
+
+                  // create & return the button
+                  return (
+                    <div className="class-slot" key={`${rowIndex}-${colIndex}s`}>
                       <ClassButton
                         rowIndex={rowIndex}
                         colIndex={colIndex}
-                        slotIndex={1}
-                        classId={secondClassId}
-                        classData={assignedClassData1}
-                        isSelected={isSelected[1]}
-                        isHighlighted={classIDsToHighlight.includes(secondClassId)}
+                        slotIndex={0}
+                        classId={assignedClassId}
+                        classData={assignedClassData}
+                        isSelected={isSelected[0]}
+                        isHighlighted={classIDsToHighlight.includes(assignedClassId)}
                         useShorthand={useShorthand}
                         error={false}
-                        onClick={() => onClassSlotClick(rowIndex, colIndex, 1, useSecondSlot)}
+                        onClick={() => onClassSlotClick(rowIndex, colIndex, 0, useSecondSlot)}
                         onHover={() => {
-                          setHoveredClassID(secondClassId);
+                          setHoveredClassID(assignedClassId);
                         }}
+                        onUnhover={() => setHoveredClassID("")}
                       />
-                    )}
-                  </div>
-                );
-              })}
-              <div className="selected-courses-info">
-                <div
-                  style={
-                    {
-                      // display: "none",
-                    }
-                  }
-                >
+
+                      {useSecondSlot && (
+                        <ClassButton
+                          rowIndex={rowIndex}
+                          colIndex={colIndex}
+                          slotIndex={1}
+                          classId={secondClassId}
+                          classData={assignedClassData1}
+                          isSelected={isSelected[1]}
+                          isHighlighted={classIDsToHighlight.includes(secondClassId)}
+                          useShorthand={useShorthand}
+                          error={false}
+                          onClick={() => onClassSlotClick(rowIndex, colIndex, 1, useSecondSlot)}
+                          onHover={() => {
+                            setHoveredClassID(secondClassId);
+                          }}
+                        />
+                      )}
+                    </div>
+                  );
+                })}
+              </div>
+              <div className="year-column-info">
+
+                <div>
                   Course workload:
-                  <span style={{ float: "right" }}> {Math.min(difficulty[colIndex] + 1, 5).toFixed(1)}/5</span>
+                  <span style={{ float: "right" }}> {Math.min(difficulty[colIndex] + 0.5, 5).toFixed(1)}/5</span>
                 </div>
-                <div
-                  className="bar-wrapper"
-                  style={{
-                    margin: 0,
-                    marginBottom: "8px",
-                    // display: "none",
-                  }}
-                >
+
+                <div className="bar-wrapper">
                   <div
                     className="bar"
                     style={{
-                      width: Math.min(((difficulty[colIndex] + 1) / 5) * 100, 100) + "%",
+                      width: Math.min(((difficulty[colIndex] + 0.5) / 5) * 100, 100) + "%",
                       backgroundColor: `hsla(${120 - ((difficulty[colIndex] - 0.5) / 3) * 120}, 100%, 40%, 60%)`,
                     }}
                   ></div>
                 </div>
-                {/* <div>APs: {apCount[colIndex]}</div> */}
               </div>
             </div>
           );
@@ -516,7 +508,7 @@ function Summary({ assignedClasses }: { assignedClasses: string[][][] }) {
   return (
     <>
       {/* credit bars */}
-      <div className="summary container">
+      <div className="card summary">
         <h3>Summary</h3>
         <div className="credit-requirements">
           {departments.map(
@@ -621,7 +613,7 @@ function Notes() {
 
   return (
     <>
-      <div className="notes container">
+      <div className="card notes">
         <h3>Notes</h3>
         <textarea
           wrap="soft"
@@ -802,7 +794,7 @@ export default function CoursePlanner() {
         />
         {selectedSlot && (
           <div className="class-selector-wrapper" onClick={() => cancelClassSelector()}>
-            <div className="class-selector container" onClick={(event) => event.stopPropagation()}>
+            <div className="class-selector card" onClick={(event) => event.stopPropagation()}>
               <DepartmentSelector
                 onSelectClass={handleSelectClass}
                 selectedSlot={selectedSlot}

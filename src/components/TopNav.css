@@ -4,8 +4,8 @@
   box-sizing: border-box;
   padding: 0 4rem;
   height: 4rem;
-  box-shadow: 0 1px 1px 0 var(--background-d1);
-  border-bottom: 1px solid var(--background-d1);
+  box-shadow: 0 1px 4px 1px #00000008;
+  /* border-bottom: 1px solid var(--background-d1); */
   z-index: 99;
   position: fixed;
   display: flex;
@@ -17,6 +17,19 @@
 .topnav div {
   display: flex;
   gap: 16px;
+}
+
+.topnav .logo-container {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.topnav a {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  transition: 100ms;
 }
 
 .topnav img.logo {
@@ -111,8 +124,12 @@
   .topnav {
     box-shadow: none !important;
     padding: 0 !important;
-    height: 48px !important;
+    height: 3rem !important;
     border-bottom: 1px solid var(--background-d2) !important;
+  }
+
+  .topnav button {
+    display: none !important;
   }
 
   .topnav .gpa-page-button {

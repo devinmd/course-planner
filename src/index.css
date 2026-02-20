@@ -3,6 +3,8 @@
   font-size: 16px;
   font-weight: 400;
 
+  line-height: 1;
+
   color: var(--text);
   background-color: var(--background);
 
@@ -38,29 +40,26 @@ h2 {
 h3 {
   font-size: 1.25rem;
   font-weight: 700;
-  margin: 0 0 -16px 0;
-}
-
-div.container h3 {
-  margin: 0 0 16px 0;
+  margin: 0;
 }
 
 h4 {
   font-size: 1rem;
   font-weight: 600;
-  margin: 0 0 8px 0;
-  text-align: center;
+  margin: 0;
 }
 
-.container {
+.card {
   background-color: var(--background-l1);
   padding: 1.5rem;
   border-radius: 1rem;
-  box-shadow: 0 1px 1px 0 var(--background-d1);
-  border: 1px solid var(--background-d1);
+  box-shadow: 0 1px 4px 1px #00000008;
+  /* border: 1px solid var(--background-d1); */
   box-sizing: border-box;
-
   font-size: 0.875rem;
+  display: flex;
+  gap: 2rem;
+  flex-direction: column;
 }
 
 button {
@@ -71,23 +70,22 @@ button {
   transition: 50ms;
   align-items: center;
   justify-content: center;
-  background-color: var(--background-1);
   height: 2.5rem;
   font-family: inherit;
-  white-space: normal; 
-  word-wrap: break-word; 
+  white-space: normal;
+  word-wrap: break-word;
   overflow-wrap: break-word;
   padding: 0 1rem;
   display: flex;
   box-sizing: border-box;
   font-weight: 500;
-  box-shadow: 0 1px 1px 0 var(--background-d1);
+  /* box-shadow: 0 1px 4px 1px #00000008; */
 }
 
 input {
   /* box-shadow: 0 1px 1px 0 var(--background-d1); */
   /* border: 1px solid var(--background-d1); */
-  background-color: var(--background-d1);
+  background-color: var(--background);
   width: 25%;
   box-sizing: border-box;
   border-radius: 0.5rem;
@@ -95,7 +93,7 @@ input {
   font-size: 0.875rem;
   transition: 50ms;
   font-weight: 500;
-  height: 2rem;
+  height: 1.25rem;
   border: none;
   outline: none;
   box-shadow: none;
@@ -107,7 +105,7 @@ input:focus {
 
 textarea {
   resize: none;
-  background-color: var(--background-d1);
+  background-color: var(--background);
   outline: none;
   border: none;
   padding: 1rem;

@@ -1,13 +1,13 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useIsMobile } from "../hooks/useIsMobile";
 import "./TopNav.css";
 
 interface TopNavProps {
-  onCheck: (value: boolean) => void;
-  onResetClasses: () => void;
-  copyURL: () => void;
-  useAbbreviations: boolean;
+  onCheck?: (value: boolean) => void;
+  onResetClasses?: () => void;
+  copyURL?: () => void;
+  useAbbreviations?: boolean;
 }
 
 export default function TopNav({
@@ -17,37 +17,25 @@ export default function TopNav({
   useAbbreviations,
 }: TopNavProps) {
   const isMobile = useIsMobile();
+  const location = useLocation();
   const [showMobileSettings, setShowMobileSettings] = useState<boolean>(false);
+
+  const isCoursePlanner = location.pathname === "/" || location.pathname === "/courseplanner";
+  const isGradeCalculator = location.pathname === "/gradecalculator";
 
   return (
     <>
       <div className="topnav">
-        {/* logo */}
-        <img className="logo" src="/logo.svg" />
-        {!isMobile && (
-          <div style={{ display: "flex", alignItems: "center", gap: "8px" }} className="gpa-page-button">
-            <div
-              style={{
-                background: "var(--error)",
-                borderRadius: "16px",
-                height: "20px",
-                lineHeight: "20px",
-                fontSize: "14px",
-                fontWeight: "600",
-                padding: "0 8px",
-                color: "white",
-              }}
-            >
-              NEW
-            </div>
-
-            <Link to="/gradecalculator">
-              <h2>Grade & GPA Calculator</h2>
-            </Link>
-          </div>
-        )}
-
-        {/* mobile settings toggle button */}
+        {/* logos */}
+        <div className="logo-container">
+          <Link to="/courseplanner" style={{ opacity: isCoursePlanner ? 1 : 0.5 }}>
+            <img className="logo" src="/logo.svg" />
+          </Link>
+          <Link to="/gradecalculator" style={{ opacity: isGradeCalculator ? 1 : 0.5 }}>
+            <img className="logo" src="/logo2.svg" />
+          </Link>
+        </div>
+      
         {isMobile && (
           <>
             <button
@@ -56,11 +44,12 @@ export default function TopNav({
             ></button>
           </>
         )}
+        
         {/* mobile settings modal */}
-        {showMobileSettings && (
+        {showMobileSettings && onCheck && onResetClasses && copyURL && (
           <div className="mobile-settings-wrapper" onClick={() => setShowMobileSettings(false)}>
             <div
-              className="container mobile-settings
+              className="card mobile-settings
           "
               onClick={(event) => event.stopPropagation()}
             >
@@ -90,7 +79,7 @@ export default function TopNav({
                   setShowMobileSettings(false);
                 }}
               >
-                Reset Classes
+                Reset
               </button>
               <button
                 className="blue"
@@ -102,13 +91,13 @@ export default function TopNav({
                 Copy URL for Your Plan
               </button>
               <button className="blue" onClick={() => window.print()}>
-                Print Your Plan
+                Print
               </button>
             </div>
           </div>
         )}
         {/* desktop buttons */}
-        {!isMobile && (
+        {!isMobile && onCheck && onResetClasses && copyURL && (
           <>
             <div style={{ marginLeft: "auto" }}></div>
             <div className="topnav-buttons">
@@ -117,13 +106,13 @@ export default function TopNav({
               </button>
 
               <button className="red reset" onClick={() => onResetClasses()}>
-                Reset Classes
+                Reset
               </button>
               <button className="blue copyurl" onClick={() => copyURL()}>
                 Copy URL for Your Plan
               </button>
               <button className="blue print" onClick={() => window.print()}>
-                Print Your Plan
+                Print
               </button>
             </div>
             <div className="print-header">

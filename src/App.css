@@ -1,31 +1,18 @@
 :root {
   /* background */
   --background-l1: #ffffff;
-  --background: #f5f7f7;
+  --background: #f2f3f4;
   --background-d1: #e5e7eb;
   --background-d2: #d7dbe2;
-  /* --background-d3: #c6cbd5; */
-
-  /* --background-l1: #202020;
-  --background: #101010;
-  --background: #101010;
-  --background-d1: #101010;
-  --background-d2: #505050;
-  --background-d3: #606060; */
 
   /* text */
   --text: #101030;
   --text-medium: #505060;
   --text-light: #808090;
 
-  /* --text: #cfcfcf;
-  --text-medium: #808080;
-  --text-light: #505050; */
-
   /* other */
   --error: #f44747;
   --error-l1: hsl(0, 80%, 95%);
-
   --accent: #2463eb;
 
   /* department colors */
@@ -37,7 +24,7 @@
   --gray: hsl(221, 25%, 75%);
   --orange: hsl(32, 96%, 70%);
   --pink: hsl(342, 95%, 75%);
-  /* reduced saturation and increased lightness */
+  /* increased lightness */
   --purple-l: hsl(252, 91%, 90%);
   --green-l: hsl(134, 58%, 80%);
   --yellow-l: hsl(45, 100%, 80%);
@@ -72,4 +59,3 @@
   flex-direction: column;
   padding: 32px;
 }
-
