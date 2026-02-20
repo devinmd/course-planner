@@ -229,11 +229,15 @@ function ClassesGrid({
   assignedClasses,
   selectedClassSlot,
   useShorthand,
+  userName,
+  setUserName
 }: {
   onClassSlotClick: (row: number, col: number, slotIndex: number, isHalf: boolean) => void;
   assignedClasses: string[][][];
   selectedClassSlot: any[] | null;
   useShorthand: boolean;
+  userName: string;
+  setUserName: (name: string) => void;
 }) {
   const [hoveredClassID, setHoveredClassID] = useState("");
   const [classIDsToHighlight, setClassIDsToHighlight] = useState<string[]>([]);
@@ -272,7 +276,6 @@ function ClassesGrid({
       }
     }
     difficulty[index] = Math.min(difficultyNum / count, 5); // cap at 5
-    console.log(difficulty)
   }
 
   useEffect(() => {
@@ -310,8 +313,11 @@ function ClassesGrid({
 
   return (
     <>
-    
-      <h3 className="title" style={{ marginBottom: "-1rem" }}>Your 4-Year Plan</h3>
+
+      <div style={{ display: "flex", alignItems: "center", marginBottom: "-1rem" }}>
+        <input placeholder="Enter name here" type="text" className="name-input" value={userName} onChange={(e) => setUserName(e.target.value)} />
+        <h3 className="title">'s 4-Year Plan</h3>
+      </div>
 
       <div className="year-columns">
         {Array.from({ length: headers.length }).map((_, colIndex) => {
@@ -643,10 +649,21 @@ export default function CoursePlanner() {
   // encoded url string
   const { coursePlannerURL, setCoursePlannerURL } = useAppContext();
 
+  const { userName, setUserName } = useAppContext();
+
   // runs on first load
   useEffect(() => {
     const url = new URL(window.location.href);
     const classParam = url.searchParams.get("c");
+    const nameParam = url.searchParams.get("n");
+
+    if (nameParam) {
+      console.log("name param found: " + nameParam)
+      setUserName(nameParam);
+      updateQueryParam("n", nameParam);
+    } else {
+      console.log("no name param found in url")
+    }
 
     if (classParam) {
       setAssignedClasses(decodeClasses(classParam));
@@ -752,12 +769,14 @@ export default function CoursePlanner() {
 
   // reset all classes to default
   function resetClasses() {
-    console.log(defaultClasses);
-
     const deepClone = (obj: any) => JSON.parse(JSON.stringify(obj));
-
     setAssignedClasses(deepClone(defaultClasses));
     updateQueryParam("c", "");
+  }
+
+  function changeUserName(name: string) {
+    setUserName(name);
+    updateQueryParam("n", name);
   }
 
   // copy the current url to clipboard
@@ -791,6 +810,8 @@ export default function CoursePlanner() {
           assignedClasses={assignedClasses}
           selectedClassSlot={selectedSlot}
           useShorthand={useShorthand}
+          userName={userName}
+          setUserName={changeUserName}
         />
         {selectedSlot && (
           <div className="class-selector-wrapper" onClick={() => cancelClassSelector()}>

@@ -148,7 +148,7 @@ function GpaCalculation({ userGrades }: { userGrades: number[] }) {
 
   return (
     <div className="card gpa-container">
-      <div className="gpa">{(Math.round((gpa + Number.EPSILON) * 100) / 100).toFixed(2).replace(/\.00$/, ".0")}</div>
+      <h1 className="gpa">{(Math.round((gpa + Number.EPSILON) * 100) / 100).toFixed(2).replace(/\.00$/, ".0")}</h1>
     </div>
   );
 }
@@ -204,9 +204,9 @@ function GradeCalculator() {
     <>
       <TopNav />
       <div className="content">
-        <h3>Your GPA</h3>
+        <h3 style={{ marginBottom: "-1rem" }}>Your GPA</h3>
         <GpaCalculation userGrades={userGradesList.map((g) => g.finalGradeIndex)} />
-        <h3>Your Grades</h3>
+        <h3 style={{ marginBottom: "-1rem" }}>Your Grades</h3>
         <div className="class-list" key={listVersion}>
           {userGradesList.map((gradeData, i) => (
             <ClassGrade
@@ -222,8 +222,8 @@ function GradeCalculator() {
             />
           ))}
         </div>
-        <div className="add-class-wrapper">
-          <button onClick={addClass} className="add-class-button">
+        <div className="card">
+          <button onClick={addClass} className="add-class-button white">
             Add Class
           </button>
         </div>

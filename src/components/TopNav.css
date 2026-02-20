@@ -21,8 +21,9 @@
 
 .topnav .logo-container {
   display: flex;
+  gap: 0;
   align-items: center;
-  gap: 2rem;
+  /* gap: 2rem; */
 }
 
 .topnav a {
@@ -126,6 +127,15 @@
     padding: 0 !important;
     height: 3rem !important;
     border-bottom: 1px solid var(--background-d2) !important;
+  }
+
+  .topnav .logo-container a {
+    border: none !important;
+    padding: 0 !important;
+  }
+
+  .topnav .logo-container a.inactive {
+    display: none;
   }
 
   .topnav button {

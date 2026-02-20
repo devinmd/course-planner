@@ -1,3 +1,17 @@
+.name-input {
+  padding: 0 0.5rem;
+  min-width: 2rem;
+  background-color: var(--background-d2);
+  font-size: 1.25rem;
+  outline: none;
+  height: 1.5rem;
+  width: 16rem;
+  display: flex;
+  align-items: center;
+  border-radius: 0.5rem;
+  font-weight: 700;
+}
+
 .year-columns {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
@@ -284,26 +298,51 @@ button.blue:hover {
     background-color: white;
   }
 
+  .card {
+    gap: 1rem;
+  }
+
   h3.title {
     display: none;
   }
 
+  input.name-input {
+    font-size: 1.25rem;
+    color: black;
+    z-index: 1005;
+    /* margin-bottom: 2rem; */
+    position: absolute;
+    top: 0.75rem;
+    right: 0;
+    text-align: right;
+    /* margin-top: 1rem; */
+    font-weight: 700;
+  }
+
+  input.name-input::placeholder {
+    color: transparent;
+  }
   div.content {
-    padding: 0;
+    padding: 0.5rem 0 0 0;
     width: 100vw;
     gap: 16px;
   }
   div.content div.year-columns {
-    gap: 0;
     max-width: 100%;
-    grid-template-columns: calc(25% - 6px) calc(25% - 6px) calc(25% - 6px) calc(25% - 6px);
+    grid-template-columns: 1fr 1fr 1fr 1fr;
     gap: 8px;
     box-sizing: border-box;
+  }
+  div.content div.year-columns div.card.year-column {
+    gap: 0.5rem;
   }
   div.content div.year-columns div.card {
     border: none;
     padding: 0;
     box-shadow: none;
+  }
+  div.year-columns .card.year-column .class-slots .class-slot {
+    min-width: 0;
   }
 
   div.mobile-settings {
@@ -311,7 +350,7 @@ button.blue:hover {
   }
 
   div.content div.year-columns div.card h4 {
-    margin: 0 0 0px 0;
+    margin: 0;
   }
   div.content div.year-columns div.card div.class-slot {
     min-width: auto;
@@ -340,7 +379,9 @@ button.blue:hover {
   div.notes.card {
     box-shadow: none;
     border: 1px solid var(--background-d2);
-    padding: 16px !important;
+    padding: 0 !important;
+    border: none !important;
+    margin-top: 1rem;
     box-shadow: none !important;
   }
 
@@ -387,7 +428,7 @@ button.blue:hover {
   }
 
   .credit-requirements div {
-    border-bottom: 1px solid var(--background-d2);
+    border-bottom: 1px dotted var(--background-d2);
     border-radius: 0 !important;
   }
 
@@ -396,7 +437,8 @@ button.blue:hover {
   }
   footer.print-footer {
     display: flex !important;
-    padding: 16px 0 0 0 !important;
+    padding: 1rem 0 0 0 !important;
+    min-height: 2rem !important;
     border-top: 1px solid var(--background-d2) !important;
   }
 
@@ -406,10 +448,5 @@ button.blue:hover {
   .notes-print {
     display: block !important;
     height: 100%;
-  }
-
-  div.notes.card {
-    border: none !important;
-    padding-top: 0 !important;
   }
 }

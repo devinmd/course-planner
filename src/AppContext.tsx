@@ -14,11 +14,14 @@ interface AppContextType {
   setAssignedClasses: React.Dispatch<React.SetStateAction<any[][][]>>;
   coursePlannerURL: string;
   setCoursePlannerURL: React.Dispatch<React.SetStateAction<string>>;
+  userName: string;
+  setUserName: React.Dispatch<React.SetStateAction<string>>;
 }
 
 const AppContext = createContext<AppContextType | undefined>(undefined);
 
 export const AppProvider = ({ children }: { children: React.ReactNode }) => {
+
   const [userGradesList, setUserGradesList] = useState<ClassGradeData[]>([
     {
       finalGradeIndex: 0,
@@ -26,11 +29,14 @@ export const AppProvider = ({ children }: { children: React.ReactNode }) => {
       className: "",
     },
   ]);
+
   const deepClone = (obj: any) => JSON.parse(JSON.stringify(obj));
 
   const [assignedClasses, setAssignedClasses] = useState<string[][][]>(deepClone(defaultClasses));
 
   const [coursePlannerURL, setCoursePlannerURL] = useState<string>("");
+
+  const [userName, setUserName] = useState<string>("");
 
   return (
     <AppContext.Provider
@@ -41,6 +47,8 @@ export const AppProvider = ({ children }: { children: React.ReactNode }) => {
         setAssignedClasses,
         coursePlannerURL,
         setCoursePlannerURL,
+        userName,
+        setUserName,
       }}
     >
       {children}

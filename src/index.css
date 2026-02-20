@@ -1,7 +1,7 @@
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   font-size: 16px;
-  font-weight: 400;
+  font-weight: 500;
 
   line-height: 1;
 
@@ -29,6 +29,12 @@ body {
   min-height: 100vh;
   color: var(--text);
   background-color: var(--background);
+}
+
+h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 0;
 }
 
 h2 {
@@ -79,12 +85,10 @@ button {
   display: flex;
   box-sizing: border-box;
   font-weight: 500;
-  /* box-shadow: 0 1px 4px 1px #00000008; */
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
 }
 
 input {
-  /* box-shadow: 0 1px 1px 0 var(--background-d1); */
-  /* border: 1px solid var(--background-d1); */
   background-color: var(--background);
   width: 25%;
   box-sizing: border-box;
@@ -95,6 +99,7 @@ input {
   font-weight: 500;
   height: 1.25rem;
   border: none;
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   outline: none;
   box-shadow: none;
 }

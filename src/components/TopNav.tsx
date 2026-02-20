@@ -28,14 +28,14 @@ export default function TopNav({
       <div className="topnav">
         {/* logos */}
         <div className="logo-container">
-          <Link to="/courseplanner" style={{ opacity: isCoursePlanner ? 1 : 0.5 }}>
+          <Link to="/courseplanner" className={isCoursePlanner ? "" : "inactive"} style={{ borderBottom: isCoursePlanner ? "4px solid #2463EB" : "4px solid transparent", height: "calc(4rem - 4px)", padding: "0 1rem" }}>
             <img className="logo" src="/logo.svg" />
           </Link>
-          <Link to="/gradecalculator" style={{ opacity: isGradeCalculator ? 1 : 0.5 }}>
+          <Link to="/gradecalculator" className={isGradeCalculator ? "" : "inactive"} style={{ borderBottom: isGradeCalculator ? "4px solid #16C216" : "4px solid transparent", height: "calc(4rem - 4px)", padding: "0 1rem" }}>
             <img className="logo" src="/logo2.svg" />
           </Link>
         </div>
-      
+
         {isMobile && (
           <>
             <button
@@ -44,7 +44,7 @@ export default function TopNav({
             ></button>
           </>
         )}
-        
+
         {/* mobile settings modal */}
         {showMobileSettings && onCheck && onResetClasses && copyURL && (
           <div className="mobile-settings-wrapper" onClick={() => setShowMobileSettings(false)}>
