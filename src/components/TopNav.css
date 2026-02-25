@@ -26,6 +26,11 @@
   /* gap: 2rem; */
 }
 
+.topnav .logo-container a {
+  height: calc(4rem - 4px);
+  padding: 0 1rem;
+}
+
 .topnav a {
   display: flex;
   align-items: center;
@@ -66,9 +71,18 @@
 /* Mobile Styles */
 @media screen and (min-width: 0px) and (max-width: 1024px) {
   div.topnav {
-    padding: 16px;
-    height: 48px;
-    justify-content: center;
+    padding: 1rem;
+    gap: 1rem;
+    height: 3rem;
+  }
+
+  .topnav .logo-container a {
+    height: calc(3rem - 4px);
+    padding: 0 0.5rem;
+  }
+
+  .topnav .logo-container a img.logo {
+    height: 1rem;
   }
 
   div.topnav div.logo img {
@@ -99,10 +113,6 @@
     background-size: 24px 24px !important;
     background-position: center !important;
     background-repeat: no-repeat;
-    box-shadow: none;
-    position: fixed;
-    left: 8px;
-    top: 8px;
   }
 
   div.mobile-settings h3 {

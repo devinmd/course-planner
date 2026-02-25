@@ -100,6 +100,7 @@ button.filled.error {
 .class-selector button.filled:disabled:hover {
   opacity: 0.5;
   cursor: default;
+  outline: none;
 }
 
 /*  */
@@ -191,8 +192,12 @@ button.blue:hover {
     padding: 1rem 1rem 0 1rem;
     max-width: 100vw;
   }
-  h3.title {
-    margin: 16px 0 0 1rem;
+  div.name-bar {
+    margin: 1rem 0 0 1rem;
+  }
+
+  .name-bar input {
+    width: 50vw;
   }
 
   div.class-selector-wrapper,

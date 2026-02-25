@@ -314,7 +314,7 @@ function ClassesGrid({
   return (
     <>
 
-      <div style={{ display: "flex", alignItems: "center", marginBottom: "-1rem" }}>
+      <div style={{ display: "flex", alignItems: "center", marginBottom: "-1rem" }} className="name-bar">
         <input placeholder="Enter name here" type="text" className="name-input" value={userName} onChange={(e) => setUserName(e.target.value)} />
         <h3 className="title">'s 4-Year Plan</h3>
       </div>

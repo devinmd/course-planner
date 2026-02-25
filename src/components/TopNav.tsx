@@ -26,17 +26,7 @@ export default function TopNav({
   return (
     <>
       <div className="topnav">
-        {/* logos */}
-        <div className="logo-container">
-          <Link to="/courseplanner" className={isCoursePlanner ? "" : "inactive"} style={{ borderBottom: isCoursePlanner ? "4px solid #2463EB" : "4px solid transparent", height: "calc(4rem - 4px)", padding: "0 1rem" }}>
-            <img className="logo" src="/logo.svg" />
-          </Link>
-          <Link to="/gradecalculator" className={isGradeCalculator ? "" : "inactive"} style={{ borderBottom: isGradeCalculator ? "4px solid #16C216" : "4px solid transparent", height: "calc(4rem - 4px)", padding: "0 1rem" }}>
-            <img className="logo" src="/logo2.svg" />
-          </Link>
-        </div>
-
-        {isMobile && (
+         {isMobile && (
           <>
             <button
               onClick={() => setShowMobileSettings(!showMobileSettings)}
@@ -44,6 +34,17 @@ export default function TopNav({
             ></button>
           </>
         )}
+        {/* logos */}
+        <div className="logo-container">
+          <Link to="/courseplanner" className={isCoursePlanner ? "" : "inactive"} style={{ borderBottom: isCoursePlanner ? "4px solid #2463EB" : "4px solid transparent" }}>
+            <img className="logo" src="/logo.svg" />
+          </Link>
+          <Link to="/gradecalculator" className={isGradeCalculator ? "" : "inactive"} style={{ borderBottom: isGradeCalculator ? "4px solid #16C216" : "4px solid transparent" }}>
+            <img className="logo" src="/logo2.svg" />
+          </Link>
+        </div>
+
+       
 
         {/* mobile settings modal */}
         {showMobileSettings && onCheck && onResetClasses && copyURL && (
