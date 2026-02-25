@@ -10,25 +10,24 @@
     "difficulty": 2
   },
   "4003": {
-    "name": "Psychology of Fear",
+    "name": "English 11/12: Mythology of Monsters",
     "ap": false,
     "allowed_years": [11, 12],
     "credit": 1,
     "prerequisites": [["1000", "2000"]],
     "course_length": 1,
     "department": 0,
-    "shorthand": "Psych of Fear",
-    "difficulty": 3
+    "shorthand": "Mythology"
   },
   "4004": {
-    "name": "Crime & Punishment",
+    "name": "English 11/12: From Page to Screen",
     "ap": false,
     "allowed_years": [11, 12],
     "credit": 1,
     "prerequisites": [["1000", "2000"]],
     "course_length": 1,
     "department": 0,
-    "difficulty": 3
+    "shorthand": "Page to Screen"
   },
   "2000": {
     "name": "English 10",
@@ -38,8 +37,7 @@
     "credit": 1,
     "course_length": 1,
     "department": 0,
-    "required": true,
-    "difficulty": 2
+    "required": true
   },
   "5000": {
     "name": "AP English Language & Composition",
@@ -49,8 +47,7 @@
     "course_length": 1,
     "prerequisites": [["1000", "2000"]],
     "department": 0,
-    "shorthand": "AP Lang",
-    "difficulty": 4
+    "shorthand": "AP Lang"
   },
   "5001": {
     "name": "AP English Literature & Composition",
@@ -60,8 +57,7 @@
     "prerequisites": [["1000", "2000"]],
     "course_length": 1,
     "department": 0,
-    "shorthand": "AP Lit",
-    "difficulty": 4
+    "shorthand": "AP Lit"
   },
   "5002": {
     "name": "SUPA: Introduction to Creative Nonfiction",
@@ -70,7 +66,15 @@
     "credit": 1,
     "course_length": 1,
     "department": 0,
-    "difficulty": 3
+    "shorthand": "SUPA Nonfiction"
+  },
+  "5003": {
+    "name": "SUPA: Presentational Speaking (F)(S)",
+    "ap": false,
+    "allowed_years": [11, 12],
+    "credit": 0.5,
+    "course_length": 0.5,
+    "department": 0
   },
   "1100": {
     "name": "Foundations of the Modern World",
@@ -90,7 +94,8 @@
     "department": 1,
     "course_length": 1,
     "credit": 1,
-    "difficulty": 2
+    "difficulty": 2,
+    "shorthand": "Modern World"
   },
   "3101": {
     "name": "Japan Studies (F)(S)",
@@ -145,18 +150,16 @@
     "department": 1,
     "course_length": 1,
     "credit": 1,
-    "shorthand": "APUSH",
-    "difficulty": 3
+    "shorthand": "APUSH"
   },
   "5102": {
-    "name": "AP Economics",
+    "name": "AP Macroeconomics",
     "ap": true,
     "allowed_years": [11, 12],
     "department": 1,
     "course_length": 1,
     "credit": 1,
-    "shorthand": "AP Econ",
-    "difficulty": 3
+    "shorthand": "AP Macro"
   },
   "5103": {
     "name": "AP Microeconomics",
@@ -165,8 +168,7 @@
     "department": 1,
     "course_length": 1,
     "credit": 1,
-    "shorthand": "AP Micro",
-    "difficulty": 3
+    "shorthand": "AP Micro"
   },
   "5104": {
     "name": "SUPA: Psychology",
@@ -175,8 +177,7 @@
     "department": 1,
     "course_length": 1,
     "credit": 1,
-    "shorthand": "SUPA: Psych",
-    "difficulty": 3
+    "shorthand": "SUPA: Psych"
   },
   "5105": {
     "name": "SUPA: Introduction to Entrepreneurship",
@@ -184,8 +185,7 @@
     "allowed_years": [11, 12],
     "department": 1,
     "course_length": 1,
-    "credit": 1,
-    "difficulty": 3
+    "credit": 1
   },
   "6100": {
     "name": "Japan Seminar",
@@ -193,8 +193,7 @@
     "allowed_years": [12],
     "department": 1,
     "course_length": 1,
-    "credit": 1,
-    "difficulty": 2
+    "credit": 1
   },
   "1300": {
     "name": "Biology",
@@ -203,8 +202,7 @@
     "department": 2,
     "course_length": 1,
     "credit": 1,
-    "shorthand": "Bio",
-    "difficulty": 2
+    "shorthand": "Bio"
   },
   "2301": {
     "name": "Chemistry",
@@ -214,8 +212,7 @@
     "course_length": 1,
     "credit": 1,
     "shorthand": "Chem",
-    "prerequisites": [["1300"]],
-    "difficulty": 3
+    "prerequisites": [["1300"]]
   },
   "2302": {
     "name": "Dynamics of Physics and Chemistry",
@@ -225,7 +222,7 @@
     "course_length": 1,
     "credit": 1,
     "prerequisites": [["1300"]],
-    "difficulty": 2
+    "shorthand": "DPC"
   },
   "3302": {
     "name": "Physics",
@@ -234,8 +231,7 @@
     "department": 2,
     "course_length": 1,
     "credit": 1,
-    "prerequisites": [["1300"]],
-    "difficulty": 3
+    "prerequisites": [["1300"]]
   },
   "4300": {
     "name": "Biomedical Science",
@@ -244,8 +240,7 @@
     "department": 2,
     "course_length": 1,
     "credit": 1,
-    "shorthand": "Biomed",
-    "difficulty": 3
+    "shorthand": "Biomed"
   },
   "4301": {
     "name": "Organic Chemistry",
@@ -254,8 +249,7 @@
     "department": 2,
     "course_length": 1,
     "credit": 1,
-    "shorthand": "Org. Chem",
-    "difficulty": 3
+    "shorthand": "Org. Chem"
   },
   "4303": {
     "name": "Food Science and Sustainability",
@@ -263,8 +257,8 @@
     "allowed_years": [11, 12],
     "department": 2,
     "course_length": 1,
-    "credit": 1,
-    "difficulty": 2
+    "shorthand": "Food Science",
+    "credit": 1
   },
   "5300": {
     "name": "AP Environmental Science",
@@ -273,8 +267,7 @@
     "department": 2,
     "course_length": 1,
     "credit": 1,
-    "shorthand": "APES",
-    "difficulty": 4
+    "shorthand": "APES"
   },
   "5304": {
     "name": "AP Physics 2",
@@ -284,8 +277,7 @@
     "course_length": 1,
     "credit": 1,
     "shorthand": "AP Physics 2",
-    "prerequisites": [["3302"]],
-    "difficulty": 5
+    "prerequisites": [["3302"]]
   },
   "5301": {
     "name": "AP Biology",
@@ -294,8 +286,7 @@
     "department": 2,
     "course_length": 1,
     "credit": 1,
-    "shorthand": "AP Bio",
-    "difficulty": 5
+    "shorthand": "AP Bio"
   },
   "5302": {
     "name": "AP Chemistry",
@@ -304,8 +295,7 @@
     "department": 2,
     "course_length": 1,
     "credit": 1,
-    "shorthand": "AP Chem",
-    "difficulty": 5
+    "shorthand": "AP Chem"
   },
   "6300": {
     "name": "Synthetic Biology",
@@ -314,27 +304,25 @@
     "department": 2,
     "course_length": 1,
     "credit": 1,
-    "shorthand": "Syn Bio",
-    "difficulty": 3
+    "shorthand": "Syn Bio"
   },
   "1201": {
-    "name": "Integrated Math I",
+    "name": "Integrated Mathematics 1",
     "ap": false,
     "allowed_years": [9, 10],
     "department": 3,
     "course_length": 1,
     "credit": 1,
-    "shorthand": "Integrated Math 1",
-    "difficulty": 2
+    "shorthand": "Integrated Math 1"
   },
   "2200": {
-    "name": "Geometry",
+    "name": "Integrated Mathematics 2",
     "ap": false,
     "allowed_years": [9, 10, 11, 12],
     "department": 3,
     "course_length": 1,
     "credit": 1,
-    "difficulty": 2
+    "shorthand": "Integrated Math 2"
   },
   "3200": {
     "name": "Algebra 2",
@@ -343,8 +331,7 @@
     "department": 3,
     "course_length": 1,
     "credit": 1,
-    "shorthand": "Alg 2",
-    "difficulty": 2
+    "shorthand": "Alg 2"
   },
   "4200": {
     "name": "Precalculus",
@@ -353,8 +340,7 @@
     "department": 3,
     "course_length": 1,
     "credit": 1,
-    "shorthand": "Precalc",
-    "difficulty": 3
+    "shorthand": "Precalc"
   },
   "4201": {
     "name": "Advanced Precalculus",
@@ -363,8 +349,7 @@
     "department": 3,
     "course_length": 1,
     "credit": 1,
-    "shorthand": "Adv. Precalc",
-    "difficulty": 3
+    "shorthand": "Adv. Precalc"
   },
   "4202": {
     "name": "Calculus",
@@ -373,8 +358,7 @@
     "department": 3,
     "course_length": 1,
     "credit": 1,
-    "shorthand": "Calc",
-    "difficulty": 4
+    "shorthand": "Calc"
   },
   "5200": {
     "name": "AP Calculus AB",
@@ -383,8 +367,7 @@
     "department": 3,
     "course_length": 1,
     "credit": 1,
-    "shorthand": "AP Calc AB",
-    "difficulty": 4
+    "shorthand": "AP Calc AB"
   },
   "5201": {
     "name": "AP Calculus BC",
@@ -393,8 +376,7 @@
     "department": 3,
     "course_length": 1,
     "credit": 1,
-    "shorthand": "AP Calc BC",
-    "difficulty": 5
+    "shorthand": "AP Calc BC"
   },
   "5203": {
     "name": "AP Calculus BC (Post AB)",
@@ -403,8 +385,7 @@
     "department": 3,
     "course_length": 1,
     "credit": 1,
-    "shorthand": "AP Calc BC (Post AB)",
-    "difficulty": 5
+    "shorthand": "AP Calc BC (Post AB)"
   },
   "5202": {
     "name": "AP Statistics",
@@ -413,8 +394,7 @@
     "department": 3,
     "course_length": 1,
     "credit": 1,
-    "shorthand": "AP Stats",
-    "difficulty": 4
+    "shorthand": "AP Stats"
   },
   "6202": {
     "name": "Advanced Topics in Mathematics (Varies by year)",
@@ -423,8 +403,7 @@
     "department": 3,
     "course_length": 1,
     "credit": 1,
-    "shorthand": "AT Math",
-    "difficulty": 5
+    "shorthand": "AT Math"
   },
   "1900": {
     "name": "Design Products",
@@ -432,8 +411,7 @@
     "allowed_years": [9, 10, 11, 12],
     "department": 4,
     "course_length": 0.5,
-    "credit": 0.5,
-    "difficulty": 1
+    "credit": 0.5
   },
   "1901": {
     "name": "Design with Code",
@@ -441,8 +419,7 @@
     "allowed_years": [9, 10, 11, 12],
     "department": 4,
     "course_length": 0.5,
-    "credit": 0.5,
-    "difficulty": 1
+    "credit": 0.5
   },
   "1902": {
     "name": "Design with Physical Computing & Robotics",
@@ -450,18 +427,31 @@
     "allowed_years": [9, 10, 11, 12],
     "department": 4,
     "course_length": 0.5,
-    "credit": 0.5,
-    "difficulty": 1
+    "credit": 0.5
   },
   "1903": {
-    "name": "Global Citizenship in the Digital Age",
+    "name": "Technology & Society",
     "ap": false,
     "allowed_years": [9, 10, 11, 12],
     "department": 4,
     "course_length": 0.5,
-    "credit": 0.5,
-    "shorthand": "GCDA",
-    "difficulty": 1
+    "credit": 0.5
+  },
+  "1904": {
+    "name": "Data Science I: Literacy, Analysis, and Visualization",
+    "ap": false,
+    "allowed_years": [9, 10, 11, 12],
+    "department": 4,
+    "course_length": 0.5,
+    "credit": 0.5
+  },
+  "1905": {
+    "name": "Cybersecurity I: Networks & Security (F) (S)",
+    "ap": false,
+    "allowed_years": [9, 10, 11, 12],
+    "department": 4,
+    "course_length": 0.5,
+    "credit": 0.5
   },
   "2900": {
     "name": "Design Studio",
@@ -469,8 +459,23 @@
     "allowed_years": [10, 11, 12],
     "department": 4,
     "course_length": 0.5,
-    "credit": 0.5,
-    "difficulty": 1
+    "credit": 0.5
+  },
+  "4906": {
+    "name": "Data Science 2: AI & ML Models (F) (S)",
+    "ap": false,
+    "allowed_years": [10, 11, 12],
+    "department": 4,
+    "course_length": 0.5,
+    "credit": 0.5
+  },
+  "4907": {
+    "name": "Cybersecurity 2: Ethical Hacking (F) (S)",
+    "ap": false,
+    "allowed_years": [10, 11, 12],
+    "department": 4,
+    "course_length": 0.5,
+    "credit": 0.5
   },
   "5900": {
     "name": "AP Computer Science Principles",
@@ -479,8 +484,7 @@
     "department": 4,
     "course_length": 1,
     "credit": 1,
-    "shorthand": "APCSP",
-    "difficulty": 3
+    "shorthand": "APCSP"
   },
   "5901": {
     "name": "AP Computer Science A",
@@ -489,27 +493,15 @@
     "department": 4,
     "course_length": 1,
     "credit": 1,
-    "shorthand": "APCSA",
-    "difficulty": 4
-  },
-  "5903": {
-    "name": "Data Science",
-    "ap": false,
-    "allowed_years": [11, 12],
-    "department": 4,
-    "course_length": 1,
-    "credit": 1,
-    "difficulty": 3
+    "shorthand": "APCSA"
   },
   "6902": {
-    "name": "Advanced Topics in Computer Science",
+    "name": "Advanced Topics in Design, Engineering, and Computer Science",
     "ap": false,
     "allowed_years": [11, 12],
     "department": 4,
     "course_length": 0.5,
-    "credit": 0.5,
-    "shorthand": "AT CS",
-    "difficulty": 4
+    "credit": 0.5
   },
   "1802": {
     "name": "Wellness 9",
@@ -517,7 +509,7 @@
     "allowed_years": [9],
     "department": 7,
     "course_length": 1,
-    "credit": 0.5,
+    "credit": 1,
     "difficulty": 1
   },
   "2802": {
@@ -623,7 +615,7 @@
     "name": "AP Seminar",
     "ap": true,
     "allowed_years": [11, 12],
-    "department": 8,
+    "department": 0,
     "course_length": 1,
     "credit": 1,
     "shorthand": "AP Sem",
