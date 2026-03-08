@@ -1,88 +1,76 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import "../App.css";
 import "./coursePlanner.css";
 import { useAppContext } from "../AppContext";
 import TopNav from "../components/TopNav";
 
-// import class information
-import classes1 from "../resources/classes.json";
-const classes = classes1 as Record<string, any>;
-import departments from "../resources/departments.json";
 import defaultClasses from "../resources/defaultClasses.json";
-
-interface ClassDataObject {
-  color?: string; // from department color
-  name: string;
-  ap: boolean;
-  credit: number;
-  allowed_years: number[];
-  department: number;
-  shorthand?: string;
-  course_length: number;
-  hide_id?: boolean;
-  difficulty?: number;
-  prerequisites?: string[];
-}
+import {
+  ClassDataObject,
+  Department,
+  parseCsvToClasses,
+  parseCsvToDepartments,
+  decodeClasses,
+  encodeClasses,
+  getDeptClassIds,
+  DEPARTMENTS_API_URL,
+  CLASSES_API_URL
+} from "../utils/helpers";
 
 function DepartmentSelector({
+  classes,
+  departments,
   onSelectClass,
   selectedSlot,
   onCancel,
   onRemove,
   useShorthand,
 }: {
+  classes: Record<string, ClassDataObject>;
+  departments: Department[];
   onSelectClass: (classId: string) => void;
   selectedSlot: [number, number, number, boolean];
   onCancel: () => void;
   onRemove: () => void;
   useShorthand: boolean;
 }) {
-  let [selectedDepartment, setSelectedDepartment] = useState<number | null>(null);
-  let [searchVal, setSearchVal] = useState<string | null>(null);
+  const [selectedDepartment, setSelectedDepartment] = useState<number | null>(null);
+  const [searchVal, setSearchVal] = useState<string | null>(null);
 
-  let classIdList: any = [];
-
-  const handleSearch = (val: string) => {
-    if (val == "") {
-      setSearchVal(null);
-      return;
+  // memoized list of class IDs matching the current filters
+  const classIdList = useMemo(() => {
+    if (selectedDepartment != null && !searchVal) {
+      return getDeptClassIds(classes, selectedDepartment);
     }
-    setSearchVal(val);
-  };
-
-  if (selectedDepartment != null && !searchVal) {
-    classIdList = departments[selectedDepartment].classes;
-    // departmentName = departments[selectedDepartment].name;
-  } else if (searchVal) {
-    let val = searchVal.toLowerCase();
-    classIdList = [];
-    for (let id in classes) {
-      const c: any = classes[id.toString() as keyof typeof classes];
-      if (
-        c.name.toLowerCase().includes(val) ||
-        (c.shorthand ? c.shorthand.toLowerCase().includes(val) : false) ||
-        val == "all"
-      ) {
-        // is a match
-        if (selectedDepartment === null || c.department == selectedDepartment) {
-          classIdList.push(id);
-        }
-      }
+    if (searchVal) {
+      const val = searchVal.toLowerCase();
+      return Object.keys(classes).filter((id) => {
+        const c: any = classes[id as keyof typeof classes];
+        const matches =
+          c.name.toLowerCase().includes(val) ||
+          (c.shorthand ? c.shorthand.toLowerCase().includes(val) : false) ||
+          val === "all";
+        return (
+          matches &&
+          (selectedDepartment === null || c.department === selectedDepartment)
+        );
+      });
     }
-  }
+    return [];
+  }, [classes, selectedDepartment, searchVal]);
+
+  const handleSearch = (val: string) => setSearchVal(val || null);
 
   const getHeaderText = () => {
-    if (searchVal == "all") {
-      return `Select a Course from all ${classIdList.length} Options`;
-    } else if (selectedDepartment === null && !searchVal) {
-      return "Select a Department";
-    } else if (selectedDepartment !== null && !searchVal) {
+    if (searchVal === "all") return `Select a Course from all ${classIdList.length} Options`;
+    if (selectedDepartment === null && !searchVal) return "Select a Department";
+    if (selectedDepartment !== null && !searchVal)
       return `Select a Course from ${departments[selectedDepartment].name}`;
-    } else if (searchVal && selectedDepartment === null) {
+    if (searchVal && selectedDepartment === null)
       return `${classIdList.length} results for "${searchVal}"`;
-    } else if (selectedDepartment !== null && searchVal) {
+    if (selectedDepartment !== null && searchVal)
       return `${classIdList.length} results for "${searchVal}" in ${departments[selectedDepartment].name}`;
-    }
+    return "";
   };
 
   return (
@@ -150,10 +138,8 @@ function DepartmentSelector({
                 className="filled"
                 onClick={() => onSelectClass(classId.toString())}
                 disabled={
-                  (classData.allowed_years?.length > 0 &&
-                    selectedSlot[1] != null &&
-                    !(classData.allowed_years as number[]).includes(selectedSlot[1] + 9)) ||
-                  (selectedSlot[3] && classData.course_length == 1)
+                  (selectedSlot[1] != null && !allowedInYear(classData, selectedSlot[1])) ||
+                  (selectedSlot[3] && isFullLength(classData))
                 }
                 style={{ backgroundColor: `var(--${departments[classData.department].color}-l)` }}
               >
@@ -166,6 +152,29 @@ function DepartmentSelector({
       )}
     </>
   );
+}
+
+// helpers for new API format
+function allowedInYear(classData: ClassDataObject, gradeIndex: number): boolean {
+  const year = gradeIndex + 9;
+  // try new per-grade flags first
+  const key = (`allowed${year}` as keyof ClassDataObject);
+  const val = (classData as any)[key];
+  if (val !== undefined) {
+    return Boolean(val);
+  }
+  // fallback to legacy array
+  return classData.allowed_years?.includes(year) ?? true;
+}
+
+function isFullLength(classData: ClassDataObject): boolean {
+  if (classData.length !== undefined) return classData.length === 1;
+  return classData.course_length === 1;
+}
+
+function isHalfLength(classData: ClassDataObject): boolean {
+  if (classData.length !== undefined) return classData.length === 0.5;
+  return classData.course_length === 0.5;
 }
 
 function ClassButton({
@@ -225,6 +234,8 @@ function ClassButton({
 
 // grid of classes buttons
 function ClassesGrid({
+  classes,
+  departments,
   onClassSlotClick,
   assignedClasses,
   selectedClassSlot,
@@ -232,6 +243,8 @@ function ClassesGrid({
   userName,
   setUserName
 }: {
+  classes: Record<string, ClassDataObject>;
+  departments: Department[];
   onClassSlotClick: (row: number, col: number, slotIndex: number, isHalf: boolean) => void;
   assignedClasses: string[][][];
   selectedClassSlot: any[] | null;
@@ -243,40 +256,25 @@ function ClassesGrid({
   const [classIDsToHighlight, setClassIDsToHighlight] = useState<string[]>([]);
   const headers = ["Freshman", "Sophomore", "Junior", "Senior"];
   const classCount = 8;
-  let difficulty: number[] = [0, 0, 0, 0];
-  let apCount: number[] = [0, 0, 0, 0];
 
-  for (let [index, year] of assignedClasses.entries()) {
-    let difficultyNum: number = 0;
-    let count = 8;
-    for (let slot of year) {
-      if (slot[0] == "" && slot[1] == "") {
-        count--; // if empty slot, remove form count
-        continue;
-      }
+  const difficulty: number[] = [0, 0, 0, 0];
+  const apCount: number[] = [0, 0, 0, 0];
 
-      for (let courseId of slot) {
-        if (courseId == "") continue; // if empty, ignore
-        const classData: ClassDataObject = classes[courseId]; // get class data
-        if (classData.ap) apCount[index]++; // count aps
-
+  // compute summary numbers once
+  assignedClasses.forEach((year, index) => {
+    let difficultyNum = 0;
+    let count = year.length;
+    year.forEach((slot) => {
+      slot.forEach((courseId) => {
+        if (!courseId) return;
+        const classData = classes[courseId];
+        if (classData.ap) apCount[index]++;
         difficultyNum += parseInt(courseId.charAt(0));
-
-        /*
-        if (classData.difficulty == null) {
-          // if no difficulty has been assigned for this course, remove from count
-          count -= classData.course_length;
-        } else if (classData.course_length == 0.5) {
-          // add half difficulty rating if its a half year course
-          difficultyNum += classData.difficulty / 2;
-        } else {
-          // add difficulty
-          difficultyNum += classData.difficulty;
-        }*/
-      }
-    }
-    difficulty[index] = Math.min(difficultyNum / count, 5); // cap at 5
-  }
+      });
+      if (slot[0] === "" && slot[1] === "") count--;
+    });
+    difficulty[index] = Math.min(difficultyNum / (count || 1), 5);
+  });
 
   useEffect(() => {
     if (!hoveredClassID || !classes[hoveredClassID]) {
@@ -284,31 +282,18 @@ function ClassesGrid({
       return;
     }
 
-    const highlightIDs: string[] = [];
+    const highlightIDs: Set<string> = new Set([hoveredClassID]);
+    const { prerequisites, department } = classes[hoveredClassID];
 
-    // include the hovered class itself
-    highlightIDs.push(hoveredClassID);
-
-    // add prerequisites if they exist
-    const prerequisites = classes[hoveredClassID].prerequisites;
     if (Array.isArray(prerequisites)) {
-      for (const group of prerequisites) {
-        for (const id of group) {
-          highlightIDs.push(id);
-        }
-      }
+      prerequisites.flat().forEach((id) => highlightIDs.add(id));
     }
 
-    // add all classes in the same department
-    // this could be made faster by only checking selected classes for their department
-    // right now it checks for all classes in the same department even if it's not chosen
-    const department = classes[hoveredClassID].department;
-    for (const classId in classes) {
-      if (classes[classId].department === department) {
-        highlightIDs.push(classId);
-      }
-    }
-    setClassIDsToHighlight(highlightIDs);
+    Object.entries(classes).forEach(([id, cls]) => {
+      if (cls.department === department) highlightIDs.add(id);
+    });
+
+    setClassIDsToHighlight(Array.from(highlightIDs));
   }, [hoveredClassID, classes]);
 
   return (
@@ -323,69 +308,44 @@ function ClassesGrid({
         {Array.from({ length: headers.length }).map((_, colIndex) => {
           return (
             <div className="card year-column" key={colIndex}>
+
               <h4 key={colIndex + "h"}>{headers[colIndex]} Year</h4>
 
               <div className="class-slots">
 
-
                 {Array.from({ length: classCount }).map((_, rowIndex) => {
-                  // get assigned class data
-                  const assignedClassId: string = assignedClasses[colIndex][rowIndex][0];
-                  let assignedClassData: ClassDataObject;
-                  if (assignedClassId != "") {
-                    assignedClassData = classes[assignedClassId];
-                    assignedClassData.color = departments[assignedClassData.department].color;
-                  } else {
-                    assignedClassData = {} as ClassDataObject;
-                  }
+                  const [firstId, secondId] = assignedClasses[colIndex][rowIndex];
+                  const getData = (id: string) => {
+                    if (!id) return {} as ClassDataObject;
+                    const data = { ...classes[id] } as ClassDataObject;
+                    data.color = departments[data.department].color;
+                    return data;
+                  };
+                  const assignedClassData = getData(firstId);
+                  const secondClassData = getData(secondId);
+                  const useSecondSlot = isHalfLength(assignedClassData) || secondId !== "";
 
-                  // Get second selected class if it exists
-                  const secondClassId = assignedClasses[colIndex][rowIndex][1];
-                  const useSecondSlot = assignedClassData.course_length === 0.5 || secondClassId !== "";
-                  let assignedClassData1: ClassDataObject;
-                  if (secondClassId) {
-                    // Has second class
-                    assignedClassData1 = {
-                      ...classes[secondClassId],
-                    };
-                    assignedClassData1.color = departments[assignedClassData1.department].color;
-                  } else {
-                    assignedClassData1 = {} as ClassDataObject;
-                  }
-
-                  // tuple to store selected state
-                  let isSelected = [
-                    Boolean(
-                      selectedClassSlot &&
-                      selectedClassSlot[0] === rowIndex &&
-                      selectedClassSlot[1] === colIndex &&
-                      selectedClassSlot[2] === 0
-                    ),
-                    Boolean(
-                      selectedClassSlot &&
-                      selectedClassSlot[0] === rowIndex &&
-                      selectedClassSlot[1] === colIndex &&
-                      selectedClassSlot[2] === 1
-                    ),
+                  const isSelected = [
+                    Boolean(selectedClassSlot && selectedClassSlot[0] === rowIndex && selectedClassSlot[1] === colIndex && selectedClassSlot[2] === 0),
+                    Boolean(selectedClassSlot && selectedClassSlot[0] === rowIndex && selectedClassSlot[1] === colIndex && selectedClassSlot[2] === 1),
                   ];
 
-                  // create & return the button
+                  const highlight = (id: string) => classIDsToHighlight.includes(id);
+
                   return (
                     <div className="class-slot" key={`${rowIndex}-${colIndex}s`}>
                       <ClassButton
                         rowIndex={rowIndex}
                         colIndex={colIndex}
                         slotIndex={0}
-                        classId={assignedClassId}
+                        classId={firstId}
                         classData={assignedClassData}
                         isSelected={isSelected[0]}
-                        isHighlighted={classIDsToHighlight.includes(assignedClassId)}
+                        isHighlighted={highlight(firstId)}
                         useShorthand={useShorthand}
                         error={false}
                         onClick={() => onClassSlotClick(rowIndex, colIndex, 0, useSecondSlot)}
-                        onHover={() => {
-                          setHoveredClassID(assignedClassId);
-                        }}
+                        onHover={() => setHoveredClassID(firstId)}
                         onUnhover={() => setHoveredClassID("")}
                       />
 
@@ -394,16 +354,14 @@ function ClassesGrid({
                           rowIndex={rowIndex}
                           colIndex={colIndex}
                           slotIndex={1}
-                          classId={secondClassId}
-                          classData={assignedClassData1}
+                          classId={secondId}
+                          classData={secondClassData}
                           isSelected={isSelected[1]}
-                          isHighlighted={classIDsToHighlight.includes(secondClassId)}
+                          isHighlighted={highlight(secondId)}
                           useShorthand={useShorthand}
                           error={false}
                           onClick={() => onClassSlotClick(rowIndex, colIndex, 1, useSecondSlot)}
-                          onHover={() => {
-                            setHoveredClassID(secondClassId);
-                          }}
+                          onHover={() => setHoveredClassID(secondId)}
                         />
                       )}
                     </div>
@@ -414,15 +372,15 @@ function ClassesGrid({
 
                 <div>
                   Course workload:
-                  <span style={{ float: "right" }}> {Math.min(difficulty[colIndex] + 0.5, 5).toFixed(1)}/5</span>
+                  <span style={{ float: "right" }}> {Math.min(difficulty[colIndex], 5)}/5</span>
                 </div>
 
                 <div className="bar-wrapper">
                   <div
                     className="bar"
                     style={{
-                      width: Math.min(((difficulty[colIndex] + 0.5) / 5) * 100, 100) + "%",
-                      backgroundColor: `hsla(${120 - ((difficulty[colIndex] - 0.5) / 3) * 120}, 100%, 40%, 60%)`,
+                      width: Math.min(((difficulty[colIndex]) / 5) * 100, 100) + "%",
+                      backgroundColor: `hsla(${120 - ((difficulty[colIndex]) / 5) * 120}, 100%, 40%, 60%)`,
                     }}
                   ></div>
                 </div>
@@ -435,18 +393,15 @@ function ClassesGrid({
   );
 }
 
-function Summary({ assignedClasses }: { assignedClasses: string[][][] }) {
+function Summary({ classes, departments, assignedClasses }: { classes: Record<string, ClassDataObject>; departments: Department[]; assignedClasses: string[][][] }) {
   let currentCredits: number[] = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]; // count amount of credits per department that have been fulfilled
   let apsPerYear: number[] = [0, 0, 0, 0]; // count aps per year
   let freesPerYear: number[] = [0, 0, 0, 0]; // count frees per year
   const maxFreesPerYear: number[] = [1, 1, 2, 2];
   let englishCourses: number[] = [0, 0, 0, 0]; // every year has an english class
-  let hasUsHistory = false; // us history or apush or race studies
   let grade9history = false; // history in grade 9
   let grade10history = false; // history in grade 1
-  let hasStudyOfJapan = false;
   let duplicates: string[][] = [[], [], [], []];
-  let hasDigitalLiteracy = false;
 
   // iterate through user's selected classes and add the credits to each department
   for (let [yearIndex, years] of assignedClasses.entries()) {
@@ -488,28 +443,24 @@ function Summary({ assignedClasses }: { assignedClasses: string[][][] }) {
           if (yearIndex == 0) grade9history = true;
           if (yearIndex == 1) grade10history = true;
         }
-        if (classId == "4100" || classId == "5101" || classId == "4101") hasUsHistory = true; // count US history credits
-        if (classId == "1903" || classId == "5900") hasDigitalLiteracy = true; // gcda or csp
-        if (
-          classId == "6100" ||
-          classId == "3101" ||
-          classId == "1502" ||
-          classId == "2502" ||
-          classId == "3502" ||
-          classId == "4502" ||
-          classId == "5502" ||
-          classId == "6502" ||
-          classId == "6503" ||
-          classId == "6504" ||
-          classId == "6505" ||
-          classId == "6506" ||
-          classId == "6507" ||
-          classId == "6508"
-        )
-          hasStudyOfJapan = true; // study of japan credit
+        // removed unused requirement flags
       }
     }
   }
+
+  // determine any required courses that were never scheduled
+  const missingRequired: string[] = [];
+  Object.entries(classes).forEach(([id, cls]) => {
+    if (cls.required) {
+      let found = false;
+      assignedClasses.forEach((year) =>
+        year.forEach((slot) => {
+          if (slot.includes(id)) found = true;
+        })
+      );
+      if (!found) missingRequired.push(id);
+    }
+  });
 
   return (
     <>
@@ -537,7 +488,6 @@ function Summary({ assignedClasses }: { assignedClasses: string[][][] }) {
                 </div>
               )
           )}
-          {/* <div>APs: {apsPerYear[0] + apsPerYear[1] + apsPerYear[2] + apsPerYear[3]}</div> */}
         </div>
         <div className="error-messages">
           {/* if doesnt meet minimum department credit requirements */}
@@ -571,21 +521,27 @@ function Summary({ assignedClasses }: { assignedClasses: string[][][] }) {
           )}
           {!grade9history && <div className="error-message">You need a Social Studies course in grade 9.</div>}
           {!grade10history && <div className="error-message">You need a Social Studies course in grade 10.</div>}
-          {!hasUsHistory && (
-            <div className="error-message">
-              You need to take Race & Ethnic Studies, US History, or AP US History to fulfill your Study of the United
-              States requirement.
-            </div>
-          )}
-          {!(englishCourses[0] > 0 && englishCourses[1] > 0 && englishCourses[2] > 0 && englishCourses[3] > 0) && (
-            <div className="error-message">You need to take an English course every year.</div>
-          )}
           {duplicates.map((year, yearIndex) =>
             year.map((classId) => (
               <div className="error-message">
                 You cannot take {classes[classId].name} more than once in year {yearIndex + 9}.
               </div>
             ))
+          )}
+          {!(englishCourses[0] > 0 && englishCourses[1] > 0 && englishCourses[2] > 0 && englishCourses[3] > 0) && (
+            <div className="error-message">You need to take an English course every year.</div>
+          )}
+          {/* missing required courses */}
+          {missingRequired.map((classId) => (
+            <div key={"req-" + classId} className="error-message">
+              You need to take {classes[classId].name}.
+            </div>
+          ))}
+          {/* {!hasUsHistory && (
+            <div className="error-message">
+              You need to take Race & Ethnic Studies, US History, or AP US History to fulfill your Study of the United
+              States requirement.
+            </div>
           )}
           {!hasDigitalLiteracy && (
             <div className="error-message">
@@ -598,7 +554,7 @@ function Summary({ assignedClasses }: { assignedClasses: string[][][] }) {
               You need to take a Japanese language course, Study of Japan, or Japan Seminar to fulfill your Study of
               Japan requirement.
             </div>
-          )}
+          )} */}
         </div>
       </div>
     </>
@@ -643,6 +599,16 @@ export default function CoursePlanner() {
   // create a state to store the selected slot's row and column
   const [selectedSlot, setSelectedSlot] = useState<[number, number, number, boolean] | null>(null);
 
+  // store classes that will be fetched from the backend
+  const [classes, setClasses] = useState<Record<string, ClassDataObject>>({});
+  const [loading, setLoading] = useState<boolean>(true);
+  const [loadError, setLoadError] = useState<string | null>(null);
+
+  // departments fetched separately (start empty until API loads)
+  const [departments, setDepartments] = useState<Department[]>([]);
+  const [deptLoading, setDeptLoading] = useState<boolean>(true);
+  const [deptLoadError, setDeptLoadError] = useState<string | null>(null);
+
   // Create the array of classes with some placeholder values
   const { assignedClasses, setAssignedClasses } = useAppContext();
 
@@ -651,32 +617,80 @@ export default function CoursePlanner() {
 
   const { userName, setUserName } = useAppContext();
 
-  // runs on first load
+  // fetch classes list from API once when component mounts
+  useEffect(() => {
+    if (!CLASSES_API_URL) {
+      const msg = "CLASSES_API_URL not set, cannot load classes";
+      console.warn(msg);
+      setLoadError(msg);
+      setLoading(false);
+      return;
+    }
+
+    async function loadClasses() {
+      try {
+        const resp = await fetch(CLASSES_API_URL);
+        if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
+        const text = await resp.text();
+        // API returns CSV; convert into object map
+        const data = parseCsvToClasses(text);
+        setClasses(data);
+      } catch (err: any) {
+        console.error("failed to load classes:", err);
+        setLoadError(err.message || String(err));
+      } finally {
+        setLoading(false);
+      }
+    }
+    loadClasses();
+  }, []);
+
+
+  // fetch departments on mount
+  useEffect(() => {
+    if (!DEPARTMENTS_API_URL) {
+      const msg = "DEPARTMENTS_API_URL not set, cannot load departments";
+      console.warn(msg);
+      setDeptLoadError(msg);
+      setDeptLoading(false);
+      return;
+    }
+
+    async function loadDepartments() {
+      try {
+        const resp = await fetch(DEPARTMENTS_API_URL);
+        if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
+        const text = await resp.text();
+        const data = parseCsvToDepartments(text);
+        setDepartments(data);
+      } catch (err: any) {
+        console.error("failed to load departments:", err);
+        setDeptLoadError(err.message || String(err));
+      } finally {
+        setDeptLoading(false);
+      }
+    }
+    loadDepartments();
+  }, []);
+
+
+  // runs on first load for url params etc
   useEffect(() => {
     const url = new URL(window.location.href);
     const classParam = url.searchParams.get("c");
     const nameParam = url.searchParams.get("n");
 
     if (nameParam) {
-      console.log("name param found: " + nameParam)
       setUserName(nameParam);
       updateQueryParam("n", nameParam);
-    } else {
-      console.log("no name param found in url")
     }
 
     if (classParam) {
       setAssignedClasses(decodeClasses(classParam));
       setCoursePlannerURL(classParam);
-    } else {
-      console.log("No 'c' parameter found in the URL");
-      if (coursePlannerURL != "") {
-        console.log("found saved classes from app context");
-        setAssignedClasses(decodeClasses(coursePlannerURL));
-        updateQueryParam("c", coursePlannerURL);
-      } else {
-        console.log("no saved url from appcontext either");
-      }
+    } else if (coursePlannerURL) {
+      setAssignedClasses(decodeClasses(coursePlannerURL));
+      updateQueryParam("c", coursePlannerURL);
     }
   }, []); // This will run once when the component is first loaded
 
@@ -692,7 +706,7 @@ export default function CoursePlanner() {
       updatedClasses[selectedSlot[1]][selectedSlot[0]][selectedSlot[2]] = classId;
       setAssignedClasses(updatedClasses);
       setSelectedSlot(null); // Hide department selector & deselect the slot
-      encodeClasses();
+      updateQueryParam("c", encodeClasses(assignedClasses));
     }
   }
 
@@ -709,47 +723,7 @@ export default function CoursePlanner() {
     setCoursePlannerURL(value);
   }
 
-  // decode classes from url
-  function decodeClasses(encoded: string) {
-    const decodedSplit = encoded.replace(/b/g, "nn").match(/\d{4}|\d{1,3}|[a-zA-Z]/g) || [];
-    console.log("DECODED CLASSES:");
-    console.log(decodedSplit);
-    let decodedFinal: string[][][] = new Array(4)
-      .fill([])
-      .map(() => new Array(8).fill(0).map(() => new Array(2).fill("")));
-    let currentIndex = [0, 0, 0];
-    try {
-      for (let i of decodedSplit) {
-        if (i.length == 4) {
-          decodedFinal[currentIndex[2]][currentIndex[1]][currentIndex[0]] = i;
-        }
-        if (currentIndex[0] >= 1) {
-          currentIndex[1]++;
-          currentIndex[0] = 0;
-        } else {
-          currentIndex[0] += 1;
-        }
-        if (currentIndex[1] >= 8) {
-          currentIndex[2]++;
-          currentIndex[1] = 0;
-        }
-      }
-    } catch (err) {
-      console.warn(err);
-      return assignedClasses;
-    }
-    return decodedFinal;
-  }
 
-  // encode the selected classes and save in the url so the user can copy and share it
-
-  function encodeClasses() {
-    const encoded: string = JSON.stringify(assignedClasses)
-      .replace(/\["",""\]/g, "b")
-      .replace(/""/g, "n")
-      .replace(/["\[\],]/g, "");
-    updateQueryParam("c", encoded);
-  }
 
   // When cancel button is clicked in department selector
   function cancelClassSelector() {
@@ -796,6 +770,15 @@ export default function CoursePlanner() {
     }
   }
 
+  // show loading / error states before rendering planner
+  if (loading || deptLoading) {
+    return <div>Loading</div>;
+  }
+  if (loadError || deptLoadError) {
+    const msg = loadError || deptLoadError;
+    return <div className="error">Error loading{msg}</div>;
+  }
+
   return (
     <>
       <TopNav
@@ -806,6 +789,8 @@ export default function CoursePlanner() {
       />
       <div className="content">
         <ClassesGrid
+          classes={classes}
+          departments={departments}
           onClassSlotClick={handleClassSlotClick}
           assignedClasses={assignedClasses}
           selectedClassSlot={selectedSlot}
@@ -817,6 +802,8 @@ export default function CoursePlanner() {
           <div className="class-selector-wrapper" onClick={() => cancelClassSelector()}>
             <div className="class-selector card" onClick={(event) => event.stopPropagation()}>
               <DepartmentSelector
+                classes={classes}
+                departments={departments}
                 onSelectClass={handleSelectClass}
                 selectedSlot={selectedSlot}
                 onCancel={cancelClassSelector}
@@ -826,7 +813,7 @@ export default function CoursePlanner() {
             </div>
           </div>
         )}
-        <Summary assignedClasses={assignedClasses} />
+        <Summary classes={classes} departments={departments} assignedClasses={assignedClasses} />
         <Notes />
       </div>
     </>

@@ -51,17 +51,14 @@ export default function Footer() {
             schedule is free from conflicts and/or meets all prerequisites and graduation requirements. Always consult
             with your counselor and refer to Veracross, Edsby, and the official Framework for final course selection.
           </p>
-          <p>
+          {/* <p>
             The Grade and GPA calculator is an unofficial tool designed to help estimate grades and GPA. It is not
             offical nor affiliated with any official system. The information should not be considered final, guaranteed,
             or fully accurate. Grade and GPA calculations may vary depending on many factors such as class and teacher.
             The outputs of this app are subject to change, may be inaccurate, and should not be fully relied on.
-          </p>
-          <p>GPA calculator rounds to the nearest hundredth</p>
+          </p> */}
           <p>
-            Course planner last updated June 2025.
-            <br />
-            Grade and GPA calculator last updated June 2025.
+            Course planner last updated March 2026.
           </p>
         </div>
       )}

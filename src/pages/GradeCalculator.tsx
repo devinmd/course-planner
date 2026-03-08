@@ -46,7 +46,6 @@ function ClassGrade({
   function updateStrandCount(delta: number) {
     let temp = strandCount + delta;
     temp = Math.min(Math.max(temp, 1), 5);
-    console.log(temp);
     if (delta == 1) {
       // add
       updateProficiencies(classIndex, temp - 1, 0);

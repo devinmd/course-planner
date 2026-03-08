@@ -46,6 +46,7 @@
   overflow: hidden;
   -webkit-line-clamp: 3;
   line-clamp: 3;
+  line-height: 0.9;
   text-overflow: ellipsis;
   display: -webkit-box;
   word-break: break-word;
@@ -154,23 +155,6 @@ button.filled.error {
   background-position: 12px 5px;
   background-size: 20px 20px;
   background-repeat: no-repeat;
-}
-
-/*  */
-
-button.red {
-  background-color: var(--error);
-  color: var(--background);
-}
-
-button.blue {
-  background-color: var(--accent);
-  color: var(--background-l1);
-}
-
-button.red:hover,
-button.blue:hover {
-  opacity: 0.7;
 }
 
 /* mobile */

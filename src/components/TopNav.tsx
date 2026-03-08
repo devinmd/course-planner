@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { Link, useLocation } from "react-router-dom";
 import { useIsMobile } from "../hooks/useIsMobile";
 import "./TopNav.css";
 
@@ -17,16 +16,12 @@ export default function TopNav({
   useAbbreviations,
 }: TopNavProps) {
   const isMobile = useIsMobile();
-  const location = useLocation();
   const [showMobileSettings, setShowMobileSettings] = useState<boolean>(false);
-
-  const isCoursePlanner = location.pathname === "/" || location.pathname === "/courseplanner";
-  const isGradeCalculator = location.pathname === "/gradecalculator";
 
   return (
     <>
       <div className="topnav">
-         {isMobile && (
+        {isMobile && (
           <>
             <button
               onClick={() => setShowMobileSettings(!showMobileSettings)}
@@ -36,15 +31,10 @@ export default function TopNav({
         )}
         {/* logos */}
         <div className="logo-container">
-          <Link to="/courseplanner" className={isCoursePlanner ? "" : "inactive"} style={{ borderBottom: isCoursePlanner ? "4px solid #2463EB" : "4px solid transparent" }}>
-            <img className="logo" src="/logo.svg" />
-          </Link>
-          <Link to="/gradecalculator" className={isGradeCalculator ? "" : "inactive"} style={{ borderBottom: isGradeCalculator ? "4px solid #16C216" : "4px solid transparent" }}>
-            <img className="logo" src="/logo2.svg" />
-          </Link>
+          {/* <Link to="/courseplanner" style={{}}> */}
+          <img className="logo" src="/logo.svg" />
+          {/* </Link> */}
         </div>
-
-       
 
         {/* mobile settings modal */}
         {showMobileSettings && onCheck && onResetClasses && copyURL && (
@@ -56,7 +46,7 @@ export default function TopNav({
             >
               <h3>Options</h3>
               <button
-                className="white"
+                className="gray"
                 onClick={() => {
                   setShowMobileSettings(false);
                 }}
@@ -64,7 +54,7 @@ export default function TopNav({
                 Close
               </button>
               <button
-                className="white"
+                className="gray"
                 onClick={() => {
                   onCheck(true);
                   setShowMobileSettings(false);
@@ -74,7 +64,7 @@ export default function TopNav({
               </button>
 
               <button
-                className="red"
+                className="gray"
                 onClick={() => {
                   onResetClasses();
                   setShowMobileSettings(false);
@@ -82,18 +72,8 @@ export default function TopNav({
               >
                 Reset
               </button>
-              <button
-                className="blue"
-                onClick={() => {
-                  copyURL();
-                  setShowMobileSettings(false);
-                }}
-              >
-                Copy URL for Your Plan
-              </button>
-              <button className="blue" onClick={() => window.print()}>
-                Print
-              </button>
+              <button className="gray" onClick={() => { copyURL(); setShowMobileSettings(false); }} > Copy URL for Your Plan </button>
+              <button className="gray" onClick={() => window.print()}> Print </button>
             </div>
           </div>
         )}
@@ -106,15 +86,11 @@ export default function TopNav({
                 {useAbbreviations ? "Show Full Course Names" : "Abbreviate Course Names"}
               </button>
 
-              <button className="red reset" onClick={() => onResetClasses()}>
+              <button className="reset" onClick={() => onResetClasses()}>
                 Reset
               </button>
-              <button className="blue copyurl" onClick={() => copyURL()}>
-                Copy URL for Your Plan
-              </button>
-              <button className="blue print" onClick={() => window.print()}>
-                Print
-              </button>
+              <button className="copyurl" onClick={() => copyURL()}> Copy URL for Your Plan </button>
+              <button className="print" onClick={() => window.print()}> Print </button>
             </div>
             <div className="print-header">
               Printed Plan
