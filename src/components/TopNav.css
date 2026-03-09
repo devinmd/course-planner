@@ -51,11 +51,6 @@
   background-size: 20px 20px;
 }
 
-.topnav button.gray {
-  background-color: var(--background);
-
-}
-
 .topnav button:hover {
   background-color: var(--background);
 }

@@ -12,6 +12,10 @@
   font-weight: 700;
 }
 
+.name-input::placeholder {
+  font-weight: 600;
+}
+
 .year-columns {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
