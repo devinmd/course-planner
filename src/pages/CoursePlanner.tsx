@@ -260,14 +260,17 @@ function ClassesGrid({
   const difficulty: number[] = [0, 0, 0, 0];
   const apCount: number[] = [0, 0, 0, 0];
 
+
   // compute summary numbers once
   assignedClasses.forEach((year, index) => {
     let difficultyNum = 0;
     let count = year.length;
     year.forEach((slot) => {
       slot.forEach((courseId) => {
+
         if (!courseId) return;
         const classData = classes[courseId];
+        if (!classData) return
         if (classData.ap) apCount[index]++;
         difficultyNum += parseInt(courseId.charAt(0));
       });
@@ -315,10 +318,17 @@ function ClassesGrid({
 
                 {Array.from({ length: classCount }).map((_, rowIndex) => {
                   const [firstId, secondId] = assignedClasses[colIndex][rowIndex];
+
                   const getData = (id: string) => {
                     if (!id) return {} as ClassDataObject;
+                    if (!classes[id]) return {} as ClassDataObject
                     const data = { ...classes[id] } as ClassDataObject;
+                    // if(!data.department) return {} as ClassDataObject;
+                    // console.log(classes[id])
+                    // if(classes[id])
                     data.color = departments[data.department].color;
+                    // else
+                    // data.color = "gray"
                     return data;
                   };
                   const assignedClassData = getData(firstId);
@@ -413,6 +423,7 @@ function Summary({ classes, departments, assignedClasses }: { classes: Record<st
         const classId: string = classIds[j];
 
         if (classId == "") continue;
+        if (!classes[classId]) continue;
 
         if (
           seen.includes(classId) &&
