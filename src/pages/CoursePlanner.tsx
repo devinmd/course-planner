@@ -382,7 +382,7 @@ function ClassesGrid({
 
                 <div>
                   Course workload:
-                  <span style={{ float: "right" }}> {Math.min(difficulty[colIndex], 5)}/5</span>
+                  <span style={{ float: "right" }}> {(Math.min(difficulty[colIndex], 5)).toFixed(1)}/5</span>
                 </div>
 
                 <div className="bar-wrapper">
@@ -447,7 +447,7 @@ function Summary({ classes, departments, assignedClasses }: { classes: Record<st
         }
         if (classId == "5050") currentCredits[0]++; // ap seminar counts as english credit
         if (classData.ap) apsPerYear[yearIndex]++; // count aps
-        if (classId == "0000" || classId == "0001") freesPerYear[yearIndex]++; // count frees
+        if (classId == "1991" || classId == "1992") freesPerYear[yearIndex]++; // count frees
         if (classData.department == 0) englishCourses[yearIndex]++; // count english courses
         if (classData.department == 1) {
           // count history courses in year 9 and 10

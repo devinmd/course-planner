@@ -23,7 +23,7 @@ export default function Footer() {
     <>
       <footer className="normal-footer">
         <div className="copyright">
-          <div>© {copyrightYear} Course Planner</div>
+          <div>© {copyrightYear}</div>
         </div>
 
         <div className="spacer" style={{ marginLeft: "auto" }}></div>
